@@ -100,3 +100,6 @@ _claude() {
 }
 
 _claude "$@"
+
+# Support common alias 'cc'
+compdef _claude cc

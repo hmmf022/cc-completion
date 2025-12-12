@@ -127,3 +127,5 @@ _claude_completion() {
 }
 
 complete -F _claude_completion claude
+# Support common alias 'cc'
+complete -F _claude_completion cc
