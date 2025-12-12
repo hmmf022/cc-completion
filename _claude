@@ -1,0 +1,102 @@
+#compdef claude
+# Zsh completion script for Claude Code
+# Install: place this file in a directory in your $fpath (e.g., /usr/local/share/zsh/site-functions/)
+
+_claude() {
+    local -a commands global_opts output_formats input_formats permission_modes models setting_sources
+
+    commands=(
+        'mcp:Configure and manage MCP servers'
+        'plugin:Manage Claude Code plugins'
+        'setup-token:Set up a long-lived authentication token'
+        'doctor:Check the health of your Claude Code auto-updater'
+        'update:Check for updates and install if available'
+        'install:Install Claude Code native build'
+    )
+
+    global_opts=(
+        '--debug[Enable debug mode with optional category filtering]:filter:'
+        {-d,--debug}'[Enable debug mode]:filter:'
+        '--verbose[Override verbose mode setting from config]'
+        {-p,--print}'[Print response and exit]'
+        '--output-format[Output format]:format:(text json stream-json)'
+        '--json-schema[JSON Schema for structured output validation]:schema:'
+        '--include-partial-messages[Include partial message chunks]'
+        '--input-format[Input format]:format:(text stream-json)'
+        '--mcp-debug[Enable MCP debug mode (deprecated)]'
+        '--dangerously-skip-permissions[Bypass all permission checks]'
+        '--allow-dangerously-skip-permissions[Enable bypassing permission checks as an option]'
+        '--max-budget-usd[Maximum dollar amount to spend]:amount:'
+        '--replay-user-messages[Re-emit user messages from stdin]'
+        '--allowedTools[Comma or space-separated list of tool names to allow]:tools:'
+        '--allowed-tools[Comma or space-separated list of tool names to allow]:tools:'
+        '--tools[Specify the list of available tools]:tools:'
+        '--disallowedTools[Comma or space-separated list of tool names to deny]:tools:'
+        '--disallowed-tools[Comma or space-separated list of tool names to deny]:tools:'
+        '--mcp-config[Load MCP servers from JSON files or strings]:configs:_files'
+        '--system-prompt[System prompt to use for the session]:prompt:'
+        '--append-system-prompt[Append a system prompt]:prompt:'
+        '--permission-mode[Permission mode to use]:mode:(acceptEdits bypassPermissions default dontAsk plan)'
+        {-c,--continue}'[Continue the most recent conversation]'
+        {-r,--resume}'[Resume a conversation by session ID]:session:'
+        '--fork-session[Create a new session ID when resuming]'
+        '--no-session-persistence[Disable session persistence]'
+        '--model[Model for the current session]:model:(sonnet opus haiku claude-sonnet-4-5-20250929)'
+        '--agent[Agent for the current session]:agent:'
+        '--betas[Beta headers to include in API requests]:betas:'
+        '--fallback-model[Enable automatic fallback to specified model]:model:(sonnet opus haiku)'
+        '--settings[Path to a settings JSON file or JSON string]:file:_files'
+        '--add-dir[Additional directories to allow tool access]:directories:_files -/'
+        '--ide[Automatically connect to IDE on startup]'
+        '--strict-mcp-config[Only use MCP servers from --mcp-config]'
+        '--session-id[Use a specific session ID]:uuid:'
+        '--agents[JSON object defining custom agents]:json:'
+        '--setting-sources[Comma-separated list of setting sources]:sources:(user project local)'
+        '--plugin-dir[Load plugins from directories]:paths:_files -/'
+        '--disable-slash-commands[Disable all slash commands]'
+        {-v,--version}'[Output the version number]'
+        {-h,--help}'[Display help for command]'
+    )
+
+    _arguments -C \
+        '1: :->command' \
+        '*:: :->args' \
+        $global_opts
+
+    case $state in
+        command)
+            _describe -t commands 'claude command' commands
+            ;;
+        args)
+            case $words[1] in
+                mcp)
+                    _arguments \
+                        {-h,--help}'[Display help for command]'
+                    ;;
+                plugin)
+                    _arguments \
+                        {-h,--help}'[Display help for command]'
+                    ;;
+                setup-token)
+                    _arguments \
+                        {-h,--help}'[Display help for command]'
+                    ;;
+                doctor)
+                    _arguments \
+                        {-h,--help}'[Display help for command]'
+                    ;;
+                update)
+                    _arguments \
+                        {-h,--help}'[Display help for command]'
+                    ;;
+                install)
+                    _arguments \
+                        {-h,--help}'[Display help for command]' \
+                        '1: :(stable latest)'
+                    ;;
+            esac
+            ;;
+    esac
+}
+
+_claude "$@"
