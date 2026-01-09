@@ -20,7 +20,7 @@ _claude_completion() {
         --continue --resume --fork-session --no-session-persistence
         --model --agent --betas --fallback-model --settings --add-dir
         --ide --strict-mcp-config --session-id --agents --setting-sources
-        --plugin-dir --disable-slash-commands --version --help
+        --plugin-dir --disable-slash-commands --chrome --no-chrome --version --help
         -d -p -c -r -v -h
     "
 
@@ -91,7 +91,7 @@ _claude_completion() {
             COMPREPLY=($(compgen -W "text stream-json" -- "$cur"))
             ;;
         --permission-mode)
-            COMPREPLY=($(compgen -W "acceptEdits bypassPermissions default dontAsk plan" -- "$cur"))
+            COMPREPLY=($(compgen -W "acceptEdits bypassPermissions default delegate dontAsk plan" -- "$cur"))
             ;;
         --model|--fallback-model)
             COMPREPLY=($(compgen -W "sonnet opus haiku claude-sonnet-4-5-20250929" -- "$cur"))
