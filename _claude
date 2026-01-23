@@ -47,6 +47,7 @@ _claude() {
         '--fallback-model[Enable automatic fallback to specified model]:model:(sonnet opus haiku)'
         '--settings[Path to a settings JSON file or JSON string]:file:_files'
         '--add-dir[Additional directories to allow tool access]:directories:_files -/'
+        '--file[File resources to download at startup]:specs:'
         '--ide[Automatically connect to IDE on startup]'
         '--strict-mcp-config[Only use MCP servers from --mcp-config]'
         '--session-id[Use a specific session ID]:uuid:'

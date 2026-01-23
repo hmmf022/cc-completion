@@ -8,10 +8,10 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 - **Option completion**: All CLI options and flags are completable
 - **Contextual suggestions**: Option values are suggested where applicable
   - Output formats: `text`, `json`, `stream-json`
-  - Permission modes: `acceptEdits`, `bypassPermissions`, `default`, `dontAsk`, `plan`
+  - Permission modes: `acceptEdits`, `bypassPermissions`, `default`, `delegate`, `dontAsk`, `plan`
   - Models: `sonnet`, `opus`, `haiku`, etc.
   - Setting sources: `user`, `project`, `local`
-- **File path completion**: For options that expect file paths (e.g., `--settings`, `--mcp-config`, `--add-dir`)
+- **File path completion**: For options that expect file paths (e.g., `--settings`, `--mcp-config`, `--add-dir`, `--file`)
 
 ## Installation
 
@@ -131,6 +131,7 @@ All Claude Code CLI options are supported, including:
 - Permissions: `--permission-mode`, `--dangerously-skip-permissions`
 - Tools: `--tools`, `--allowed-tools`, `--disallowed-tools`
 - MCP: `--mcp-config`, `--strict-mcp-config`
+- File resources: `--file`
 - And many more...
 
 ## Testing

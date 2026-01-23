@@ -20,7 +20,8 @@ _claude_completion() {
         --continue --resume --fork-session --no-session-persistence
         --model --agent --betas --fallback-model --settings --add-dir
         --ide --strict-mcp-config --session-id --agents --setting-sources
-        --plugin-dir --disable-slash-commands --chrome --no-chrome --version --help
+        --plugin-dir --disable-slash-commands --chrome --no-chrome
+        --file --version --help
         -d -p -c -r -v -h
     "
 
@@ -103,7 +104,7 @@ _claude_completion() {
             # These expect custom input, don't suggest anything
             COMPREPLY=()
             ;;
-        --mcp-config|--settings|--plugin-dir|--add-dir)
+        --mcp-config|--settings|--plugin-dir|--add-dir|--file)
             # File/directory completion
             _filedir
             ;;
