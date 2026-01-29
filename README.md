@@ -11,7 +11,8 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
   - Permission modes: `acceptEdits`, `bypassPermissions`, `default`, `delegate`, `dontAsk`, `plan`
   - Models: `sonnet`, `opus`, `haiku`, etc.
   - Setting sources: `user`, `project`, `local`
-- **File path completion**: For options that expect file paths (e.g., `--settings`, `--mcp-config`, `--add-dir`, `--file`)
+- **File path completion**: For options that expect file paths (e.g., `--settings`, `--mcp-config`, `--add-dir`, `--file`, `--debug-file`)
+- **Subcommand completion**: Full subcommand trees for `mcp` and `plugin` commands
 
 ## Installation
 
@@ -105,7 +106,19 @@ claude --model <TAB>
 
 # Complete install targets
 claude install <TAB>
-# Shows: stable latest --help
+# Shows: stable latest --force --help
+
+# Complete mcp subcommands
+claude mcp <TAB>
+# Shows: add add-from-claude-desktop add-json get list remove reset-project-choices serve
+
+# Complete mcp add options
+claude mcp add --transport <TAB>
+# Shows: stdio sse http
+
+# Complete plugin subcommands
+claude plugin <TAB>
+# Shows: disable enable install list marketplace uninstall update validate
 
 # File path completion
 claude --settings <TAB>
@@ -115,11 +128,27 @@ claude --settings <TAB>
 ## Supported Commands
 
 - `mcp` - Configure and manage MCP servers
+  - `add` - Add an MCP server (with `--scope`, `--transport`, `--env`, `--header` options)
+  - `add-from-claude-desktop` - Import MCP servers from Claude Desktop
+  - `add-json` - Add an MCP server with a JSON string
+  - `get` - Get details about an MCP server
+  - `list` - List configured MCP servers
+  - `remove` - Remove an MCP server
+  - `reset-project-choices` - Reset all approved and rejected project-scoped servers
+  - `serve` - Start the Claude Code MCP server
 - `plugin` - Manage Claude Code plugins
+  - `disable` - Disable an enabled plugin
+  - `enable` - Enable a disabled plugin
+  - `install` - Install a plugin from available marketplaces
+  - `list` - List installed plugins
+  - `marketplace` - Manage Claude Code marketplaces (`add`, `list`, `remove`, `update`)
+  - `uninstall` - Uninstall an installed plugin
+  - `update` - Update a plugin to the latest version
+  - `validate` - Validate a plugin or marketplace manifest
 - `setup-token` - Set up a long-lived authentication token
 - `doctor` - Check the health of your Claude Code auto-updater
 - `update` - Check for updates and install if available
-- `install` - Install Claude Code native build
+- `install` - Install Claude Code native build (with `--force` option)
 
 ## Supported Options
 
@@ -132,6 +161,7 @@ All Claude Code CLI options are supported, including:
 - Tools: `--tools`, `--allowed-tools`, `--disallowed-tools`
 - MCP: `--mcp-config`, `--strict-mcp-config`
 - File resources: `--file`
+- Debugging: `--debug`, `--debug-file`
 - And many more...
 
 ## Testing

@@ -11,7 +11,7 @@ _claude_completion() {
 
     # Global options
     local global_opts="
-        --debug --verbose --print --output-format --json-schema
+        --debug --debug-file --verbose --print --output-format --json-schema
         --include-partial-messages --input-format --mcp-debug
         --dangerously-skip-permissions --allow-dangerously-skip-permissions
         --max-budget-usd --replay-user-messages --allowedTools --allowed-tools
@@ -51,33 +51,112 @@ _claude_completion() {
     # Subcommand-specific completion
     case "$cmd" in
         mcp)
-            local mcp_opts="--help -h"
-            COMPREPLY=($(compgen -W "$mcp_opts" -- "$cur"))
-            ;;
-        plugin)
-            local plugin_opts="--help -h"
-            COMPREPLY=($(compgen -W "$plugin_opts" -- "$cur"))
-            ;;
-        setup-token)
-            local setup_token_opts="--help -h"
-            COMPREPLY=($(compgen -W "$setup_token_opts" -- "$cur"))
-            ;;
-        doctor)
-            local doctor_opts="--help -h"
-            COMPREPLY=($(compgen -W "$doctor_opts" -- "$cur"))
-            ;;
-        update)
-            local update_opts="--help -h"
-            COMPREPLY=($(compgen -W "$update_opts" -- "$cur"))
-            ;;
-        install)
-            local install_opts="--help -h --options stable latest"
-            case "$prev" in
-                install)
-                    COMPREPLY=($(compgen -W "stable latest --help" -- "$cur"))
+            local mcp_cmds="add add-from-claude-desktop add-json get list remove reset-project-choices serve"
+            local mcp_subcmd
+            for ((i=2; i < cword; i++)); do
+                if [[ ${words[i]} != -* ]]; then
+                    mcp_subcmd=${words[i]}
+                    break
+                fi
+            done
+            case "$mcp_subcmd" in
+                add)
+                    case "$prev" in
+                        -s|--scope)
+                            COMPREPLY=($(compgen -W "local user project" -- "$cur"))
+                            ;;
+                        -t|--transport)
+                            COMPREPLY=($(compgen -W "stdio sse http" -- "$cur"))
+                            ;;
+                        -e|--env|-H|--header)
+                            COMPREPLY=()
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--scope --transport --env --header --help -s -t -e -H -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                add-from-claude-desktop)
+                    COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                    ;;
+                add-json)
+                    case "$prev" in
+                        -s|--scope)
+                            COMPREPLY=($(compgen -W "local user project" -- "$cur"))
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--scope --help -s -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                get|remove)
+                    COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                    ;;
+                list)
+                    COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                    ;;
+                reset-project-choices)
+                    COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                    ;;
+                serve)
+                    COMPREPLY=($(compgen -W "--debug --verbose --help -d -h" -- "$cur"))
                     ;;
                 *)
-                    COMPREPLY=($(compgen -W "$install_opts" -- "$cur"))
+                    COMPREPLY=($(compgen -W "$mcp_cmds --help -h" -- "$cur"))
+                    ;;
+            esac
+            ;;
+        plugin)
+            local plugin_cmds="disable enable install list marketplace uninstall update validate"
+            local plugin_subcmd
+            for ((i=2; i < cword; i++)); do
+                if [[ ${words[i]} != -* ]]; then
+                    plugin_subcmd=${words[i]}
+                    break
+                fi
+            done
+            case "$plugin_subcmd" in
+                marketplace)
+                    local mp_subcmd
+                    for ((i=3; i < cword; i++)); do
+                        if [[ ${words[i]} != -* ]]; then
+                            mp_subcmd=${words[i]}
+                            break
+                        fi
+                    done
+                    case "$mp_subcmd" in
+                        "")
+                            COMPREPLY=($(compgen -W "add list remove update --help -h" -- "$cur"))
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                disable|enable|install|uninstall|update|validate|list)
+                    COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                    ;;
+                *)
+                    COMPREPLY=($(compgen -W "$plugin_cmds --help -h" -- "$cur"))
+                    ;;
+            esac
+            ;;
+        setup-token)
+            COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+            ;;
+        doctor)
+            COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+            ;;
+        update)
+            COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+            ;;
+        install)
+            case "$prev" in
+                install)
+                    COMPREPLY=($(compgen -W "stable latest --force --help -h" -- "$cur"))
+                    ;;
+                *)
+                    COMPREPLY=($(compgen -W "stable latest --force --help -h" -- "$cur"))
                     ;;
             esac
             ;;
@@ -104,7 +183,7 @@ _claude_completion() {
             # These expect custom input, don't suggest anything
             COMPREPLY=()
             ;;
-        --mcp-config|--settings|--plugin-dir|--add-dir|--file)
+        --mcp-config|--settings|--plugin-dir|--add-dir|--file|--debug-file)
             # File/directory completion
             _filedir
             ;;
