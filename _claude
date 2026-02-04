@@ -57,6 +57,7 @@ _claude() {
         '--disable-slash-commands[Disable all skills]'
         '--chrome[Enable Claude in Chrome integration]'
         '--no-chrome[Disable Claude in Chrome integration]'
+        '--from-pr[Resume session associated with a PR]:pr:'
         {-v,--version}'[Output the version number]'
         {-h,--help}'[Display help for command]'
     )
@@ -100,19 +101,29 @@ _claude() {
                                         {-t,--transport}'[Transport type]:transport:(stdio sse http)' \
                                         {-e,--env}'[Set environment variables]:env:' \
                                         {-H,--header}'[Set WebSocket headers]:header:' \
+                                        '--callback-port[Fixed port for OAuth callback]:port:' \
+                                        '--client-id[OAuth client ID]:clientId:' \
+                                        '--client-secret[Prompt for OAuth client secret]' \
                                         {-h,--help}'[Display help for command]'
                                     ;;
                                 add-from-claude-desktop)
                                     _arguments \
+                                        {-s,--scope}'[Configuration scope]:scope:(local user project)' \
                                         {-h,--help}'[Display help for command]'
                                     ;;
                                 add-json)
                                     _arguments \
                                         {-s,--scope}'[Configuration scope]:scope:(local user project)' \
+                                        '--client-secret[Prompt for OAuth client secret]' \
                                         {-h,--help}'[Display help for command]'
                                     ;;
-                                get|remove)
+                                get)
                                     _arguments \
+                                        {-h,--help}'[Display help for command]'
+                                    ;;
+                                remove)
+                                    _arguments \
+                                        {-s,--scope}'[Configuration scope]:scope:(local user project)' \
                                         {-h,--help}'[Display help for command]'
                                     ;;
                                 list)

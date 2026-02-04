@@ -21,7 +21,7 @@ _claude_completion() {
         --model --agent --betas --fallback-model --settings --add-dir
         --ide --strict-mcp-config --session-id --agents --setting-sources
         --plugin-dir --disable-slash-commands --chrome --no-chrome
-        --file --version --help
+        --from-pr --file --version --help
         -d -p -c -r -v -h
     "
 
@@ -68,18 +68,15 @@ _claude_completion() {
                         -t|--transport)
                             COMPREPLY=($(compgen -W "stdio sse http" -- "$cur"))
                             ;;
-                        -e|--env|-H|--header)
+                        -e|--env|-H|--header|--callback-port|--client-id)
                             COMPREPLY=()
                             ;;
                         *)
-                            COMPREPLY=($(compgen -W "--scope --transport --env --header --help -s -t -e -H -h" -- "$cur"))
+                            COMPREPLY=($(compgen -W "--scope --transport --env --header --callback-port --client-id --client-secret --help -s -t -e -H -h" -- "$cur"))
                             ;;
                     esac
                     ;;
                 add-from-claude-desktop)
-                    COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
-                    ;;
-                add-json)
                     case "$prev" in
                         -s|--scope)
                             COMPREPLY=($(compgen -W "local user project" -- "$cur"))
@@ -89,8 +86,28 @@ _claude_completion() {
                             ;;
                     esac
                     ;;
-                get|remove)
+                add-json)
+                    case "$prev" in
+                        -s|--scope)
+                            COMPREPLY=($(compgen -W "local user project" -- "$cur"))
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--scope --client-secret --help -s -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                get)
                     COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                    ;;
+                remove)
+                    case "$prev" in
+                        -s|--scope)
+                            COMPREPLY=($(compgen -W "local user project" -- "$cur"))
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--scope --help -s -h" -- "$cur"))
+                            ;;
+                    esac
                     ;;
                 list)
                     COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
@@ -187,7 +204,7 @@ _claude_completion() {
             # File/directory completion
             _filedir
             ;;
-        --max-budget-usd|--session-id|--debug)
+        --max-budget-usd|--session-id|--debug|--from-pr)
             # Custom values, no completion
             COMPREPLY=()
             ;;

@@ -128,12 +128,12 @@ claude --settings <TAB>
 ## Supported Commands
 
 - `mcp` - Configure and manage MCP servers
-  - `add` - Add an MCP server (with `--scope`, `--transport`, `--env`, `--header` options)
-  - `add-from-claude-desktop` - Import MCP servers from Claude Desktop
+  - `add` - Add an MCP server (with `--scope`, `--transport`, `--env`, `--header`, `--callback-port`, `--client-id`, `--client-secret` options)
+  - `add-from-claude-desktop` - Import MCP servers from Claude Desktop (with `--scope` option)
   - `add-json` - Add an MCP server with a JSON string
   - `get` - Get details about an MCP server
   - `list` - List configured MCP servers
-  - `remove` - Remove an MCP server
+  - `remove` - Remove an MCP server (with `--scope` option)
   - `reset-project-choices` - Reset all approved and rejected project-scoped servers
   - `serve` - Start the Claude Code MCP server
 - `plugin` - Manage Claude Code plugins
@@ -154,7 +154,7 @@ claude --settings <TAB>
 
 All Claude Code CLI options are supported, including:
 
-- Session management: `--continue`, `--resume`, `--fork-session`
+- Session management: `--continue`, `--resume`, `--fork-session`, `--from-pr`
 - Model selection: `--model`, `--fallback-model`
 - Output control: `--print`, `--output-format`, `--input-format`
 - Permissions: `--permission-mode`, `--dangerously-skip-permissions`
