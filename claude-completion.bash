@@ -7,7 +7,7 @@ _claude_completion() {
     _init_completion || return
 
     # Commands
-    local commands="mcp plugin setup-token doctor update install"
+    local commands="mcp plugin setup-token doctor update upgrade install"
 
     # Global options
     local global_opts="
@@ -16,12 +16,14 @@ _claude_completion() {
         --dangerously-skip-permissions --allow-dangerously-skip-permissions
         --max-budget-usd --replay-user-messages --allowedTools --allowed-tools
         --tools --disallowedTools --disallowed-tools --mcp-config
-        --system-prompt --append-system-prompt --permission-mode
+        --system-prompt --system-prompt-file --append-system-prompt
+        --append-system-prompt-file --permission-mode --permission-prompt-tool
         --continue --resume --fork-session --no-session-persistence
         --model --agent --betas --fallback-model --settings --add-dir
         --ide --strict-mcp-config --session-id --agents --setting-sources
         --plugin-dir --disable-slash-commands --chrome --no-chrome
-        --from-pr --file --version --help
+        --from-pr --file --remote --teleport --teammate-mode
+        --max-turns --init --init-only --maintenance --version --help
         -d -p -c -r -v -h
     "
 
@@ -145,12 +147,68 @@ _claude_completion() {
                         "")
                             COMPREPLY=($(compgen -W "add list remove update --help -h" -- "$cur"))
                             ;;
+                        list)
+                            COMPREPLY=($(compgen -W "--json --help -h" -- "$cur"))
+                            ;;
                         *)
                             COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
                             ;;
                     esac
                     ;;
-                disable|enable|install|uninstall|update|validate|list)
+                install)
+                    case "$prev" in
+                        -s|--scope)
+                            COMPREPLY=($(compgen -W "user project local" -- "$cur"))
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--scope --help -s -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                list)
+                    COMPREPLY=($(compgen -W "--available --json --help -h" -- "$cur"))
+                    ;;
+                disable)
+                    case "$prev" in
+                        -s|--scope)
+                            COMPREPLY=($(compgen -W "user project local" -- "$cur"))
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--all --scope --help -a -s -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                enable)
+                    case "$prev" in
+                        -s|--scope)
+                            COMPREPLY=($(compgen -W "user project local" -- "$cur"))
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--scope --help -s -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                uninstall)
+                    case "$prev" in
+                        -s|--scope)
+                            COMPREPLY=($(compgen -W "user project local" -- "$cur"))
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--scope --help -s -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                update)
+                    case "$prev" in
+                        -s|--scope)
+                            COMPREPLY=($(compgen -W "user project local" -- "$cur"))
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--scope --help -s -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                validate)
                     COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
                     ;;
                 *)
@@ -164,7 +222,7 @@ _claude_completion() {
         doctor)
             COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
             ;;
-        update)
+        update|upgrade)
             COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
             ;;
         install)
@@ -196,13 +254,20 @@ _claude_completion() {
         --setting-sources)
             COMPREPLY=($(compgen -W "user project local" -- "$cur"))
             ;;
+        --teammate-mode)
+            COMPREPLY=($(compgen -W "auto in-process tmux" -- "$cur"))
+            ;;
         --json-schema|--system-prompt|--append-system-prompt|--agents)
             # These expect custom input, don't suggest anything
             COMPREPLY=()
             ;;
-        --mcp-config|--settings|--plugin-dir|--add-dir|--file|--debug-file)
+        --mcp-config|--settings|--plugin-dir|--add-dir|--file|--debug-file|--system-prompt-file|--append-system-prompt-file)
             # File/directory completion
             _filedir
+            ;;
+        --remote|--permission-prompt-tool|--max-turns)
+            # Custom values, no completion
+            COMPREPLY=()
             ;;
         --max-budget-usd|--session-id|--debug|--from-pr)
             # Custom values, no completion
