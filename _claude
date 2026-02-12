@@ -69,6 +69,7 @@ _claude() {
         '--init[Run initialization hooks then start interactive]'
         '--init-only[Run initialization hooks then exit]'
         '--maintenance[Run maintenance hooks then exit]'
+        '--effort[Effort level for the current session]:level:(low medium high)'
         {-v,--version}'[Output the version number]'
         {-h,--help}'[Display help for command]'
     )
@@ -242,7 +243,7 @@ _claude() {
                                     ;;
                                 update)
                                     _arguments \
-                                        {-s,--scope}'[Configuration scope]:scope:(user project local)' \
+                                        {-s,--scope}'[Configuration scope]:scope:(user project local managed)' \
                                         {-h,--help}'[Display help for command]'
                                     ;;
                                 *)

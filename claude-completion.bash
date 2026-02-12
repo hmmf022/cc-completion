@@ -23,7 +23,7 @@ _claude_completion() {
         --ide --strict-mcp-config --session-id --agents --setting-sources
         --plugin-dir --disable-slash-commands --chrome --no-chrome
         --from-pr --file --remote --teleport --teammate-mode
-        --max-turns --init --init-only --maintenance --version --help
+        --max-turns --init --init-only --maintenance --effort --version --help
         -d -p -c -r -v -h
     "
 
@@ -201,7 +201,7 @@ _claude_completion() {
                 update)
                     case "$prev" in
                         -s|--scope)
-                            COMPREPLY=($(compgen -W "user project local" -- "$cur"))
+                            COMPREPLY=($(compgen -W "user project local managed" -- "$cur"))
                             ;;
                         *)
                             COMPREPLY=($(compgen -W "--scope --help -s -h" -- "$cur"))
@@ -256,6 +256,9 @@ _claude_completion() {
             ;;
         --teammate-mode)
             COMPREPLY=($(compgen -W "auto in-process tmux" -- "$cur"))
+            ;;
+        --effort)
+            COMPREPLY=($(compgen -W "low medium high" -- "$cur"))
             ;;
         --json-schema|--system-prompt|--append-system-prompt|--agents)
             # These expect custom input, don't suggest anything
