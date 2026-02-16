@@ -7,7 +7,7 @@ _claude_completion() {
     _init_completion || return
 
     # Commands
-    local commands="mcp plugin setup-token doctor update upgrade install"
+    local commands="auth mcp plugin setup-token doctor update upgrade install"
 
     # Global options
     local global_opts="
@@ -52,6 +52,37 @@ _claude_completion() {
 
     # Subcommand-specific completion
     case "$cmd" in
+        auth)
+            local auth_cmds="login logout status"
+            local auth_subcmd
+            for ((i=2; i < cword; i++)); do
+                if [[ ${words[i]} != -* ]]; then
+                    auth_subcmd=${words[i]}
+                    break
+                fi
+            done
+            case "$auth_subcmd" in
+                login)
+                    case "$prev" in
+                        --email)
+                            COMPREPLY=()
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--email --sso --help -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                logout)
+                    COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                    ;;
+                status)
+                    COMPREPLY=($(compgen -W "--json --text --help -h" -- "$cur"))
+                    ;;
+                *)
+                    COMPREPLY=($(compgen -W "$auth_cmds --help -h" -- "$cur"))
+                    ;;
+            esac
+            ;;
         mcp)
             local mcp_cmds="add add-from-claude-desktop add-json get list remove reset-project-choices serve"
             local mcp_subcmd

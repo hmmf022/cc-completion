@@ -6,6 +6,7 @@ _claude() {
     local -a commands global_opts output_formats input_formats permission_modes models setting_sources
 
     commands=(
+        'auth:Manage authentication'
         'mcp:Configure and manage MCP servers'
         'plugin:Manage Claude Code plugins'
         'setup-token:Set up a long-lived authentication token'
@@ -85,6 +86,43 @@ _claude() {
             ;;
         args)
             case $words[1] in
+                auth)
+                    local -a auth_commands
+                    auth_commands=(
+                        'login:Log in to your Anthropic account'
+                        'logout:Log out of your Anthropic account'
+                        'status:Show current authentication status'
+                    )
+                    _arguments -C \
+                        {-h,--help}'[Display help for command]' \
+                        '1: :->auth_cmd' \
+                        '*:: :->auth_args'
+                    case $state in
+                        auth_cmd)
+                            _describe -t commands 'auth command' auth_commands
+                            ;;
+                        auth_args)
+                            case $words[1] in
+                                login)
+                                    _arguments \
+                                        '--email[Email address for login]:email:' \
+                                        '--sso[Use SSO for login]' \
+                                        {-h,--help}'[Display help for command]'
+                                    ;;
+                                logout)
+                                    _arguments \
+                                        {-h,--help}'[Display help for command]'
+                                    ;;
+                                status)
+                                    _arguments \
+                                        '--json[Output in JSON format]' \
+                                        '--text[Output in text format]' \
+                                        {-h,--help}'[Display help for command]'
+                                    ;;
+                            esac
+                            ;;
+                    esac
+                    ;;
                 mcp)
                     local -a mcp_commands
                     mcp_commands=(

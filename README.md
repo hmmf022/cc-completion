@@ -4,7 +4,7 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 
 ## Features
 
-- **Command completion**: Tab complete `claude` subcommands (`mcp`, `plugin`, `setup-token`, `doctor`, `update`, `install`)
+- **Command completion**: Tab complete `claude` subcommands (`auth`, `mcp`, `plugin`, `setup-token`, `doctor`, `update`, `install`)
 - **Option completion**: All CLI options and flags are completable
 - **Contextual suggestions**: Option values are suggested where applicable
   - Output formats: `text`, `json`, `stream-json`
@@ -89,7 +89,7 @@ After installation, you can use tab completion with the `claude` command:
 ```bash
 # Complete subcommands
 claude <TAB>
-# Shows: mcp plugin setup-token doctor update install
+# Shows: auth mcp plugin setup-token doctor update install
 
 # Complete options
 claude --<TAB>
@@ -112,6 +112,18 @@ claude --effort <TAB>
 claude install <TAB>
 # Shows: stable latest --force --help
 
+# Complete auth subcommands
+claude auth <TAB>
+# Shows: login logout status
+
+# Complete auth login options
+claude auth login --<TAB>
+# Shows: --email --sso --help
+
+# Complete auth status options
+claude auth status --<TAB>
+# Shows: --json --text --help
+
 # Complete mcp subcommands
 claude mcp <TAB>
 # Shows: add add-from-claude-desktop add-json get list remove reset-project-choices serve
@@ -131,6 +143,10 @@ claude --settings <TAB>
 
 ## Supported Commands
 
+- `auth` - Manage authentication
+  - `login` - Log in to your Anthropic account (with `--email`, `--sso` options)
+  - `logout` - Log out of your Anthropic account
+  - `status` - Show current authentication status (with `--json`, `--text` options)
 - `mcp` - Configure and manage MCP servers
   - `add` - Add an MCP server (with `--scope`, `--transport`, `--env`, `--header`, `--callback-port`, `--client-id`, `--client-secret` options)
   - `add-from-claude-desktop` - Import MCP servers from Claude Desktop (with `--scope` option)
