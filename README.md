@@ -1,5 +1,7 @@
 # Claude Code Shell Completion
 
+🇯🇵 [日本語版はこちら](README.ja.md)
+
 Shell completion scripts for [Claude Code](https://claude.com/claude-code), providing tab completion for commands, subcommands, and options in both bash and zsh.
 
 ## Features
@@ -21,9 +23,17 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 
 #### Method 1: System-wide installation
 
+**Option A: Copy (simple)**
 ```bash
 sudo cp claude-completion.bash /etc/bash_completion.d/claude
 ```
+> Note: After updating the repository (e.g., `git pull`), you need to copy the file again.
+
+**Option B: Symbolic link (recommended)**
+```bash
+sudo ln -sf "$(pwd)/claude-completion.bash" /etc/bash_completion.d/claude
+```
+> Note: Updates are reflected automatically via `git pull`. Do not delete or move the cloned repository.
 
 Then reload your shell or run:
 ```bash
@@ -34,8 +44,19 @@ source /etc/bash_completion.d/claude
 
 ```bash
 mkdir -p ~/.local/share/bash-completion/completions
+```
+
+**Option A: Copy (simple)**
+```bash
 cp claude-completion.bash ~/.local/share/bash-completion/completions/claude
 ```
+> Note: After updating the repository (e.g., `git pull`), you need to copy the file again.
+
+**Option B: Symbolic link (recommended)**
+```bash
+ln -sf "$(pwd)/claude-completion.bash" ~/.local/share/bash-completion/completions/claude
+```
+> Note: Updates are reflected automatically via `git pull`. Do not delete or move the cloned repository.
 
 Add to your `~/.bashrc`:
 ```bash
@@ -53,9 +74,17 @@ source /path/to/claude-completion.bash
 
 #### Method 1: System-wide installation
 
+**Option A: Copy (simple)**
 ```bash
 sudo cp _claude /usr/local/share/zsh/site-functions/_claude
 ```
+> Note: After updating the repository (e.g., `git pull`), you need to copy the file again.
+
+**Option B: Symbolic link (recommended)**
+```bash
+sudo ln -sf "$(pwd)/_claude" /usr/local/share/zsh/site-functions/_claude
+```
+> Note: Updates are reflected automatically via `git pull`. Do not delete or move the cloned repository.
 
 Then reload completion:
 ```zsh
@@ -66,8 +95,19 @@ rm -f ~/.zcompdump; compinit
 
 ```bash
 mkdir -p ~/.oh-my-zsh/custom/plugins/claude
+```
+
+**Option A: Copy (simple)**
+```bash
 cp _claude ~/.oh-my-zsh/custom/plugins/claude/_claude
 ```
+> Note: After updating the repository (e.g., `git pull`), you need to copy the file again.
+
+**Option B: Symbolic link (recommended)**
+```bash
+ln -sf "$(pwd)/_claude" ~/.oh-my-zsh/custom/plugins/claude/_claude
+```
+> Note: Updates are reflected automatically via `git pull`. Do not delete or move the cloned repository.
 
 Add to your `~/.zshrc`:
 ```zsh
@@ -246,4 +286,4 @@ If you find missing commands or options, please update the completion scripts:
 
 ## License
 
-MIT
+[MIT](LICENSE)
