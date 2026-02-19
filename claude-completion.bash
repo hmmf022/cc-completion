@@ -277,10 +277,10 @@ _claude_completion() {
             COMPREPLY=($(compgen -W "text stream-json" -- "$cur"))
             ;;
         --permission-mode)
-            COMPREPLY=($(compgen -W "acceptEdits bypassPermissions default delegate dontAsk plan" -- "$cur"))
+            COMPREPLY=($(compgen -W "acceptEdits bypassPermissions default dontAsk plan" -- "$cur"))
             ;;
         --model|--fallback-model)
-            COMPREPLY=($(compgen -W "sonnet opus haiku claude-sonnet-4-5-20250929" -- "$cur"))
+            COMPREPLY=($(compgen -W "sonnet opus haiku claude-sonnet-4-6" -- "$cur"))
             ;;
         --setting-sources)
             COMPREPLY=($(compgen -W "user project local" -- "$cur"))

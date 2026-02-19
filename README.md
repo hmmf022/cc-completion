@@ -8,7 +8,7 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 - **Option completion**: All CLI options and flags are completable
 - **Contextual suggestions**: Option values are suggested where applicable
   - Output formats: `text`, `json`, `stream-json`
-  - Permission modes: `acceptEdits`, `bypassPermissions`, `default`, `delegate`, `dontAsk`, `plan`
+  - Permission modes: `acceptEdits`, `bypassPermissions`, `default`, `dontAsk`, `plan`
   - Models: `sonnet`, `opus`, `haiku`, etc.
   - Setting sources: `user`, `project`, `local`
   - Effort levels: `low`, `medium`, `high`
@@ -103,7 +103,7 @@ claude --permission-mode <TAB>
 # Shows: acceptEdits bypassPermissions default dontAsk plan
 
 claude --model <TAB>
-# Shows: sonnet opus haiku claude-sonnet-4-5-20250929
+# Shows: sonnet opus haiku claude-sonnet-4-6
 
 claude --effort <TAB>
 # Shows: low medium high
