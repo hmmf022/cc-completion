@@ -6,6 +6,7 @@ _claude() {
     local -a commands global_opts output_formats input_formats permission_modes models setting_sources
 
     commands=(
+        'agents:List configured agents'
         'auth:Manage authentication'
         'mcp:Configure and manage MCP servers'
         'plugin:Manage Claude Code plugins'
@@ -21,7 +22,6 @@ _claude() {
         '--debug-file[Write debug logs to a specific file path]:path:_files'
         '--verbose[Override verbose mode setting from config]'
         {-p,--print}'[Print response and exit]'
-        '--max-turns[Maximum number of agent turns]:number:'
         '--output-format[Output format]:format:(text json stream-json)'
         '--json-schema[JSON Schema for structured output validation]:schema:'
         '--include-partial-messages[Include partial message chunks]'
@@ -38,11 +38,8 @@ _claude() {
         '--disallowed-tools[Comma or space-separated list of tool names to deny]:tools:'
         '--mcp-config[Load MCP servers from JSON files or strings]:configs:_files'
         '--system-prompt[System prompt to use for the session]:prompt:'
-        '--system-prompt-file[Load system prompt from a file]:path:_files'
         '--append-system-prompt[Append a system prompt]:prompt:'
-        '--append-system-prompt-file[Append system prompt from a file]:path:_files'
         '--permission-mode[Permission mode to use]:mode:(acceptEdits bypassPermissions default dontAsk plan)'
-        '--permission-prompt-tool[MCP tool for permission prompts]:tool:'
         {-c,--continue}'[Continue the most recent conversation]'
         {-r,--resume}'[Resume a conversation by session ID]:session:'
         '--fork-session[Create a new session ID when resuming]'
@@ -64,12 +61,8 @@ _claude() {
         '--chrome[Enable Claude in Chrome integration]'
         '--no-chrome[Disable Claude in Chrome integration]'
         '--from-pr[Resume session associated with a PR]:pr:'
-        '--remote[Create a web session]::task:'
-        '--teleport[Restore a web session locally]'
-        '--teammate-mode[Teammate display mode]:mode:(auto in-process tmux)'
-        '--init[Run initialization hooks then start interactive]'
-        '--init-only[Run initialization hooks then exit]'
-        '--maintenance[Run maintenance hooks then exit]'
+        {-w,--worktree}'[Create a git worktree and start session]::name:'
+        '--tmux[Create a tmux session for worktree]'
         '--effort[Effort level for the current session]:level:(low medium high)'
         {-v,--version}'[Output the version number]'
         {-h,--help}'[Display help for command]'
@@ -86,6 +79,11 @@ _claude() {
             ;;
         args)
             case $words[1] in
+                agents)
+                    _arguments \
+                        '--setting-sources[Comma-separated list of setting sources]:sources:(user project local)' \
+                        {-h,--help}'[Display help for command]'
+                    ;;
                 auth)
                     local -a auth_commands
                     auth_commands=(

@@ -6,7 +6,7 @@
 
 ## 機能
 
-- **コマンド補完**: `claude` のサブコマンドをタブ補完 (`auth`, `mcp`, `plugin`, `setup-token`, `doctor`, `update`, `install`)
+- **コマンド補完**: `claude` のサブコマンドをタブ補完 (`agents`, `auth`, `mcp`, `plugin`, `setup-token`, `doctor`, `update`, `install`)
 - **オプション補完**: すべての CLI オプションとフラグを補完可能
 - **コンテキストに応じた候補表示**: 該当する場合、オプションの値を候補として表示
   - 出力フォーマット: `text`, `json`, `stream-json`
@@ -129,7 +129,7 @@ autoload -Uz compinit && compinit
 ```bash
 # サブコマンドの補完
 claude <TAB>
-# 表示: auth mcp plugin setup-token doctor update install
+# 表示: agents auth mcp plugin setup-token doctor update install
 
 # オプションの補完
 claude --<TAB>
@@ -183,6 +183,7 @@ claude --settings <TAB>
 
 ## 対応コマンド
 
+- `agents` - 設定済みのエージェントを一覧表示 (`--setting-sources` オプション付き)
 - `auth` - 認証の管理
   - `login` - Anthropic アカウントにログイン (`--email`, `--sso` オプション付き)
   - `logout` - Anthropic アカウントからログアウト
@@ -221,6 +222,7 @@ claude --settings <TAB>
 - ツール: `--tools`, `--allowed-tools`, `--disallowed-tools`
 - MCP: `--mcp-config`, `--strict-mcp-config`
 - ファイルリソース: `--file`
+- ワークツリー: `--worktree`, `--tmux`
 - デバッグ: `--debug`, `--debug-file`
 - その他多数...
 

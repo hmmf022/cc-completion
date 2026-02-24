@@ -6,7 +6,7 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 
 ## Features
 
-- **Command completion**: Tab complete `claude` subcommands (`auth`, `mcp`, `plugin`, `setup-token`, `doctor`, `update`, `install`)
+- **Command completion**: Tab complete `claude` subcommands (`agents`, `auth`, `mcp`, `plugin`, `setup-token`, `doctor`, `update`, `install`)
 - **Option completion**: All CLI options and flags are completable
 - **Contextual suggestions**: Option values are suggested where applicable
   - Output formats: `text`, `json`, `stream-json`
@@ -129,7 +129,7 @@ After installation, you can use tab completion with the `claude` command:
 ```bash
 # Complete subcommands
 claude <TAB>
-# Shows: auth mcp plugin setup-token doctor update install
+# Shows: agents auth mcp plugin setup-token doctor update install
 
 # Complete options
 claude --<TAB>
@@ -183,6 +183,7 @@ claude --settings <TAB>
 
 ## Supported Commands
 
+- `agents` - List configured agents (with `--setting-sources` option)
 - `auth` - Manage authentication
   - `login` - Log in to your Anthropic account (with `--email`, `--sso` options)
   - `logout` - Log out of your Anthropic account
@@ -221,6 +222,7 @@ All Claude Code CLI options are supported, including:
 - Tools: `--tools`, `--allowed-tools`, `--disallowed-tools`
 - MCP: `--mcp-config`, `--strict-mcp-config`
 - File resources: `--file`
+- Worktree: `--worktree`, `--tmux`
 - Debugging: `--debug`, `--debug-file`
 - And many more...
 

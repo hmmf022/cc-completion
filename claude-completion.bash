@@ -7,7 +7,7 @@ _claude_completion() {
     _init_completion || return
 
     # Commands
-    local commands="auth mcp plugin setup-token doctor update upgrade install"
+    local commands="agents auth mcp plugin setup-token doctor update upgrade install"
 
     # Global options
     local global_opts="
@@ -16,15 +16,15 @@ _claude_completion() {
         --dangerously-skip-permissions --allow-dangerously-skip-permissions
         --max-budget-usd --replay-user-messages --allowedTools --allowed-tools
         --tools --disallowedTools --disallowed-tools --mcp-config
-        --system-prompt --system-prompt-file --append-system-prompt
-        --append-system-prompt-file --permission-mode --permission-prompt-tool
+        --system-prompt --append-system-prompt
+        --permission-mode
         --continue --resume --fork-session --no-session-persistence
         --model --agent --betas --fallback-model --settings --add-dir
         --ide --strict-mcp-config --session-id --agents --setting-sources
         --plugin-dir --disable-slash-commands --chrome --no-chrome
-        --from-pr --file --remote --teleport --teammate-mode
-        --max-turns --init --init-only --maintenance --effort --version --help
-        -d -p -c -r -v -h
+        --from-pr --file --worktree --tmux
+        --effort --version --help
+        -d -p -c -r -v -w -h
     "
 
     # Handle subcommands
@@ -266,6 +266,16 @@ _claude_completion() {
                     ;;
             esac
             ;;
+        agents)
+            case "$prev" in
+                --setting-sources)
+                    COMPREPLY=($(compgen -W "user project local" -- "$cur"))
+                    ;;
+                *)
+                    COMPREPLY=($(compgen -W "--setting-sources --help -h" -- "$cur"))
+                    ;;
+            esac
+            ;;
     esac
 
     # Option-specific value completion
@@ -285,9 +295,6 @@ _claude_completion() {
         --setting-sources)
             COMPREPLY=($(compgen -W "user project local" -- "$cur"))
             ;;
-        --teammate-mode)
-            COMPREPLY=($(compgen -W "auto in-process tmux" -- "$cur"))
-            ;;
         --effort)
             COMPREPLY=($(compgen -W "low medium high" -- "$cur"))
             ;;
@@ -295,15 +302,11 @@ _claude_completion() {
             # These expect custom input, don't suggest anything
             COMPREPLY=()
             ;;
-        --mcp-config|--settings|--plugin-dir|--add-dir|--file|--debug-file|--system-prompt-file|--append-system-prompt-file)
+        --mcp-config|--settings|--plugin-dir|--add-dir|--file|--debug-file)
             # File/directory completion
             _filedir
             ;;
-        --remote|--permission-prompt-tool|--max-turns)
-            # Custom values, no completion
-            COMPREPLY=()
-            ;;
-        --max-budget-usd|--session-id|--debug|--from-pr)
+        --worktree|--max-budget-usd|--session-id|--debug|--from-pr)
             # Custom values, no completion
             COMPREPLY=()
             ;;
