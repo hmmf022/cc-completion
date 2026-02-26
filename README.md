@@ -2,7 +2,7 @@
 
 🇯🇵 [日本語版はこちら](README.ja.md)
 
-Shell completion scripts for [Claude Code](https://claude.com/claude-code), providing tab completion for commands, subcommands, and options in both bash and zsh.
+Shell completion scripts for [Claude Code](https://claude.com/claude-code), providing tab completion for commands, subcommands, and options in bash, zsh, and [Nushell](https://www.nushell.sh/).
 
 ## Features
 
@@ -122,6 +122,14 @@ fpath=(/path/to/cc-completion $fpath)
 autoload -Uz compinit && compinit
 ```
 
+### Nushell
+
+Add to your Nushell config file (`$nu.config-path`):
+```nu
+use /path/to/cc-completion/claude-completions.nu *
+```
+> Note: Replace `/path/to/cc-completion` with the actual path to this cloned repository.
+
 ## Usage Examples
 
 After installation, you can use tab completion with the `claude` command:
@@ -238,6 +246,12 @@ type _claude_completion
 which _claude
 ```
 
+For Nushell, verify the completions are loaded:
+```nu
+# Check if the external command is registered
+help commands | where name =~ "claude"
+```
+
 Try tab completion:
 ```bash
 claude --mod<TAB>
@@ -279,12 +293,25 @@ claude --mod<TAB>
    which _claude
    ```
 
+### Nushell completion not working
+
+1. Ensure you are using Nushell 0.80 or later (required for `extern` completions):
+   ```nu
+   version
+   ```
+
+2. Check that the completions are registered:
+   ```nu
+   help commands | where name =~ "claude"
+   ```
+
 ## Contributing
 
 If you find missing commands or options, please update the completion scripts:
 
 - For bash: Edit `claude-completion.bash`
 - For zsh: Edit `_claude`
+- For Nushell: Edit `claude-completions.nu`
 
 ## License
 
