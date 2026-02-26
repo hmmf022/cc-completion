@@ -2,7 +2,7 @@
 
 🇺🇸 [English version](README.md)
 
-[Claude Code](https://claude.com/claude-code) 用のシェル補完スクリプトです。bash と zsh の両方で、コマンド、サブコマンド、オプションのタブ補完を提供します。
+[Claude Code](https://claude.com/claude-code) 用のシェル補完スクリプトです。bash、zsh、[Nushell](https://www.nushell.sh/) で、コマンド、サブコマンド、オプションのタブ補完を提供します。
 
 ## 機能
 
@@ -122,6 +122,14 @@ fpath=(/path/to/cc-completion $fpath)
 autoload -Uz compinit && compinit
 ```
 
+### Nushell
+
+Nushell の設定ファイル (`$nu.config-path`) に以下を追加してください:
+```nu
+use /path/to/cc-completion/claude-completions.nu *
+```
+> 注意: `/path/to/cc-completion` をクローンしたリポジトリの実際のパスに置き換えてください。
+
 ## 使用例
 
 インストール後、`claude` コマンドでタブ補完が使えるようになります:
@@ -238,6 +246,12 @@ type _claude_completion
 which _claude
 ```
 
+Nushell の場合、補完が読み込まれていることを確認してください:
+```nu
+# 外部コマンドが登録されているか確認
+help commands | where name =~ "claude"
+```
+
 タブ補完を試してみてください:
 ```bash
 claude --mod<TAB>
@@ -279,12 +293,25 @@ claude --mod<TAB>
    which _claude
    ```
 
+### Nushell の補完が動作しない場合
+
+1. Nushell 0.80 以降を使用していることを確認してください (`extern` 補完に必要):
+   ```nu
+   version
+   ```
+
+2. 補完が登録されていることを確認してください:
+   ```nu
+   help commands | where name =~ "claude"
+   ```
+
 ## コントリビュート
 
 不足しているコマンドやオプションを見つけた場合は、補完スクリプトを更新してください:
 
 - bash の場合: `claude-completion.bash` を編集
 - zsh の場合: `_claude` を編集
+- Nushell の場合: `claude-completions.nu` を編集
 
 ## ライセンス
 
