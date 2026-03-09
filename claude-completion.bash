@@ -300,7 +300,7 @@ _claude_completion() {
             COMPREPLY=($(compgen -W "text stream-json" -- "$cur"))
             ;;
         --permission-mode)
-            COMPREPLY=($(compgen -W "acceptEdits bypassPermissions default dontAsk plan" -- "$cur"))
+            COMPREPLY=($(compgen -W "acceptEdits bypassPermissions default dontAsk plan auto" -- "$cur"))
             ;;
         --model|--fallback-model)
             COMPREPLY=($(compgen -W "sonnet opus haiku claude-sonnet-4-6" -- "$cur"))

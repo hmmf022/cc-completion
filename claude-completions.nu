@@ -14,7 +14,7 @@ def "nu-complete claude input-format" [] {
 }
 
 def "nu-complete claude permission-mode" [] {
-    [acceptEdits bypassPermissions default dontAsk plan]
+    [acceptEdits bypassPermissions default dontAsk plan auto]
 }
 
 def "nu-complete claude models" [] {

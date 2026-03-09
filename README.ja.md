@@ -10,7 +10,7 @@
 - **オプション補完**: すべての CLI オプションとフラグを補完可能
 - **コンテキストに応じた候補表示**: 該当する場合、オプションの値を候補として表示
   - 出力フォーマット: `text`, `json`, `stream-json`
-  - パーミッションモード: `acceptEdits`, `bypassPermissions`, `default`, `dontAsk`, `plan`
+  - パーミッションモード: `acceptEdits`, `bypassPermissions`, `default`, `dontAsk`, `plan`, `auto`
   - モデル: `sonnet`, `opus`, `haiku` など
   - 設定ソース: `user`, `project`, `local`
   - エフォートレベル: `low`, `medium`, `high`
@@ -148,7 +148,7 @@ claude --output-format <TAB>
 # 表示: text json stream-json
 
 claude --permission-mode <TAB>
-# 表示: acceptEdits bypassPermissions default dontAsk plan
+# 表示: acceptEdits bypassPermissions default dontAsk plan auto
 
 claude --model <TAB>
 # 表示: sonnet opus haiku claude-sonnet-4-6
