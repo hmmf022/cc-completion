@@ -6,7 +6,7 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 
 ## Features
 
-- **Command completion**: Tab complete `claude` subcommands (`agents`, `auth`, `mcp`, `plugin`, `setup-token`, `doctor`, `update`, `install`)
+- **Command completion**: Tab complete `claude` subcommands (`agents`, `auth`, `mcp`, `plugin`, `setup-token`, `doctor`, `update`, `upgrade`, `install`)
 - **Option completion**: All CLI options and flags are completable
 - **Contextual suggestions**: Option values are suggested where applicable
   - Output formats: `text`, `json`, `stream-json`
@@ -137,7 +137,7 @@ After installation, you can use tab completion with the `claude` command:
 ```bash
 # Complete subcommands
 claude <TAB>
-# Shows: agents auth mcp plugin setup-token doctor update install
+# Shows: agents auth mcp plugin setup-token doctor update upgrade install
 
 # Complete options
 claude --<TAB>
@@ -217,6 +217,7 @@ claude --settings <TAB>
 - `setup-token` - Set up a long-lived authentication token
 - `doctor` - Check the health of your Claude Code auto-updater
 - `update` - Check for updates and install if available
+- `upgrade` - Alias for `update`
 - `install` - Install Claude Code native build (with `--force` option)
 
 ## Supported Options

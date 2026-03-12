@@ -6,7 +6,7 @@
 
 ## 機能
 
-- **コマンド補完**: `claude` のサブコマンドをタブ補完 (`agents`, `auth`, `mcp`, `plugin`, `setup-token`, `doctor`, `update`, `install`)
+- **コマンド補完**: `claude` のサブコマンドをタブ補完 (`agents`, `auth`, `mcp`, `plugin`, `setup-token`, `doctor`, `update`, `upgrade`, `install`)
 - **オプション補完**: すべての CLI オプションとフラグを補完可能
 - **コンテキストに応じた候補表示**: 該当する場合、オプションの値を候補として表示
   - 出力フォーマット: `text`, `json`, `stream-json`
@@ -137,7 +137,7 @@ use /path/to/cc-completion/claude-completions.nu *
 ```bash
 # サブコマンドの補完
 claude <TAB>
-# 表示: agents auth mcp plugin setup-token doctor update install
+# 表示: agents auth mcp plugin setup-token doctor update upgrade install
 
 # オプションの補完
 claude --<TAB>
@@ -217,6 +217,7 @@ claude --settings <TAB>
 - `setup-token` - 長期認証トークンを設定
 - `doctor` - Claude Code 自動アップデーターの健全性をチェック
 - `update` - アップデートを確認し、利用可能な場合はインストール
+- `upgrade` - `update` のエイリアス
 - `install` - Claude Code ネイティブビルドをインストール (`--force` オプション付き)
 
 ## 対応オプション
