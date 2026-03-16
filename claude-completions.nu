@@ -2,7 +2,7 @@
 # Translated from bash completion script
 
 def "nu-complete claude commands" [] {
-    [agents auth mcp plugin setup-token doctor update upgrade install]
+    [agents auth mcp plugin plugins setup-token doctor update upgrade install]
 }
 
 def "nu-complete claude output-format" [] {
@@ -18,11 +18,11 @@ def "nu-complete claude permission-mode" [] {
 }
 
 def "nu-complete claude models" [] {
-    [sonnet opus haiku claude-sonnet-4-6]
+    [sonnet opus haiku best sonnet1m]
 }
 
 def "nu-complete claude effort" [] {
-    [low medium high]
+    [low medium high max]
 }
 
 def "nu-complete claude scope" [] {
@@ -88,7 +88,9 @@ export extern claude [
     --file: string                                          # File resources (file_id:relative_path)
     --worktree(-w): string                                  # Git worktree
     --tmux                                                  # Tmux mode
+    --brief                                                 # Give brief, concise responses
     --effort: string@"nu-complete claude effort"            # Effort level
+    --name(-n): string                                      # Name for the conversation
     --version(-v)                                           # Show version
     --help(-h)                                              # Show help
     ...args: string                                         # Command or prompt
@@ -276,6 +278,95 @@ export extern "claude plugin update" [
 
 # Validate a plugin or marketplace manifest
 export extern "claude plugin validate" [
+    --help(-h)
+    ...args: string
+]
+
+# --- plugins (alias for plugin) ---
+
+# Manage Claude Code plugins
+export extern "claude plugins" [
+    --help(-h)
+    ...args: string
+]
+
+# Disable an enabled plugin
+export extern "claude plugins disable" [
+    --all(-a)                                               # Disable all
+    --scope(-s): string@"nu-complete claude scope"
+    --help(-h)
+    ...args: string
+]
+
+# Enable a disabled plugin
+export extern "claude plugins enable" [
+    --scope(-s): string@"nu-complete claude scope"
+    --help(-h)
+    ...args: string
+]
+
+# Install a plugin from available marketplaces
+export extern "claude plugins install" [
+    --scope(-s): string@"nu-complete claude scope"
+    --help(-h)
+    ...args: string
+]
+
+# List installed plugins
+export extern "claude plugins list" [
+    --available
+    --json
+    --help(-h)
+]
+
+# Manage Claude Code marketplaces
+export extern "claude plugins marketplace" [
+    --help(-h)
+    ...args: string
+]
+
+# Add a marketplace
+export extern "claude plugins marketplace add" [
+    --scope: string@"nu-complete claude scope"              # Where to declare the marketplace
+    --sparse: string                                         # Limit checkout to specific directories
+    --help(-h)
+    ...args: string
+]
+
+# List configured marketplaces
+export extern "claude plugins marketplace list" [
+    --json
+    --help(-h)
+]
+
+# Remove a marketplace
+export extern "claude plugins marketplace remove" [
+    --help(-h)
+    ...args: string
+]
+
+# Update a marketplace
+export extern "claude plugins marketplace update" [
+    --help(-h)
+    ...args: string
+]
+
+# Uninstall an installed plugin
+export extern "claude plugins uninstall" [
+    --scope(-s): string@"nu-complete claude scope"
+    --help(-h)
+    ...args: string
+]
+
+# Update a plugin to the latest version
+export extern "claude plugins update" [
+    --scope(-s): string@"nu-complete claude scope-with-managed"
+    --help(-h)
+    ...args: string
+]
+
+# Validate a plugin or marketplace manifest
+export extern "claude plugins validate" [
     --help(-h)
     ...args: string
 ]

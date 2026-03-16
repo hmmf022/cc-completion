@@ -6,14 +6,14 @@
 
 ## 機能
 
-- **コマンド補完**: `claude` のサブコマンドをタブ補完 (`agents`, `auth`, `mcp`, `plugin`, `setup-token`, `doctor`, `update`, `upgrade`, `install`)
+- **コマンド補完**: `claude` のサブコマンドをタブ補完 (`agents`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `update`, `upgrade`, `install`)
 - **オプション補完**: すべての CLI オプションとフラグを補完可能
 - **コンテキストに応じた候補表示**: 該当する場合、オプションの値を候補として表示
   - 出力フォーマット: `text`, `json`, `stream-json`
   - パーミッションモード: `acceptEdits`, `bypassPermissions`, `default`, `dontAsk`, `plan`, `auto`
   - モデル: `sonnet`, `opus`, `haiku` など
   - 設定ソース: `user`, `project`, `local`
-  - エフォートレベル: `low`, `medium`, `high`
+  - エフォートレベル: `low`, `medium`, `high`, `max`
 - **ファイルパス補完**: ファイルパスを受け取るオプション (`--settings`, `--mcp-config`, `--add-dir`, `--file`, `--debug-file` など)
 - **サブコマンド補完**: `mcp` と `plugin` コマンドの完全なサブコマンドツリー
 
@@ -137,7 +137,7 @@ use /path/to/cc-completion/claude-completions.nu *
 ```bash
 # サブコマンドの補完
 claude <TAB>
-# 表示: agents auth mcp plugin setup-token doctor update upgrade install
+# 表示: agents auth mcp plugin plugins setup-token doctor update upgrade install
 
 # オプションの補完
 claude --<TAB>
@@ -151,10 +151,10 @@ claude --permission-mode <TAB>
 # 表示: acceptEdits bypassPermissions default dontAsk plan auto
 
 claude --model <TAB>
-# 表示: sonnet opus haiku claude-sonnet-4-6
+# 表示: sonnet opus haiku best sonnet1m
 
 claude --effort <TAB>
-# 表示: low medium high
+# 表示: low medium high max
 
 # install のターゲット補完
 claude install <TAB>
@@ -217,6 +217,7 @@ claude --settings <TAB>
 - `setup-token` - 長期認証トークンを設定
 - `doctor` - Claude Code 自動アップデーターの健全性をチェック
 - `update` - アップデートを確認し、利用可能な場合はインストール
+- `plugins` - `plugin` のエイリアス
 - `upgrade` - `update` のエイリアス
 - `install` - Claude Code ネイティブビルドをインストール (`--force` オプション付き)
 

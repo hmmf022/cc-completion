@@ -6,14 +6,14 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 
 ## Features
 
-- **Command completion**: Tab complete `claude` subcommands (`agents`, `auth`, `mcp`, `plugin`, `setup-token`, `doctor`, `update`, `upgrade`, `install`)
+- **Command completion**: Tab complete `claude` subcommands (`agents`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `update`, `upgrade`, `install`)
 - **Option completion**: All CLI options and flags are completable
 - **Contextual suggestions**: Option values are suggested where applicable
   - Output formats: `text`, `json`, `stream-json`
   - Permission modes: `acceptEdits`, `bypassPermissions`, `default`, `dontAsk`, `plan`, `auto`
   - Models: `sonnet`, `opus`, `haiku`, etc.
   - Setting sources: `user`, `project`, `local`
-  - Effort levels: `low`, `medium`, `high`
+  - Effort levels: `low`, `medium`, `high`, `max`
 - **File path completion**: For options that expect file paths (e.g., `--settings`, `--mcp-config`, `--add-dir`, `--file`, `--debug-file`)
 - **Subcommand completion**: Full subcommand trees for `mcp` and `plugin` commands
 
@@ -137,7 +137,7 @@ After installation, you can use tab completion with the `claude` command:
 ```bash
 # Complete subcommands
 claude <TAB>
-# Shows: agents auth mcp plugin setup-token doctor update upgrade install
+# Shows: agents auth mcp plugin plugins setup-token doctor update upgrade install
 
 # Complete options
 claude --<TAB>
@@ -151,10 +151,10 @@ claude --permission-mode <TAB>
 # Shows: acceptEdits bypassPermissions default dontAsk plan auto
 
 claude --model <TAB>
-# Shows: sonnet opus haiku claude-sonnet-4-6
+# Shows: sonnet opus haiku best sonnet1m
 
 claude --effort <TAB>
-# Shows: low medium high
+# Shows: low medium high max
 
 # Complete install targets
 claude install <TAB>
@@ -217,6 +217,7 @@ claude --settings <TAB>
 - `setup-token` - Set up a long-lived authentication token
 - `doctor` - Check the health of your Claude Code auto-updater
 - `update` - Check for updates and install if available
+- `plugins` - Alias for `plugin`
 - `upgrade` - Alias for `update`
 - `install` - Install Claude Code native build (with `--force` option)
 

@@ -10,6 +10,7 @@ _claude() {
         'auth:Manage authentication'
         'mcp:Configure and manage MCP servers'
         'plugin:Manage Claude Code plugins'
+        'plugins:Manage Claude Code plugins'
         'setup-token:Set up a long-lived authentication token'
         'doctor:Check the health of your Claude Code auto-updater'
         'update:Check for updates and install if available'
@@ -44,10 +45,10 @@ _claude() {
         {-r,--resume}'[Resume a conversation by session ID]:session:'
         '--fork-session[Create a new session ID when resuming]'
         '--no-session-persistence[Disable session persistence]'
-        '--model[Model for the current session]:model:(sonnet opus haiku claude-sonnet-4-6)'
+        '--model[Model for the current session]:model:(sonnet opus haiku best sonnet1m)'
         '--agent[Agent for the current session]:agent:'
         '--betas[Beta headers to include in API requests]:betas:'
-        '--fallback-model[Enable automatic fallback to specified model]:model:(sonnet opus haiku claude-sonnet-4-6)'
+        '--fallback-model[Enable automatic fallback to specified model]:model:(sonnet opus haiku best sonnet1m)'
         '--settings[Path to a settings JSON file or JSON string]:file:_files'
         '--add-dir[Additional directories to allow tool access]:directories:_files -/'
         '--file[File resources to download at startup]:specs:'
@@ -63,7 +64,9 @@ _claude() {
         '--from-pr[Resume session associated with a PR]:pr:'
         {-w,--worktree}'[Create a git worktree and start session]::name:'
         '--tmux[Create a tmux session for worktree]'
-        '--effort[Effort level for the current session]:level:(low medium high)'
+        '--brief[Give brief, concise responses]'
+        '--effort[Effort level for the current session]:level:(low medium high max)'
+        {-n,--name}'[Name for the conversation]:name:'
         {-v,--version}'[Output the version number]'
         {-h,--help}'[Display help for command]'
     )
@@ -192,7 +195,7 @@ _claude() {
                             ;;
                     esac
                     ;;
-                plugin)
+                plugin|plugins)
                     local -a plugin_commands
                     plugin_commands=(
                         'disable:Disable an enabled plugin'

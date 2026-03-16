@@ -7,7 +7,7 @@ _claude_completion() {
     _init_completion || return
 
     # Commands
-    local commands="agents auth mcp plugin setup-token doctor update upgrade install"
+    local commands="agents auth mcp plugin plugins setup-token doctor update upgrade install"
 
     # Global options
     local global_opts="
@@ -23,8 +23,10 @@ _claude_completion() {
         --ide --strict-mcp-config --session-id --agents --setting-sources
         --plugin-dir --disable-slash-commands --chrome --no-chrome
         --from-pr --file --worktree --tmux
+        --brief
         --effort --version --help
-        -d -p -c -r -v -w -h
+        --name
+        -d -p -c -r -v -w -n -h
     "
 
     # Handle subcommands
@@ -52,7 +54,7 @@ _claude_completion() {
             return 0
             ;;
         --model|--fallback-model)
-            COMPREPLY=($(compgen -W "sonnet opus haiku claude-sonnet-4-6" -- "$cur"))
+            COMPREPLY=($(compgen -W "sonnet opus haiku best sonnet1m" -- "$cur"))
             return 0
             ;;
         --setting-sources)
@@ -60,7 +62,7 @@ _claude_completion() {
             return 0
             ;;
         --effort)
-            COMPREPLY=($(compgen -W "low medium high" -- "$cur"))
+            COMPREPLY=($(compgen -W "low medium high max" -- "$cur"))
             return 0
             ;;
         --mcp-config|--settings|--plugin-dir|--add-dir|--file|--debug-file)
@@ -73,7 +75,7 @@ _claude_completion() {
             ;;
         --json-schema|--system-prompt|--append-system-prompt|--agents|\
         --worktree|--max-budget-usd|--session-id|--debug|-d|--from-pr|\
-        -r|--resume|--agent|--betas)
+        -r|--resume|--agent|--betas|--name|-n)
             COMPREPLY=()
             return 0
             ;;
@@ -199,7 +201,7 @@ _claude_completion() {
                     ;;
             esac
             ;;
-        plugin)
+        plugin|plugins)
             local plugin_cmds="disable enable install list marketplace uninstall update validate"
             local plugin_subcmd
             for ((i=2; i < cword; i++)); do
