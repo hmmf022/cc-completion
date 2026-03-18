@@ -45,10 +45,10 @@ _claude() {
         {-r,--resume}'[Resume a conversation by session ID]:session:'
         '--fork-session[Create a new session ID when resuming]'
         '--no-session-persistence[Disable session persistence]'
-        '--model[Model for the current session]:model:(sonnet opus haiku best sonnet1m)'
+        '--model[Model for the current session]:model:(sonnet opus haiku best sonnet1m opus1m opusplan)'
         '--agent[Agent for the current session]:agent:'
         '--betas[Beta headers to include in API requests]:betas:'
-        '--fallback-model[Enable automatic fallback to specified model]:model:(sonnet opus haiku best sonnet1m)'
+        '--fallback-model[Enable automatic fallback to specified model]:model:(sonnet opus haiku best sonnet1m opus1m opusplan)'
         '--settings[Path to a settings JSON file or JSON string]:file:_files'
         '--add-dir[Additional directories to allow tool access]:directories:_files -/'
         '--file[File resources to download at startup]:specs:'
@@ -283,6 +283,7 @@ _claude() {
                                     ;;
                                 uninstall)
                                     _arguments \
+                                        '--keep-data[Preserve plugin persistent data]' \
                                         {-s,--scope}'[Configuration scope]:scope:(user project local)' \
                                         {-h,--help}'[Display help for command]'
                                     ;;

@@ -18,7 +18,7 @@ def "nu-complete claude permission-mode" [] {
 }
 
 def "nu-complete claude models" [] {
-    [sonnet opus haiku best sonnet1m]
+    [sonnet opus haiku best sonnet1m opus1m opusplan]
 }
 
 def "nu-complete claude effort" [] {
@@ -264,6 +264,7 @@ export extern "claude plugin marketplace update" [
 
 # Uninstall an installed plugin
 export extern "claude plugin uninstall" [
+    --keep-data                                             # Preserve plugin persistent data
     --scope(-s): string@"nu-complete claude scope"
     --help(-h)
     ...args: string
@@ -353,6 +354,7 @@ export extern "claude plugins marketplace update" [
 
 # Uninstall an installed plugin
 export extern "claude plugins uninstall" [
+    --keep-data                                             # Preserve plugin persistent data
     --scope(-s): string@"nu-complete claude scope"
     --help(-h)
     ...args: string

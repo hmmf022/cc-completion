@@ -54,7 +54,7 @@ _claude_completion() {
             return 0
             ;;
         --model|--fallback-model)
-            COMPREPLY=($(compgen -W "sonnet opus haiku best sonnet1m" -- "$cur"))
+            COMPREPLY=($(compgen -W "sonnet opus haiku best sonnet1m opus1m opusplan" -- "$cur"))
             return 0
             ;;
         --setting-sources)
@@ -283,7 +283,7 @@ _claude_completion() {
                             COMPREPLY=($(compgen -W "user project local" -- "$cur"))
                             ;;
                         *)
-                            COMPREPLY=($(compgen -W "--scope --help -s -h" -- "$cur"))
+                            COMPREPLY=($(compgen -W "--keep-data --scope --help -s -h" -- "$cur"))
                             ;;
                     esac
                     ;;
