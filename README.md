@@ -166,7 +166,7 @@ claude auth <TAB>
 
 # Complete auth login options
 claude auth login --<TAB>
-# Shows: --email --sso --help
+# Shows: --claudeai --console --email --sso --help
 
 # Complete auth status options
 claude auth status --<TAB>
@@ -193,7 +193,7 @@ claude --settings <TAB>
 
 - `agents` - List configured agents (with `--setting-sources` option)
 - `auth` - Manage authentication
-  - `login` - Log in to your Anthropic account (with `--email`, `--sso` options)
+  - `login` - Sign in to your Anthropic account (with `--claudeai`, `--console`, `--email`, `--sso` options)
   - `logout` - Log out of your Anthropic account
   - `status` - Show current authentication status (with `--json`, `--text` options)
 - `mcp` - Configure and manage MCP servers

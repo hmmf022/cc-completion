@@ -90,9 +90,9 @@ _claude() {
                 auth)
                     local -a auth_commands
                     auth_commands=(
-                        'login:Log in to your Anthropic account'
-                        'logout:Log out of your Anthropic account'
-                        'status:Show current authentication status'
+                        'login:Sign in to your Anthropic account'
+                        'logout:Log out from your Anthropic account'
+                        'status:Show authentication status'
                     )
                     _arguments -C \
                         {-h,--help}'[Display help for command]' \
@@ -106,8 +106,10 @@ _claude() {
                             case $words[1] in
                                 login)
                                     _arguments \
-                                        '--email[Email address for login]:email:' \
-                                        '--sso[Use SSO for login]' \
+                                        '--claudeai[Use Claude subscription (default)]' \
+                                        '--console[Use Anthropic Console (API usage billing)]' \
+                                        '--email[Pre-populate email address on the login page]:email:' \
+                                        '--sso[Force SSO login flow]' \
                                         {-h,--help}'[Display help for command]'
                                     ;;
                                 logout)
@@ -116,8 +118,8 @@ _claude() {
                                     ;;
                                 status)
                                     _arguments \
-                                        '--json[Output in JSON format]' \
-                                        '--text[Output in text format]' \
+                                        '--json[Output as JSON (default)]' \
+                                        '--text[Output as human-readable text]' \
                                         {-h,--help}'[Display help for command]'
                                     ;;
                             esac

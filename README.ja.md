@@ -166,7 +166,7 @@ claude auth <TAB>
 
 # auth login オプションの補完
 claude auth login --<TAB>
-# 表示: --email --sso --help
+# 表示: --claudeai --console --email --sso --help
 
 # auth status オプションの補完
 claude auth status --<TAB>
@@ -193,7 +193,7 @@ claude --settings <TAB>
 
 - `agents` - 設定済みのエージェントを一覧表示 (`--setting-sources` オプション付き)
 - `auth` - 認証の管理
-  - `login` - Anthropic アカウントにログイン (`--email`, `--sso` オプション付き)
+  - `login` - Anthropic アカウントにサインイン (`--claudeai`, `--console`, `--email`, `--sso` オプション付き)
   - `logout` - Anthropic アカウントからログアウト
   - `status` - 現在の認証状態を表示 (`--json`, `--text` オプション付き)
 - `mcp` - MCP サーバーの設定・管理

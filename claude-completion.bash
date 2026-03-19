@@ -113,7 +113,7 @@ _claude_completion() {
                             COMPREPLY=()
                             ;;
                         *)
-                            COMPREPLY=($(compgen -W "--email --sso --help -h" -- "$cur"))
+                            COMPREPLY=($(compgen -W "--claudeai --console --email --sso --help -h" -- "$cur"))
                             ;;
                     esac
                     ;;

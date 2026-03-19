@@ -106,8 +106,10 @@ export extern "claude auth" [
 
 # Sign in to your Anthropic account
 export extern "claude auth login" [
-    --email: string     # Login email
-    --sso               # Use SSO login
+    --claudeai          # Use Claude subscription (default)
+    --console           # Use Anthropic Console (API usage billing)
+    --email: string     # Pre-populate email address on the login page
+    --sso               # Force SSO login flow
     --help(-h)
 ]
 
