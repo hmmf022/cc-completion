@@ -6,7 +6,7 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 
 ## Features
 
-- **Command completion**: Tab complete `claude` subcommands (`agents`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `update`, `upgrade`, `install`)
+- **Command completion**: Tab complete `claude` subcommands (`agents`, `auto-mode`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `update`, `upgrade`, `install`)
 - **Option completion**: All CLI options and flags are completable
 - **Contextual suggestions**: Option values are suggested where applicable
   - Output formats: `text`, `json`, `stream-json`
@@ -137,7 +137,7 @@ After installation, you can use tab completion with the `claude` command:
 ```bash
 # Complete subcommands
 claude <TAB>
-# Shows: agents auth mcp plugin plugins setup-token doctor update upgrade install
+# Shows: agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install
 
 # Complete options
 claude --<TAB>
@@ -192,6 +192,10 @@ claude --settings <TAB>
 ## Supported Commands
 
 - `agents` - List configured agents (with `--setting-sources` option)
+- `auto-mode` - Inspect auto mode classifier configuration
+  - `config` - Show auto mode classifier configuration
+  - `critique` - Run auto mode critique on a conversation (with `--model` option)
+  - `defaults` - Show default auto mode classifier configuration
 - `auth` - Manage authentication
   - `login` - Sign in to your Anthropic account (with `--claudeai`, `--console`, `--email`, `--sso` options)
   - `logout` - Log out of your Anthropic account

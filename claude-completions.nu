@@ -2,7 +2,7 @@
 # Translated from bash completion script
 
 def "nu-complete claude commands" [] {
-    [agents auth mcp plugin plugins setup-token doctor update upgrade install]
+    [agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install]
 }
 
 def "nu-complete claude output-format" [] {
@@ -88,6 +88,7 @@ export extern claude [
     --file: string                                          # File resources (file_id:relative_path)
     --worktree(-w): string                                  # Git worktree
     --tmux                                                  # Tmux mode
+    --bare                                                  # Minimal mode: skip hooks, LSP, and auto-discovery
     --brief                                                 # Give brief, concise responses
     --effort: string@"nu-complete claude effort"            # Effort level
     --name(-n): string                                      # Name for the conversation
@@ -416,4 +417,28 @@ export extern "claude install" [
     --force
     --help(-h)
     channel?: string@"nu-complete claude install-channel"   # Install channel
+]
+
+# --- auto-mode ---
+
+# Inspect auto mode classifier configuration
+export extern "claude auto-mode" [
+    --help(-h)
+    ...args: string
+]
+
+# Show auto mode classifier configuration
+export extern "claude auto-mode config" [
+    --help(-h)
+]
+
+# Run auto mode critique on a conversation
+export extern "claude auto-mode critique" [
+    --model: string@"nu-complete claude models"             # Model for the critique
+    --help(-h)
+]
+
+# Show default auto mode classifier configuration
+export extern "claude auto-mode defaults" [
+    --help(-h)
 ]

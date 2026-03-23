@@ -7,7 +7,7 @@ _claude_completion() {
     _init_completion || return
 
     # Commands
-    local commands="agents auth mcp plugin plugins setup-token doctor update upgrade install"
+    local commands="agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install"
 
     # Global options
     local global_opts="
@@ -23,7 +23,7 @@ _claude_completion() {
         --ide --strict-mcp-config --session-id --agents --setting-sources
         --plugin-dir --disable-slash-commands --chrome --no-chrome
         --from-pr --file --worktree --tmux
-        --brief
+        --bare --brief
         --effort --version --help
         --name
         -d -p -c -r -v -w -n -h
@@ -319,6 +319,27 @@ _claude_completion() {
             ;;
         agents)
             COMPREPLY=($(compgen -W "--setting-sources --help -h" -- "$cur"))
+            ;;
+        auto-mode)
+            local automode_cmds="config critique defaults"
+            local automode_subcmd
+            for ((i=2; i < cword; i++)); do
+                if [[ ${words[i]} != -* ]]; then
+                    automode_subcmd=${words[i]}
+                    break
+                fi
+            done
+            case "$automode_subcmd" in
+                critique)
+                    COMPREPLY=($(compgen -W "--model --help -h" -- "$cur"))
+                    ;;
+                config|defaults)
+                    COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                    ;;
+                *)
+                    COMPREPLY=($(compgen -W "$automode_cmds --help -h" -- "$cur"))
+                    ;;
+            esac
             ;;
     esac
 

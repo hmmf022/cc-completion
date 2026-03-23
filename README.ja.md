@@ -6,7 +6,7 @@
 
 ## 機能
 
-- **コマンド補完**: `claude` のサブコマンドをタブ補完 (`agents`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `update`, `upgrade`, `install`)
+- **コマンド補完**: `claude` のサブコマンドをタブ補完 (`agents`, `auto-mode`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `update`, `upgrade`, `install`)
 - **オプション補完**: すべての CLI オプションとフラグを補完可能
 - **コンテキストに応じた候補表示**: 該当する場合、オプションの値を候補として表示
   - 出力フォーマット: `text`, `json`, `stream-json`
@@ -137,7 +137,7 @@ use /path/to/cc-completion/claude-completions.nu *
 ```bash
 # サブコマンドの補完
 claude <TAB>
-# 表示: agents auth mcp plugin plugins setup-token doctor update upgrade install
+# 表示: agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install
 
 # オプションの補完
 claude --<TAB>
@@ -192,6 +192,10 @@ claude --settings <TAB>
 ## 対応コマンド
 
 - `agents` - 設定済みのエージェントを一覧表示 (`--setting-sources` オプション付き)
+- `auto-mode` - 自動モード分類器の設定を確認
+  - `config` - 自動モード分類器の設定を表示
+  - `critique` - 会話に対して自動モードの批評を実行 (`--model` オプション付き)
+  - `defaults` - 自動モード分類器のデフォルト設定を表示
 - `auth` - 認証の管理
   - `login` - Anthropic アカウントにサインイン (`--claudeai`, `--console`, `--email`, `--sso` オプション付き)
   - `logout` - Anthropic アカウントからログアウト
