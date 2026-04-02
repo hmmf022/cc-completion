@@ -17,7 +17,39 @@
 - **ファイルパス補完**: ファイルパスを受け取るオプション (`--settings`, `--mcp-config`, `--add-dir`, `--file`, `--debug-file` など)
 - **サブコマンド補完**: `mcp` と `plugin` コマンドの完全なサブコマンドツリー
 
-## インストール
+## クイックスタート
+
+```bash
+git clone https://github.com/hmmf022/cc-completion.git
+cd cc-completion
+```
+
+### Bash
+
+```bash
+mkdir -p ~/.local/share/bash-completion/completions
+ln -sf "$(pwd)/claude-completion.bash" ~/.local/share/bash-completion/completions/claude
+source ~/.local/share/bash-completion/completions/claude
+```
+
+### Zsh
+
+```bash
+sudo ln -sf "$(pwd)/_claude" /usr/local/share/zsh/site-functions/_claude
+autoload -Uz compinit && compinit
+```
+
+### Nushell
+
+Nushell の設定ファイル (`$nu.config-path`) に以下を追加してください:
+```nu
+use /path/to/cc-completion/claude-completions.nu *
+```
+
+> 他のインストール方法 (oh-my-zsh、システム全体への bash インストールなど) は、下記の[インストール詳細](#インストール詳細)を参照してください。
+
+<details>
+<summary><h2>インストール詳細</h2></summary>
 
 ### Bash
 
@@ -129,6 +161,8 @@ Nushell の設定ファイル (`$nu.config-path`) に以下を追加してくだ
 use /path/to/cc-completion/claude-completions.nu *
 ```
 > 注意: `/path/to/cc-completion` をクローンしたリポジトリの実際のパスに置き換えてください。
+
+</details>
 
 ## 使用例
 

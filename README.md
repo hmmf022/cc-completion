@@ -17,7 +17,39 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 - **File path completion**: For options that expect file paths (e.g., `--settings`, `--mcp-config`, `--add-dir`, `--file`, `--debug-file`)
 - **Subcommand completion**: Full subcommand trees for `mcp` and `plugin` commands
 
-## Installation
+## Quick Start
+
+```bash
+git clone https://github.com/hmmf022/cc-completion.git
+cd cc-completion
+```
+
+### Bash
+
+```bash
+mkdir -p ~/.local/share/bash-completion/completions
+ln -sf "$(pwd)/claude-completion.bash" ~/.local/share/bash-completion/completions/claude
+source ~/.local/share/bash-completion/completions/claude
+```
+
+### Zsh
+
+```bash
+sudo ln -sf "$(pwd)/_claude" /usr/local/share/zsh/site-functions/_claude
+autoload -Uz compinit && compinit
+```
+
+### Nushell
+
+Add to your Nushell config file (`$nu.config-path`):
+```nu
+use /path/to/cc-completion/claude-completions.nu *
+```
+
+> For other installation methods (oh-my-zsh, system-wide bash, etc.), see [Installation Details](#installation-details) below.
+
+<details>
+<summary><h2>Installation Details</h2></summary>
 
 ### Bash
 
@@ -129,6 +161,8 @@ Add to your Nushell config file (`$nu.config-path`):
 use /path/to/cc-completion/claude-completions.nu *
 ```
 > Note: Replace `/path/to/cc-completion` with the actual path to this cloned repository.
+
+</details>
 
 ## Usage Examples
 
