@@ -12,7 +12,7 @@ _claude_completion() {
     # Global options
     local global_opts="
         --debug --debug-file --verbose --print --output-format --json-schema
-        --include-partial-messages --input-format --mcp-debug
+        --include-hook-events --include-partial-messages --input-format --mcp-debug
         --dangerously-skip-permissions --allow-dangerously-skip-permissions
         --max-budget-usd --replay-user-messages --allowedTools --allowed-tools
         --tools --disallowedTools --disallowed-tools --mcp-config

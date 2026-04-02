@@ -49,6 +49,7 @@ export extern claude [
     --print(-p)                                             # Print mode
     --output-format: string@"nu-complete claude output-format"  # Output format
     --json-schema: string                                   # JSON schema
+    --include-hook-events                                    # Include hook lifecycle events
     --include-partial-messages                               # Include partial messages
     --input-format: string@"nu-complete claude input-format"    # Input format
     --mcp-debug                                             # MCP debug mode
@@ -89,7 +90,7 @@ export extern claude [
     --worktree(-w): string                                  # Git worktree
     --tmux                                                  # Tmux mode
     --bare                                                  # Minimal mode: skip hooks, LSP, and auto-discovery
-    --brief                                                 # Give brief, concise responses
+    --brief                                                 # Enable SendUserMessage tool for agent-to-user communication
     --effort: string@"nu-complete claude effort"            # Effort level
     --name(-n): string                                      # Name for the conversation
     --version(-v)                                           # Show version
