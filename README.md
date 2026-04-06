@@ -246,10 +246,10 @@ claude --settings <TAB>
 - `plugin` - Manage Claude Code plugins
   - `disable` - Disable an enabled plugin
   - `enable` - Enable a disabled plugin
-  - `install` - Install a plugin from available marketplaces
+  - `install` (`i`) - Install a plugin from available marketplaces
   - `list` - List installed plugins
-  - `marketplace` - Manage Claude Code marketplaces (`add`, `list`, `remove`, `update`)
-  - `uninstall` - Uninstall an installed plugin
+  - `marketplace` - Manage Claude Code marketplaces (`add`, `list`, `remove` (`rm`), `update`)
+  - `uninstall` (`remove`) - Uninstall an installed plugin
   - `update` - Update a plugin to the latest version
   - `validate` - Validate a plugin or marketplace manifest
 - `setup-token` - Set up a long-lived authentication token

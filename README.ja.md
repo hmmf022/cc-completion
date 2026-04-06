@@ -246,10 +246,10 @@ claude --settings <TAB>
 - `plugin` - Claude Code プラグインの管理
   - `disable` - 有効なプラグインを無効化
   - `enable` - 無効なプラグインを有効化
-  - `install` - 利用可能なマーケットプレイスからプラグインをインストール
+  - `install` (`i`) - 利用可能なマーケットプレイスからプラグインをインストール
   - `list` - インストール済みのプラグインを一覧表示
-  - `marketplace` - Claude Code マーケットプレイスの管理 (`add`, `list`, `remove`, `update`)
-  - `uninstall` - インストール済みのプラグインをアンインストール
+  - `marketplace` - Claude Code マーケットプレイスの管理 (`add`, `list`, `remove` (`rm`), `update`)
+  - `uninstall` (`remove`) - インストール済みのプラグインをアンインストール
   - `update` - プラグインを最新バージョンに更新
   - `validate` - プラグインまたはマーケットプレイスのマニフェストを検証
 - `setup-token` - 長期認証トークンを設定

@@ -22,7 +22,7 @@ _claude_completion() {
         --model --agent --betas --fallback-model --settings --add-dir
         --ide --strict-mcp-config --session-id --agents --setting-sources
         --plugin-dir --disable-slash-commands --chrome --no-chrome
-        --from-pr --file --worktree --tmux
+        --from-pr --file --worktree --tmux --remote-control-session-name-prefix
         --bare --brief
         --effort --version --help
         --name
@@ -202,7 +202,7 @@ _claude_completion() {
             esac
             ;;
         plugin|plugins)
-            local plugin_cmds="disable enable install list marketplace uninstall update validate"
+            local plugin_cmds="disable enable install i list marketplace uninstall remove update validate"
             local plugin_subcmd
             for ((i=2; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
@@ -221,7 +221,7 @@ _claude_completion() {
                     done
                     case "$mp_subcmd" in
                         "")
-                            COMPREPLY=($(compgen -W "add list remove update --help -h" -- "$cur"))
+                            COMPREPLY=($(compgen -W "add list remove rm update --help -h" -- "$cur"))
                             ;;
                         add)
                             case "$prev" in
@@ -244,7 +244,7 @@ _claude_completion() {
                             ;;
                     esac
                     ;;
-                install)
+                install|i)
                     case "$prev" in
                         -s|--scope)
                             COMPREPLY=($(compgen -W "user project local" -- "$cur"))
@@ -277,7 +277,7 @@ _claude_completion() {
                             ;;
                     esac
                     ;;
-                uninstall)
+                uninstall|remove)
                     case "$prev" in
                         -s|--scope)
                             COMPREPLY=($(compgen -W "user project local" -- "$cur"))

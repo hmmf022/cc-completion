@@ -91,6 +91,7 @@ export extern claude [
     --tmux                                                  # Tmux mode
     --bare                                                  # Minimal mode: skip hooks, LSP, and auto-discovery
     --brief                                                 # Enable SendUserMessage tool for agent-to-user communication
+    --remote-control-session-name-prefix: string            # Remote Control session name prefix
     --effort: string@"nu-complete claude effort"            # Effort level
     --name(-n): string                                      # Name for the conversation
     --version(-v)                                           # Show version
@@ -287,6 +288,27 @@ export extern "claude plugin validate" [
     ...args: string
 ]
 
+# Install a plugin (alias for install)
+export extern "claude plugin i" [
+    --scope(-s): string@"nu-complete claude scope"
+    --help(-h)
+    ...args: string
+]
+
+# Uninstall an installed plugin (alias for uninstall)
+export extern "claude plugin remove" [
+    --keep-data                                             # Preserve plugin persistent data
+    --scope(-s): string@"nu-complete claude scope"
+    --help(-h)
+    ...args: string
+]
+
+# Remove a marketplace (alias for remove)
+export extern "claude plugin marketplace rm" [
+    --help(-h)
+    ...args: string
+]
+
 # --- plugins (alias for plugin) ---
 
 # Manage Claude Code plugins
@@ -373,6 +395,27 @@ export extern "claude plugins update" [
 
 # Validate a plugin or marketplace manifest
 export extern "claude plugins validate" [
+    --help(-h)
+    ...args: string
+]
+
+# Install a plugin (alias for install)
+export extern "claude plugins i" [
+    --scope(-s): string@"nu-complete claude scope"
+    --help(-h)
+    ...args: string
+]
+
+# Uninstall an installed plugin (alias for uninstall)
+export extern "claude plugins remove" [
+    --keep-data                                             # Preserve plugin persistent data
+    --scope(-s): string@"nu-complete claude scope"
+    --help(-h)
+    ...args: string
+]
+
+# Remove a marketplace (alias for remove)
+export extern "claude plugins marketplace rm" [
     --help(-h)
     ...args: string
 ]
