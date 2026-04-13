@@ -16,7 +16,7 @@ _claude_completion() {
         --dangerously-skip-permissions --allow-dangerously-skip-permissions
         --max-budget-usd --replay-user-messages --allowedTools --allowed-tools
         --tools --disallowedTools --disallowed-tools --mcp-config
-        --system-prompt --append-system-prompt
+        --system-prompt --append-system-prompt --exclude-dynamic-system-prompt-sections
         --permission-mode
         --continue --resume --fork-session --no-session-persistence
         --model --agent --betas --fallback-model --settings --add-dir

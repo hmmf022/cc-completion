@@ -65,6 +65,7 @@ export extern claude [
     --mcp-config: path                                      # MCP config file
     --system-prompt: string                                 # System prompt
     --append-system-prompt: string                          # Append system prompt
+    --exclude-dynamic-system-prompt-sections                # Move per-machine sections to first user message (default system prompt only)
     --permission-mode: string@"nu-complete claude permission-mode"  # Permission mode
     --continue(-c)                                          # Continue last session
     --resume(-r): string                                    # Resume session by ID
