@@ -188,7 +188,7 @@ claude --model <TAB>
 # Shows: sonnet opus haiku best sonnet1m
 
 claude --effort <TAB>
-# Shows: low medium high max
+# Shows: low medium high xhigh max
 
 # Complete install targets
 claude install <TAB>

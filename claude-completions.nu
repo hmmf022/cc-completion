@@ -22,7 +22,7 @@ def "nu-complete claude models" [] {
 }
 
 def "nu-complete claude effort" [] {
-    [low medium high max]
+    [low medium high xhigh max]
 }
 
 def "nu-complete claude scope" [] {

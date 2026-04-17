@@ -62,7 +62,7 @@ _claude_completion() {
             return 0
             ;;
         --effort)
-            COMPREPLY=($(compgen -W "low medium high max" -- "$cur"))
+            COMPREPLY=($(compgen -W "low medium high xhigh max" -- "$cur"))
             return 0
             ;;
         --mcp-config|--settings|--plugin-dir|--add-dir|--file|--debug-file)

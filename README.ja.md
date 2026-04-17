@@ -188,7 +188,7 @@ claude --model <TAB>
 # 表示: sonnet opus haiku best sonnet1m
 
 claude --effort <TAB>
-# 表示: low medium high max
+# 表示: low medium high xhigh max
 
 # install のターゲット補完
 claude install <TAB>

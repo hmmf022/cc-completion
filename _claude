@@ -70,7 +70,7 @@ _claude() {
         '--tmux[Create a tmux session for worktree]'
         '--bare[Minimal mode: skip hooks, LSP, and auto-discovery]'
         '--brief[Enable SendUserMessage tool for agent-to-user communication]'
-        '--effort[Effort level for the current session]:level:(low medium high max)'
+        '--effort[Effort level for the current session]:level:(low medium high xhigh max)'
         {-n,--name}'[Name for the conversation]:name:'
         {-v,--version}'[Output the version number]'
         {-h,--help}'[Display help for command]'
