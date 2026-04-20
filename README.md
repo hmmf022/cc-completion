@@ -13,7 +13,7 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
   - Permission modes: `acceptEdits`, `bypassPermissions`, `default`, `dontAsk`, `plan`, `auto`
   - Models: `sonnet`, `opus`, `haiku`, etc.
   - Setting sources: `user`, `project`, `local`
-  - Effort levels: `low`, `medium`, `high`, `max`
+  - Effort levels: `low`, `medium`, `high`, `xhigh`, `max`
 - **File path completion**: For options that expect file paths (e.g., `--settings`, `--mcp-config`, `--add-dir`, `--file`, `--debug-file`)
 - **Subcommand completion**: Full subcommand trees for `mcp` and `plugin` commands
 

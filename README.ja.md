@@ -13,7 +13,7 @@
   - パーミッションモード: `acceptEdits`, `bypassPermissions`, `default`, `dontAsk`, `plan`, `auto`
   - モデル: `sonnet`, `opus`, `haiku` など
   - 設定ソース: `user`, `project`, `local`
-  - エフォートレベル: `low`, `medium`, `high`, `max`
+  - エフォートレベル: `low`, `medium`, `high`, `xhigh`, `max`
 - **ファイルパス補完**: ファイルパスを受け取るオプション (`--settings`, `--mcp-config`, `--add-dir`, `--file`, `--debug-file` など)
 - **サブコマンド補完**: `mcp` と `plugin` コマンドの完全なサブコマンドツリー
 

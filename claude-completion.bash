@@ -63,6 +63,7 @@ _claude_completion() {
             ;;
         --effort)
             COMPREPLY=($(compgen -W "low medium high xhigh max" -- "$cur"))
+            compopt -o nosort 2>/dev/null
             return 0
             ;;
         --mcp-config|--settings|--plugin-dir|--add-dir|--file|--debug-file)

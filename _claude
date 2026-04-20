@@ -70,7 +70,7 @@ _claude() {
         '--tmux[Create a tmux session for worktree]'
         '--bare[Minimal mode: skip hooks, LSP, and auto-discovery]'
         '--brief[Enable SendUserMessage tool for agent-to-user communication]'
-        '--effort[Effort level for the current session]:level:(low medium high xhigh max)'
+        '--effort[Effort level for the current session]:level:->effort'
         {-n,--name}'[Name for the conversation]:name:'
         {-v,--version}'[Output the version number]'
         {-h,--help}'[Display help for command]'
@@ -84,6 +84,9 @@ _claude() {
     case $state in
         command)
             _describe -t commands 'claude command' commands
+            ;;
+        effort)
+            compadd -V effort -- low medium high xhigh max
             ;;
         args)
             case $words[1] in
