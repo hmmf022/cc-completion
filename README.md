@@ -216,7 +216,7 @@ claude mcp add --transport <TAB>
 
 # Complete plugin subcommands
 claude plugin <TAB>
-# Shows: disable enable install list marketplace uninstall update validate
+# Shows: disable enable install list marketplace tag uninstall update validate
 
 # File path completion
 claude --settings <TAB>
@@ -249,6 +249,7 @@ claude --settings <TAB>
   - `install` (`i`) - Install a plugin from available marketplaces
   - `list` - List installed plugins
   - `marketplace` - Manage Claude Code marketplaces (`add`, `list`, `remove` (`rm`), `update`)
+  - `tag` - Create a `{name}--v{version}` git tag for a plugin release (with `--dry-run`, `--force`, `--message`, `--push`, `--remote` options)
   - `uninstall` (`remove`) - Uninstall an installed plugin
   - `update` - Update a plugin to the latest version
   - `validate` - Validate a plugin or marketplace manifest

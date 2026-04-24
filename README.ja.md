@@ -216,7 +216,7 @@ claude mcp add --transport <TAB>
 
 # plugin サブコマンドの補完
 claude plugin <TAB>
-# 表示: disable enable install list marketplace uninstall update validate
+# 表示: disable enable install list marketplace tag uninstall update validate
 
 # ファイルパスの補完
 claude --settings <TAB>
@@ -249,6 +249,7 @@ claude --settings <TAB>
   - `install` (`i`) - 利用可能なマーケットプレイスからプラグインをインストール
   - `list` - インストール済みのプラグインを一覧表示
   - `marketplace` - Claude Code マーケットプレイスの管理 (`add`, `list`, `remove` (`rm`), `update`)
+  - `tag` - プラグインリリース用に `{name}--v{version}` の git タグを作成 (`--dry-run`, `--force`, `--message`, `--push`, `--remote` オプション付き)
   - `uninstall` (`remove`) - インストール済みのプラグインをアンインストール
   - `update` - プラグインを最新バージョンに更新
   - `validate` - プラグインまたはマーケットプレイスのマニフェストを検証

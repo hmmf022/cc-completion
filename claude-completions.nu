@@ -289,6 +289,17 @@ export extern "claude plugin validate" [
     ...args: string
 ]
 
+# Create a {name}--v{version} git tag for a plugin release
+export extern "claude plugin tag" [
+    --dry-run                                               # Print what would be tagged without creating it
+    --force(-f)                                             # Skip dirty-working-tree and tag-already-exists checks
+    --message(-m): string                                   # Tag annotation message (use %s for the version)
+    --push                                                  # Push the tag to --remote after creating it
+    --remote: string                                        # Remote to push to with --push (default: "origin")
+    --help(-h)
+    path?: path                                             # Plugin directory path
+]
+
 # Install a plugin (alias for install)
 export extern "claude plugin i" [
     --scope(-s): string@"nu-complete claude scope"
@@ -398,6 +409,17 @@ export extern "claude plugins update" [
 export extern "claude plugins validate" [
     --help(-h)
     ...args: string
+]
+
+# Create a {name}--v{version} git tag for a plugin release
+export extern "claude plugins tag" [
+    --dry-run                                               # Print what would be tagged without creating it
+    --force(-f)                                             # Skip dirty-working-tree and tag-already-exists checks
+    --message(-m): string                                   # Tag annotation message (use %s for the version)
+    --push                                                  # Push the tag to --remote after creating it
+    --remote: string                                        # Remote to push to with --push (default: "origin")
+    --help(-h)
+    path?: path                                             # Plugin directory path
 ]
 
 # Install a plugin (alias for install)

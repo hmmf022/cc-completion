@@ -203,7 +203,7 @@ _claude_completion() {
             esac
             ;;
         plugin|plugins)
-            local plugin_cmds="disable enable install i list marketplace uninstall remove update validate"
+            local plugin_cmds="disable enable install i list marketplace tag uninstall remove update validate"
             local plugin_subcmd
             for ((i=2; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
@@ -300,6 +300,20 @@ _claude_completion() {
                     ;;
                 validate)
                     COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                    ;;
+                tag)
+                    case "$prev" in
+                        -m|--message|--remote)
+                            COMPREPLY=()
+                            ;;
+                        *)
+                            if [[ "$cur" == -* ]]; then
+                                COMPREPLY=($(compgen -W "--dry-run --force --message --push --remote --help -f -m -h" -- "$cur"))
+                            else
+                                _filedir -d
+                            fi
+                            ;;
+                    esac
                     ;;
                 *)
                     COMPREPLY=($(compgen -W "$plugin_cmds --help -h" -- "$cur"))

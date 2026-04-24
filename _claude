@@ -214,6 +214,7 @@ _claude() {
                         'i:Install a plugin (alias for install)'
                         'list:List installed plugins'
                         'marketplace:Manage Claude Code marketplaces'
+                        'tag:Create a {name}--v{version} git tag for a plugin release'
                         'uninstall:Uninstall an installed plugin'
                         'remove:Uninstall an installed plugin (alias for uninstall)'
                         'update:Update a plugin to the latest version'
@@ -271,6 +272,16 @@ _claude() {
                                     _arguments \
                                         {-h,--help}'[Display help for command]' \
                                         '1:path:_files'
+                                    ;;
+                                tag)
+                                    _arguments \
+                                        '--dry-run[Print what would be tagged without creating it]' \
+                                        {-f,--force}'[Skip the dirty-working-tree and tag-already-exists checks]' \
+                                        {-m,--message}'[Tag annotation message (use %s for the version)]:msg:' \
+                                        '--push[Push the tag to --remote after creating it]' \
+                                        '--remote[Remote to push to with --push]:remote:' \
+                                        {-h,--help}'[Display help for command]' \
+                                        '1:path:_files -/'
                                     ;;
                                 install|i)
                                     _arguments \
