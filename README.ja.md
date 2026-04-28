@@ -6,7 +6,7 @@
 
 ## 機能
 
-- **コマンド補完**: `claude` のサブコマンドをタブ補完 (`agents`, `auto-mode`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `update`, `upgrade`, `install`)
+- **コマンド補完**: `claude` のサブコマンドをタブ補完 (`agents`, `auto-mode`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `update`, `upgrade`, `install`, `ultrareview`)
 - **オプション補完**: すべての CLI オプションとフラグを補完可能
 - **コンテキストに応じた候補表示**: 該当する場合、オプションの値を候補として表示
   - 出力フォーマット: `text`, `json`, `stream-json`
@@ -171,7 +171,7 @@ use /path/to/cc-completion/claude-completions.nu *
 ```bash
 # サブコマンドの補完
 claude <TAB>
-# 表示: agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install
+# 表示: agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install ultrareview
 
 # オプションの補完
 claude --<TAB>
@@ -216,7 +216,7 @@ claude mcp add --transport <TAB>
 
 # plugin サブコマンドの補完
 claude plugin <TAB>
-# 表示: disable enable install list marketplace tag uninstall update validate
+# 表示: disable enable install list marketplace prune autoremove tag uninstall update validate
 
 # ファイルパスの補完
 claude --settings <TAB>
@@ -249,8 +249,9 @@ claude --settings <TAB>
   - `install` (`i`) - 利用可能なマーケットプレイスからプラグインをインストール
   - `list` - インストール済みのプラグインを一覧表示
   - `marketplace` - Claude Code マーケットプレイスの管理 (`add`, `list`, `remove` (`rm`), `update`)
+  - `prune` (`autoremove`) - 不要になった自動インストール依存を削除 (`--dry-run`, `--scope`, `--yes` オプション付き)
   - `tag` - プラグインリリース用に `{name}--v{version}` の git タグを作成 (`--dry-run`, `--force`, `--message`, `--push`, `--remote` オプション付き)
-  - `uninstall` (`remove`) - インストール済みのプラグインをアンインストール
+  - `uninstall` (`remove`) - インストール済みのプラグインをアンインストール (`--keep-data`, `--prune`, `--scope`, `--yes` オプション付き)
   - `update` - プラグインを最新バージョンに更新
   - `validate` - プラグインまたはマーケットプレイスのマニフェストを検証
 - `setup-token` - 長期認証トークンを設定
@@ -259,6 +260,7 @@ claude --settings <TAB>
 - `plugins` - `plugin` のエイリアス
 - `upgrade` - `update` のエイリアス
 - `install` - Claude Code ネイティブビルドをインストール (`--force` オプション付き)
+- `ultrareview` - 現在のブランチ (または PR 番号 / ベースブランチ) に対するクラウドホスト型のマルチエージェントコードレビューを実行 (`--json`, `--timeout` オプション付き)
 
 ## 対応オプション
 

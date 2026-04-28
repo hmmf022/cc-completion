@@ -2,7 +2,7 @@
 # Translated from bash completion script
 
 def "nu-complete claude commands" [] {
-    [agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install]
+    [agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install ultrareview]
 }
 
 def "nu-complete claude output-format" [] {
@@ -271,9 +271,27 @@ export extern "claude plugin marketplace update" [
 # Uninstall an installed plugin
 export extern "claude plugin uninstall" [
     --keep-data                                             # Preserve plugin persistent data
+    --prune                                                 # Also remove auto-installed dependencies that are no longer needed
     --scope(-s): string@"nu-complete claude scope"
+    --yes(-y)                                               # Skip the --prune confirmation prompt
     --help(-h)
     ...args: string
+]
+
+# Remove auto-installed dependencies that are no longer needed
+export extern "claude plugin prune" [
+    --dry-run                                               # List what would be removed without removing
+    --scope(-s): string@"nu-complete claude scope"
+    --yes(-y)                                               # Skip the confirmation prompt
+    --help(-h)
+]
+
+# Remove auto-installed dependencies (alias for prune)
+export extern "claude plugin autoremove" [
+    --dry-run                                               # List what would be removed without removing
+    --scope(-s): string@"nu-complete claude scope"
+    --yes(-y)                                               # Skip the confirmation prompt
+    --help(-h)
 ]
 
 # Update a plugin to the latest version
@@ -310,7 +328,9 @@ export extern "claude plugin i" [
 # Uninstall an installed plugin (alias for uninstall)
 export extern "claude plugin remove" [
     --keep-data                                             # Preserve plugin persistent data
+    --prune                                                 # Also remove auto-installed dependencies that are no longer needed
     --scope(-s): string@"nu-complete claude scope"
+    --yes(-y)                                               # Skip the --prune confirmation prompt
     --help(-h)
     ...args: string
 ]
@@ -393,9 +413,27 @@ export extern "claude plugins marketplace update" [
 # Uninstall an installed plugin
 export extern "claude plugins uninstall" [
     --keep-data                                             # Preserve plugin persistent data
+    --prune                                                 # Also remove auto-installed dependencies that are no longer needed
     --scope(-s): string@"nu-complete claude scope"
+    --yes(-y)                                               # Skip the --prune confirmation prompt
     --help(-h)
     ...args: string
+]
+
+# Remove auto-installed dependencies that are no longer needed
+export extern "claude plugins prune" [
+    --dry-run                                               # List what would be removed without removing
+    --scope(-s): string@"nu-complete claude scope"
+    --yes(-y)                                               # Skip the confirmation prompt
+    --help(-h)
+]
+
+# Remove auto-installed dependencies (alias for prune)
+export extern "claude plugins autoremove" [
+    --dry-run                                               # List what would be removed without removing
+    --scope(-s): string@"nu-complete claude scope"
+    --yes(-y)                                               # Skip the confirmation prompt
+    --help(-h)
 ]
 
 # Update a plugin to the latest version
@@ -432,7 +470,9 @@ export extern "claude plugins i" [
 # Uninstall an installed plugin (alias for uninstall)
 export extern "claude plugins remove" [
     --keep-data                                             # Preserve plugin persistent data
+    --prune                                                 # Also remove auto-installed dependencies that are no longer needed
     --scope(-s): string@"nu-complete claude scope"
+    --yes(-y)                                               # Skip the --prune confirmation prompt
     --help(-h)
     ...args: string
 ]
@@ -508,4 +548,14 @@ export extern "claude auto-mode critique" [
 # Show default auto mode classifier configuration
 export extern "claude auto-mode defaults" [
     --help(-h)
+]
+
+# --- ultrareview ---
+
+# Run a cloud-hosted multi-agent code review of the current branch (or a PR number / base branch)
+export extern "claude ultrareview" [
+    --json                                                  # Print the raw bugs.json payload instead of formatted findings
+    --timeout: int                                          # Maximum minutes to wait for the review to finish (default: 30)
+    --help(-h)
+    target?: string                                         # PR number, branch, or other target
 ]

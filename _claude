@@ -17,6 +17,7 @@ _claude() {
         'upgrade:Check for updates and install if available'
         'auto-mode:Inspect auto mode classifier configuration'
         'install:Install Claude Code native build'
+        'ultrareview:Run a cloud-hosted multi-agent code review of the current branch'
     )
 
     global_opts=(
@@ -214,6 +215,8 @@ _claude() {
                         'i:Install a plugin (alias for install)'
                         'list:List installed plugins'
                         'marketplace:Manage Claude Code marketplaces'
+                        'prune:Remove auto-installed dependencies that are no longer needed'
+                        'autoremove:Remove auto-installed dependencies (alias for prune)'
                         'tag:Create a {name}--v{version} git tag for a plugin release'
                         'uninstall:Uninstall an installed plugin'
                         'remove:Uninstall an installed plugin (alias for uninstall)'
@@ -308,7 +311,16 @@ _claude() {
                                 uninstall|remove)
                                     _arguments \
                                         '--keep-data[Preserve plugin persistent data]' \
+                                        '--prune[Also remove auto-installed dependencies that are no longer needed]' \
                                         {-s,--scope}'[Configuration scope]:scope:(user project local)' \
+                                        {-y,--yes}'[Skip the --prune confirmation prompt]' \
+                                        {-h,--help}'[Display help for command]'
+                                    ;;
+                                prune|autoremove)
+                                    _arguments \
+                                        '--dry-run[List what would be removed without removing]' \
+                                        {-s,--scope}'[Prune at scope]:scope:(user project local)' \
+                                        {-y,--yes}'[Skip the confirmation prompt]' \
                                         {-h,--help}'[Display help for command]'
                                     ;;
                                 update)
@@ -371,6 +383,12 @@ _claude() {
                         '--force[Force installation even if already installed]' \
                         {-h,--help}'[Display help for command]' \
                         '1: :(stable latest)'
+                    ;;
+                ultrareview)
+                    _arguments \
+                        '--json[Print the raw bugs.json payload instead of formatted findings]' \
+                        '--timeout[Maximum minutes to wait for the review to finish]:minutes:' \
+                        {-h,--help}'[Display help for command]'
                     ;;
             esac
             ;;

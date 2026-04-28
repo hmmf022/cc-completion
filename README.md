@@ -6,7 +6,7 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 
 ## Features
 
-- **Command completion**: Tab complete `claude` subcommands (`agents`, `auto-mode`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `update`, `upgrade`, `install`)
+- **Command completion**: Tab complete `claude` subcommands (`agents`, `auto-mode`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `update`, `upgrade`, `install`, `ultrareview`)
 - **Option completion**: All CLI options and flags are completable
 - **Contextual suggestions**: Option values are suggested where applicable
   - Output formats: `text`, `json`, `stream-json`
@@ -171,7 +171,7 @@ After installation, you can use tab completion with the `claude` command:
 ```bash
 # Complete subcommands
 claude <TAB>
-# Shows: agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install
+# Shows: agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install ultrareview
 
 # Complete options
 claude --<TAB>
@@ -216,7 +216,7 @@ claude mcp add --transport <TAB>
 
 # Complete plugin subcommands
 claude plugin <TAB>
-# Shows: disable enable install list marketplace tag uninstall update validate
+# Shows: disable enable install list marketplace prune autoremove tag uninstall update validate
 
 # File path completion
 claude --settings <TAB>
@@ -249,8 +249,9 @@ claude --settings <TAB>
   - `install` (`i`) - Install a plugin from available marketplaces
   - `list` - List installed plugins
   - `marketplace` - Manage Claude Code marketplaces (`add`, `list`, `remove` (`rm`), `update`)
+  - `prune` (`autoremove`) - Remove auto-installed dependencies that are no longer needed (with `--dry-run`, `--scope`, `--yes` options)
   - `tag` - Create a `{name}--v{version}` git tag for a plugin release (with `--dry-run`, `--force`, `--message`, `--push`, `--remote` options)
-  - `uninstall` (`remove`) - Uninstall an installed plugin
+  - `uninstall` (`remove`) - Uninstall an installed plugin (with `--keep-data`, `--prune`, `--scope`, `--yes` options)
   - `update` - Update a plugin to the latest version
   - `validate` - Validate a plugin or marketplace manifest
 - `setup-token` - Set up a long-lived authentication token
@@ -259,6 +260,7 @@ claude --settings <TAB>
 - `plugins` - Alias for `plugin`
 - `upgrade` - Alias for `update`
 - `install` - Install Claude Code native build (with `--force` option)
+- `ultrareview` - Run a cloud-hosted multi-agent code review of the current branch (or a PR number / base branch) (with `--json`, `--timeout` options)
 
 ## Supported Options
 

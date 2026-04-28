@@ -7,7 +7,7 @@ _claude_completion() {
     _init_completion || return
 
     # Commands
-    local commands="agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install"
+    local commands="agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install ultrareview"
 
     # Global options
     local global_opts="
@@ -203,7 +203,7 @@ _claude_completion() {
             esac
             ;;
         plugin|plugins)
-            local plugin_cmds="disable enable install i list marketplace tag uninstall remove update validate"
+            local plugin_cmds="disable enable install i list marketplace prune autoremove tag uninstall remove update validate"
             local plugin_subcmd
             for ((i=2; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
@@ -284,7 +284,17 @@ _claude_completion() {
                             COMPREPLY=($(compgen -W "user project local" -- "$cur"))
                             ;;
                         *)
-                            COMPREPLY=($(compgen -W "--keep-data --scope --help -s -h" -- "$cur"))
+                            COMPREPLY=($(compgen -W "--keep-data --prune --scope --yes --help -s -y -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                prune|autoremove)
+                    case "$prev" in
+                        -s|--scope)
+                            COMPREPLY=($(compgen -W "user project local" -- "$cur"))
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--dry-run --scope --yes --help -s -y -h" -- "$cur"))
                             ;;
                     esac
                     ;;
@@ -325,6 +335,16 @@ _claude_completion() {
             ;;
         doctor)
             COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+            ;;
+        ultrareview)
+            case "$prev" in
+                --timeout)
+                    COMPREPLY=()
+                    ;;
+                *)
+                    COMPREPLY=($(compgen -W "--json --timeout --help -h" -- "$cur"))
+                    ;;
+            esac
             ;;
         update|upgrade)
             COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
