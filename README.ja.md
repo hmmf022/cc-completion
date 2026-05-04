@@ -254,6 +254,8 @@ claude --settings <TAB>
   - `uninstall` (`remove`) - インストール済みのプラグインをアンインストール (`--keep-data`, `--prune`, `--scope`, `--yes` オプション付き)
   - `update` - プラグインを最新バージョンに更新
   - `validate` - プラグインまたはマーケットプレイスのマニフェストを検証
+- `project` - Claude Code プロジェクト状態の管理
+  - `purge` - プロジェクトの Claude Code 状態 (トランスクリプト、タスク、ファイル履歴、設定エントリ) をすべて削除 (`--all`, `--dry-run`, `--interactive`, `--yes` オプション付き)
 - `setup-token` - 長期認証トークンを設定
 - `doctor` - Claude Code 自動アップデーターの健全性をチェック
 - `update` - アップデートを確認し、利用可能な場合はインストール

@@ -7,7 +7,7 @@ _claude_completion() {
     _init_completion || return
 
     # Commands
-    local commands="agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install ultrareview"
+    local commands="agents auto-mode auth mcp plugin plugins project setup-token doctor update upgrade install ultrareview"
 
     # Global options
     local global_opts="
@@ -327,6 +327,28 @@ _claude_completion() {
                     ;;
                 *)
                     COMPREPLY=($(compgen -W "$plugin_cmds --help -h" -- "$cur"))
+                    ;;
+            esac
+            ;;
+        project)
+            local project_cmds="purge"
+            local project_subcmd
+            for ((i=2; i < cword; i++)); do
+                if [[ ${words[i]} != -* ]]; then
+                    project_subcmd=${words[i]}
+                    break
+                fi
+            done
+            case "$project_subcmd" in
+                purge)
+                    if [[ "$cur" == -* ]]; then
+                        COMPREPLY=($(compgen -W "--all --dry-run --interactive --yes --help -i -y -h" -- "$cur"))
+                    else
+                        _filedir -d
+                    fi
+                    ;;
+                *)
+                    COMPREPLY=($(compgen -W "$project_cmds --help -h" -- "$cur"))
                     ;;
             esac
             ;;

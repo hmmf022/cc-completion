@@ -11,6 +11,7 @@ _claude() {
         'mcp:Configure and manage MCP servers'
         'plugin:Manage Claude Code plugins'
         'plugins:Manage Claude Code plugins'
+        'project:Manage Claude Code project state'
         'setup-token:Set up a long-lived authentication token'
         'doctor:Check the health of your Claude Code auto-updater'
         'update:Check for updates and install if available'
@@ -331,6 +332,34 @@ _claude() {
                                 *)
                                     _arguments \
                                         {-h,--help}'[Display help for command]'
+                                    ;;
+                            esac
+                            ;;
+                    esac
+                    ;;
+                project)
+                    local -a project_commands
+                    project_commands=(
+                        'purge:Delete all Claude Code state for a project'
+                    )
+                    _arguments -C \
+                        {-h,--help}'[Display help for command]' \
+                        '1: :->project_cmd' \
+                        '*:: :->project_args'
+                    case $state in
+                        project_cmd)
+                            _describe -t commands 'project command' project_commands
+                            ;;
+                        project_args)
+                            case $words[1] in
+                                purge)
+                                    _arguments \
+                                        '--all[Purge state for every project]' \
+                                        '--dry-run[List what would be deleted without deleting]' \
+                                        {-i,--interactive}'[Prompt for each item before deleting]' \
+                                        {-y,--yes}'[Skip confirmation prompt]' \
+                                        {-h,--help}'[Display help for command]' \
+                                        '*: :_files -/'
                                     ;;
                             esac
                             ;;

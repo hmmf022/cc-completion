@@ -254,6 +254,8 @@ claude --settings <TAB>
   - `uninstall` (`remove`) - Uninstall an installed plugin (with `--keep-data`, `--prune`, `--scope`, `--yes` options)
   - `update` - Update a plugin to the latest version
   - `validate` - Validate a plugin or marketplace manifest
+- `project` - Manage Claude Code project state
+  - `purge` - Delete all Claude Code state for a project (transcripts, tasks, file history, config entry) (with `--all`, `--dry-run`, `--interactive`, `--yes` options)
 - `setup-token` - Set up a long-lived authentication token
 - `doctor` - Check the health of your Claude Code auto-updater
 - `update` - Check for updates and install if available

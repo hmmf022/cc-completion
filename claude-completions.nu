@@ -2,7 +2,7 @@
 # Translated from bash completion script
 
 def "nu-complete claude commands" [] {
-    [agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install ultrareview]
+    [agents auto-mode auth mcp plugin plugins project setup-token doctor update upgrade install ultrareview]
 }
 
 def "nu-complete claude output-format" [] {
@@ -481,6 +481,24 @@ export extern "claude plugins remove" [
 export extern "claude plugins marketplace rm" [
     --help(-h)
     ...args: string
+]
+
+# --- project ---
+
+# Manage Claude Code project state
+export extern "claude project" [
+    --help(-h)
+    ...args: string
+]
+
+# Delete all Claude Code state for a project (transcripts, tasks, file history, config entry)
+export extern "claude project purge" [
+    --all                  # Purge state for every project (mutually exclusive with [path])
+    --dry-run              # List what would be deleted without deleting anything
+    --interactive(-i)      # Prompt for each item before deleting
+    --yes(-y)              # Skip confirmation prompt
+    --help(-h)
+    path?: path            # Project directory path
 ]
 
 # --- agents ---
