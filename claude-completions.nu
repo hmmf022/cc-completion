@@ -83,6 +83,7 @@ export extern claude [
     --agents: string                                        # Agents config
     --setting-sources: string@"nu-complete claude scope"    # Setting sources
     --plugin-dir: path                                      # Plugin directory
+    --plugin-url: string                                    # Fetch a plugin .zip from a URL for this session only
     --disable-slash-commands                                 # Disable slash commands
     --chrome                                                # Enable Chrome
     --no-chrome                                             # Disable Chrome

@@ -63,6 +63,7 @@ _claude() {
         '--agents[JSON object defining custom agents]:json:'
         '--setting-sources[Comma-separated list of setting sources]:sources:(user project local)'
         '--plugin-dir[Load plugins from directories]:paths:_files -/'
+        '--plugin-url[Fetch a plugin .zip from a URL for this session only]:url:'
         '--disable-slash-commands[Disable all skills]'
         '--chrome[Enable Claude in Chrome integration]'
         '--no-chrome[Disable Claude in Chrome integration]'
