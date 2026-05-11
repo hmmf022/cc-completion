@@ -22,7 +22,7 @@ _claude_completion() {
         --model --agent --betas --fallback-model --settings --add-dir
         --ide --strict-mcp-config --session-id --agents --setting-sources
         --plugin-dir --plugin-url --disable-slash-commands --chrome --no-chrome
-        --from-pr --file --worktree --tmux --remote-control-session-name-prefix
+        --from-pr --file --worktree --tmux --remote-control --remote-control-session-name-prefix
         --bare --brief
         --effort --version --help
         --name
@@ -76,7 +76,7 @@ _claude_completion() {
             ;;
         --json-schema|--system-prompt|--append-system-prompt|--agents|\
         --worktree|--max-budget-usd|--session-id|--debug|-d|--from-pr|\
-        -r|--resume|--agent|--betas|--name|-n|--plugin-url)
+        -r|--resume|--agent|--betas|--name|-n|--plugin-url|--remote-control)
             COMPREPLY=()
             return 0
             ;;

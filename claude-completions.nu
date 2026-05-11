@@ -93,6 +93,7 @@ export extern claude [
     --tmux                                                  # Tmux mode
     --bare                                                  # Minimal mode: skip hooks, LSP, and auto-discovery
     --brief                                                 # Enable SendUserMessage tool for agent-to-user communication
+    --remote-control: string                                # Start an interactive session with Remote Control enabled (optionally named)
     --remote-control-session-name-prefix: string            # Remote Control session name prefix
     --effort: string@"nu-complete claude effort"            # Effort level
     --name(-n): string                                      # Name for the conversation
