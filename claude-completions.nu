@@ -209,6 +209,12 @@ export extern "claude plugin" [
     ...args: string
 ]
 
+# Show a plugin's component inventory and projected token cost
+export extern "claude plugin details" [
+    --help(-h)
+    ...args: string
+]
+
 # Disable an enabled plugin
 export extern "claude plugin disable" [
     --all(-a)                                               # Disable all
@@ -347,6 +353,12 @@ export extern "claude plugin marketplace rm" [
 
 # Manage Claude Code plugins
 export extern "claude plugins" [
+    --help(-h)
+    ...args: string
+]
+
+# Show a plugin's component inventory and projected token cost
+export extern "claude plugins details" [
     --help(-h)
     ...args: string
 ]
@@ -505,9 +517,20 @@ export extern "claude project purge" [
 
 # --- agents ---
 
-# List configured agents
+# Manage background agents
 export extern "claude agents" [
-    --setting-sources: string@"nu-complete claude scope"
+    --add-dir: path                                         # Additional directory to allow tool access (repeatable)
+    --allow-dangerously-skip-permissions                    # Make bypass-permissions mode available to dispatched sessions
+    --cwd: path                                             # Show only background sessions started under path
+    --dangerously-skip-permissions                          # Alias for --permission-mode bypassPermissions
+    --effort: string@"nu-complete claude effort"            # Default effort level for dispatched sessions
+    --mcp-config: path                                      # MCP server configuration (repeatable)
+    --model: string@"nu-complete claude models"             # Default model for dispatched sessions
+    --permission-mode: string@"nu-complete claude permission-mode"  # Default permission mode for dispatched sessions
+    --plugin-dir: path                                      # Load plugins from directory (repeatable)
+    --setting-sources: string@"nu-complete claude scope"    # Setting sources
+    --settings: path                                        # Settings file or JSON string
+    --strict-mcp-config                                     # Only use MCP servers from --mcp-config
     --help(-h)
 ]
 

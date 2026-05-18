@@ -203,7 +203,7 @@ _claude_completion() {
             esac
             ;;
         plugin|plugins)
-            local plugin_cmds="disable enable install i list marketplace prune autoremove tag uninstall remove update validate"
+            local plugin_cmds="details disable enable install i list marketplace prune autoremove tag uninstall remove update validate"
             local plugin_subcmd
             for ((i=2; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
@@ -308,6 +308,9 @@ _claude_completion() {
                             ;;
                     esac
                     ;;
+                details)
+                    COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                    ;;
                 validate)
                     COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
                     ;;
@@ -375,7 +378,14 @@ _claude_completion() {
             COMPREPLY=($(compgen -W "stable latest --force --help -h" -- "$cur"))
             ;;
         agents)
-            COMPREPLY=($(compgen -W "--setting-sources --help -h" -- "$cur"))
+            case "$prev" in
+                --cwd)
+                    _filedir -d
+                    ;;
+                *)
+                    COMPREPLY=($(compgen -W "--add-dir --allow-dangerously-skip-permissions --cwd --dangerously-skip-permissions --effort --mcp-config --model --permission-mode --plugin-dir --setting-sources --settings --strict-mcp-config --help -h" -- "$cur"))
+                    ;;
+            esac
             ;;
         auto-mode)
             local automode_cmds="config critique defaults"

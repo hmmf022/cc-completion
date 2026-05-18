@@ -216,7 +216,7 @@ claude mcp add --transport <TAB>
 
 # plugin サブコマンドの補完
 claude plugin <TAB>
-# 表示: disable enable install list marketplace prune autoremove tag uninstall update validate
+# 表示: details disable enable install list marketplace prune autoremove tag uninstall update validate
 
 # ファイルパスの補完
 claude --settings <TAB>
@@ -225,7 +225,7 @@ claude --settings <TAB>
 
 ## 対応コマンド
 
-- `agents` - 設定済みのエージェントを一覧表示 (`--setting-sources` オプション付き)
+- `agents` - バックグラウンドエージェントを管理 (`--add-dir`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` オプション付き)
 - `auto-mode` - 自動モード分類器の設定を確認
   - `config` - 自動モード分類器の設定を表示
   - `critique` - 会話に対して自動モードの批評を実行 (`--model` オプション付き)
@@ -244,6 +244,7 @@ claude --settings <TAB>
   - `reset-project-choices` - プロジェクトスコープのサーバーの承認・拒否をすべてリセット
   - `serve` - Claude Code MCP サーバーを起動
 - `plugin` - Claude Code プラグインの管理
+  - `details` - プラグインのコンポーネント一覧と推定トークンコストを表示
   - `disable` - 有効なプラグインを無効化
   - `enable` - 無効なプラグインを有効化
   - `install` (`i`) - 利用可能なマーケットプレイスからプラグインをインストール

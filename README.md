@@ -216,7 +216,7 @@ claude mcp add --transport <TAB>
 
 # Complete plugin subcommands
 claude plugin <TAB>
-# Shows: disable enable install list marketplace prune autoremove tag uninstall update validate
+# Shows: details disable enable install list marketplace prune autoremove tag uninstall update validate
 
 # File path completion
 claude --settings <TAB>
@@ -225,7 +225,7 @@ claude --settings <TAB>
 
 ## Supported Commands
 
-- `agents` - List configured agents (with `--setting-sources` option)
+- `agents` - Manage background agents (with `--add-dir`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` options)
 - `auto-mode` - Inspect auto mode classifier configuration
   - `config` - Show auto mode classifier configuration
   - `critique` - Run auto mode critique on a conversation (with `--model` option)
@@ -244,6 +244,7 @@ claude --settings <TAB>
   - `reset-project-choices` - Reset all approved and rejected project-scoped servers
   - `serve` - Start the Claude Code MCP server
 - `plugin` - Manage Claude Code plugins
+  - `details` - Show a plugin's component inventory and projected token cost
   - `disable` - Disable an enabled plugin
   - `enable` - Enable a disabled plugin
   - `install` (`i`) - Install a plugin from available marketplaces

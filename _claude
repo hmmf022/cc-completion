@@ -6,7 +6,7 @@ _claude() {
     local -a commands global_opts output_formats input_formats permission_modes models setting_sources
 
     commands=(
-        'agents:List configured agents'
+        'agents:Manage background agents'
         'auth:Manage authentication'
         'mcp:Configure and manage MCP servers'
         'plugin:Manage Claude Code plugins'
@@ -96,7 +96,18 @@ _claude() {
             case $words[1] in
                 agents)
                     _arguments \
+                        '--add-dir[Additional directory to allow tool access in dispatched sessions]:directory:_files -/' \
+                        '--allow-dangerously-skip-permissions[Make bypass-permissions mode available to dispatched sessions]' \
+                        '--cwd[Show only background sessions started under path]:path:_files -/' \
+                        '--dangerously-skip-permissions[Alias for --permission-mode bypassPermissions]' \
+                        '--effort[Default effort level for dispatched sessions]:level:(low medium high xhigh max)' \
+                        '--mcp-config[MCP server configuration to apply to dispatched sessions]:config:_files' \
+                        '--model[Default model for dispatched sessions]:model:(sonnet opus haiku best sonnet1m opus1m opusplan)' \
+                        '--permission-mode[Default permission mode for dispatched sessions]:mode:(acceptEdits bypassPermissions default dontAsk plan auto)' \
+                        '--plugin-dir[Load plugins from specified directory for dispatched sessions]:path:_files -/' \
                         '--setting-sources[Comma-separated list of setting sources]:sources:(user project local)' \
+                        '--settings[Settings file or JSON string to apply]:file:_files' \
+                        '--strict-mcp-config[Only use MCP servers from --mcp-config in dispatched sessions]' \
                         {-h,--help}'[Display help for command]'
                     ;;
                 auth)
@@ -212,6 +223,7 @@ _claude() {
                 plugin|plugins)
                     local -a plugin_commands
                     plugin_commands=(
+                        'details:Show a plugin'\''s component inventory and projected token cost'
                         'disable:Disable an enabled plugin'
                         'enable:Enable a disabled plugin'
                         'install:Install a plugin from available marketplaces'
@@ -273,6 +285,10 @@ _claude() {
                                             esac
                                             ;;
                                     esac
+                                    ;;
+                                details)
+                                    _arguments \
+                                        {-h,--help}'[Display help for command]'
                                     ;;
                                 validate)
                                     _arguments \
