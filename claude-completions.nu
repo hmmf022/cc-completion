@@ -232,6 +232,7 @@ export extern "claude plugin enable" [
 
 # Install a plugin from available marketplaces
 export extern "claude plugin install" [
+    --config: string                                        # Set a userConfig option from the plugin manifest (repeatable)
     --scope(-s): string@"nu-complete claude scope"
     --help(-h)
     ...args: string
@@ -311,6 +312,7 @@ export extern "claude plugin update" [
 
 # Validate a plugin or marketplace manifest
 export extern "claude plugin validate" [
+    --strict                                                # Treat warnings as errors (exit 1)
     --help(-h)
     ...args: string
 ]
@@ -328,6 +330,7 @@ export extern "claude plugin tag" [
 
 # Install a plugin (alias for install)
 export extern "claude plugin i" [
+    --config: string                                        # Set a userConfig option from the plugin manifest (repeatable)
     --scope(-s): string@"nu-complete claude scope"
     --help(-h)
     ...args: string
@@ -380,6 +383,7 @@ export extern "claude plugins enable" [
 
 # Install a plugin from available marketplaces
 export extern "claude plugins install" [
+    --config: string                                        # Set a userConfig option from the plugin manifest (repeatable)
     --scope(-s): string@"nu-complete claude scope"
     --help(-h)
     ...args: string
@@ -459,6 +463,7 @@ export extern "claude plugins update" [
 
 # Validate a plugin or marketplace manifest
 export extern "claude plugins validate" [
+    --strict                                                # Treat warnings as errors (exit 1)
     --help(-h)
     ...args: string
 ]
@@ -476,6 +481,7 @@ export extern "claude plugins tag" [
 
 # Install a plugin (alias for install)
 export extern "claude plugins i" [
+    --config: string                                        # Set a userConfig option from the plugin manifest (repeatable)
     --scope(-s): string@"nu-complete claude scope"
     --help(-h)
     ...args: string
@@ -524,6 +530,7 @@ export extern "claude agents" [
     --cwd: path                                             # Show only background sessions started under path
     --dangerously-skip-permissions                          # Alias for --permission-mode bypassPermissions
     --effort: string@"nu-complete claude effort"            # Default effort level for dispatched sessions
+    --json                                                  # Print live sessions as a JSON array and exit (for scripting)
     --mcp-config: path                                      # MCP server configuration (repeatable)
     --model: string@"nu-complete claude models"             # Default model for dispatched sessions
     --permission-mode: string@"nu-complete claude permission-mode"  # Default permission mode for dispatched sessions

@@ -225,7 +225,7 @@ claude --settings <TAB>
 
 ## Supported Commands
 
-- `agents` - Manage background agents (with `--add-dir`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` options)
+- `agents` - Manage background agents (with `--add-dir`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--json`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` options)
 - `auto-mode` - Inspect auto mode classifier configuration
   - `config` - Show auto mode classifier configuration
   - `critique` - Run auto mode critique on a conversation (with `--model` option)
@@ -247,14 +247,14 @@ claude --settings <TAB>
   - `details` - Show a plugin's component inventory and projected token cost
   - `disable` - Disable an enabled plugin
   - `enable` - Enable a disabled plugin
-  - `install` (`i`) - Install a plugin from available marketplaces
+  - `install` (`i`) - Install a plugin from available marketplaces (with `--config`, `--scope` options)
   - `list` - List installed plugins
   - `marketplace` - Manage Claude Code marketplaces (`add`, `list`, `remove` (`rm`), `update`)
   - `prune` (`autoremove`) - Remove auto-installed dependencies that are no longer needed (with `--dry-run`, `--scope`, `--yes` options)
   - `tag` - Create a `{name}--v{version}` git tag for a plugin release (with `--dry-run`, `--force`, `--message`, `--push`, `--remote` options)
   - `uninstall` (`remove`) - Uninstall an installed plugin (with `--keep-data`, `--prune`, `--scope`, `--yes` options)
   - `update` - Update a plugin to the latest version
-  - `validate` - Validate a plugin or marketplace manifest
+  - `validate` - Validate a plugin or marketplace manifest (with `--strict` option)
 - `project` - Manage Claude Code project state
   - `purge` - Delete all Claude Code state for a project (transcripts, tasks, file history, config entry) (with `--all`, `--dry-run`, `--interactive`, `--yes` options)
 - `setup-token` - Set up a long-lived authentication token

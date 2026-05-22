@@ -101,6 +101,7 @@ _claude() {
                         '--cwd[Show only background sessions started under path]:path:_files -/' \
                         '--dangerously-skip-permissions[Alias for --permission-mode bypassPermissions]' \
                         '--effort[Default effort level for dispatched sessions]:level:(low medium high xhigh max)' \
+                        '--json[Print live sessions as a JSON array and exit (for scripting; does not require a TTY)]' \
                         '--mcp-config[MCP server configuration to apply to dispatched sessions]:config:_files' \
                         '--model[Default model for dispatched sessions]:model:(sonnet opus haiku best sonnet1m opus1m opusplan)' \
                         '--permission-mode[Default permission mode for dispatched sessions]:mode:(acceptEdits bypassPermissions default dontAsk plan auto)' \
@@ -292,6 +293,7 @@ _claude() {
                                     ;;
                                 validate)
                                     _arguments \
+                                        '--strict[Treat warnings as errors (exit 1)]' \
                                         {-h,--help}'[Display help for command]' \
                                         '1:path:_files'
                                     ;;
@@ -307,6 +309,7 @@ _claude() {
                                     ;;
                                 install|i)
                                     _arguments \
+                                        '--config[Set a userConfig option from the plugin manifest (repeatable)]:key=value:' \
                                         {-s,--scope}'[Configuration scope]:scope:(user project local)' \
                                         {-h,--help}'[Display help for command]'
                                     ;;

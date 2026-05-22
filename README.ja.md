@@ -225,7 +225,7 @@ claude --settings <TAB>
 
 ## 対応コマンド
 
-- `agents` - バックグラウンドエージェントを管理 (`--add-dir`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` オプション付き)
+- `agents` - バックグラウンドエージェントを管理 (`--add-dir`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--json`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` オプション付き)
 - `auto-mode` - 自動モード分類器の設定を確認
   - `config` - 自動モード分類器の設定を表示
   - `critique` - 会話に対して自動モードの批評を実行 (`--model` オプション付き)
@@ -247,14 +247,14 @@ claude --settings <TAB>
   - `details` - プラグインのコンポーネント一覧と推定トークンコストを表示
   - `disable` - 有効なプラグインを無効化
   - `enable` - 無効なプラグインを有効化
-  - `install` (`i`) - 利用可能なマーケットプレイスからプラグインをインストール
+  - `install` (`i`) - 利用可能なマーケットプレイスからプラグインをインストール (`--config`, `--scope` オプション付き)
   - `list` - インストール済みのプラグインを一覧表示
   - `marketplace` - Claude Code マーケットプレイスの管理 (`add`, `list`, `remove` (`rm`), `update`)
   - `prune` (`autoremove`) - 不要になった自動インストール依存を削除 (`--dry-run`, `--scope`, `--yes` オプション付き)
   - `tag` - プラグインリリース用に `{name}--v{version}` の git タグを作成 (`--dry-run`, `--force`, `--message`, `--push`, `--remote` オプション付き)
   - `uninstall` (`remove`) - インストール済みのプラグインをアンインストール (`--keep-data`, `--prune`, `--scope`, `--yes` オプション付き)
   - `update` - プラグインを最新バージョンに更新
-  - `validate` - プラグインまたはマーケットプレイスのマニフェストを検証
+  - `validate` - プラグインまたはマーケットプレイスのマニフェストを検証 (`--strict` オプション付き)
 - `project` - Claude Code プロジェクト状態の管理
   - `purge` - プロジェクトの Claude Code 状態 (トランスクリプト、タスク、ファイル履歴、設定エントリ) をすべて削除 (`--all`, `--dry-run`, `--interactive`, `--yes` オプション付き)
 - `setup-token` - 長期認証トークンを設定

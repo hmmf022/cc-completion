@@ -250,8 +250,11 @@ _claude_completion() {
                         -s|--scope)
                             COMPREPLY=($(compgen -W "user project local" -- "$cur"))
                             ;;
+                        --config)
+                            COMPREPLY=()
+                            ;;
                         *)
-                            COMPREPLY=($(compgen -W "--scope --help -s -h" -- "$cur"))
+                            COMPREPLY=($(compgen -W "--config --scope --help -s -h" -- "$cur"))
                             ;;
                     esac
                     ;;
@@ -312,7 +315,7 @@ _claude_completion() {
                     COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
                     ;;
                 validate)
-                    COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                    COMPREPLY=($(compgen -W "--strict --help -h" -- "$cur"))
                     ;;
                 tag)
                     case "$prev" in
@@ -383,7 +386,7 @@ _claude_completion() {
                     _filedir -d
                     ;;
                 *)
-                    COMPREPLY=($(compgen -W "--add-dir --allow-dangerously-skip-permissions --cwd --dangerously-skip-permissions --effort --mcp-config --model --permission-mode --plugin-dir --setting-sources --settings --strict-mcp-config --help -h" -- "$cur"))
+                    COMPREPLY=($(compgen -W "--add-dir --allow-dangerously-skip-permissions --cwd --dangerously-skip-permissions --effort --json --mcp-config --model --permission-mode --plugin-dir --setting-sources --settings --strict-mcp-config --help -h" -- "$cur"))
                     ;;
             esac
             ;;
