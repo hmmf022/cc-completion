@@ -279,6 +279,11 @@ _claude() {
                                                         '--json[Output in JSON format]' \
                                                         {-h,--help}'[Display help for command]'
                                                     ;;
+                                                remove|rm)
+                                                    _arguments \
+                                                        '--scope[Remove the marketplace from a specific scope]:scope:(user project local)' \
+                                                        {-h,--help}'[Display help for command]'
+                                                    ;;
                                                 *)
                                                     _arguments \
                                                         {-h,--help}'[Display help for command]'

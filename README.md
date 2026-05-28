@@ -249,7 +249,7 @@ claude --settings <TAB>
   - `enable` - Enable a disabled plugin
   - `install` (`i`) - Install a plugin from available marketplaces (with `--config`, `--scope` options)
   - `list` - List installed plugins
-  - `marketplace` - Manage Claude Code marketplaces (`add`, `list`, `remove` (`rm`), `update`)
+  - `marketplace` - Manage Claude Code marketplaces (`add`, `list`, `remove` (`rm`), `update`); `remove`/`rm` support `--scope` option
   - `prune` (`autoremove`) - Remove auto-installed dependencies that are no longer needed (with `--dry-run`, `--scope`, `--yes` options)
   - `tag` - Create a `{name}--v{version}` git tag for a plugin release (with `--dry-run`, `--force`, `--message`, `--push`, `--remote` options)
   - `uninstall` (`remove`) - Uninstall an installed plugin (with `--keep-data`, `--prune`, `--scope`, `--yes` options)

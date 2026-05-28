@@ -240,6 +240,16 @@ _claude_completion() {
                         list)
                             COMPREPLY=($(compgen -W "--json --help -h" -- "$cur"))
                             ;;
+                        remove|rm)
+                            case "$prev" in
+                                --scope)
+                                    COMPREPLY=($(compgen -W "user project local" -- "$cur"))
+                                    ;;
+                                *)
+                                    COMPREPLY=($(compgen -W "--scope --help -h" -- "$cur"))
+                                    ;;
+                            esac
+                            ;;
                         *)
                             COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
                             ;;

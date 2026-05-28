@@ -267,6 +267,7 @@ export extern "claude plugin marketplace list" [
 
 # Remove a marketplace
 export extern "claude plugin marketplace remove" [
+    --scope: string@"nu-complete claude scope"               # Remove from specific settings scope
     --help(-h)
     ...args: string
 ]
@@ -348,6 +349,7 @@ export extern "claude plugin remove" [
 
 # Remove a marketplace (alias for remove)
 export extern "claude plugin marketplace rm" [
+    --scope: string@"nu-complete claude scope"               # Remove from specific settings scope
     --help(-h)
     ...args: string
 ]
@@ -418,6 +420,7 @@ export extern "claude plugins marketplace list" [
 
 # Remove a marketplace
 export extern "claude plugins marketplace remove" [
+    --scope: string@"nu-complete claude scope"               # Remove from specific settings scope
     --help(-h)
     ...args: string
 ]
@@ -499,6 +502,7 @@ export extern "claude plugins remove" [
 
 # Remove a marketplace (alias for remove)
 export extern "claude plugins marketplace rm" [
+    --scope: string@"nu-complete claude scope"               # Remove from specific settings scope
     --help(-h)
     ...args: string
 ]
