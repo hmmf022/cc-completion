@@ -74,6 +74,7 @@ _claude() {
         '--tmux[Create a tmux session for worktree]'
         '--bare[Minimal mode: skip hooks, LSP, and auto-discovery]'
         '--brief[Enable SendUserMessage tool for agent-to-user communication]'
+        '--prompt-suggestions[Enable prompt suggestions]::enabled:(true false)'
         '--effort[Effort level for the current session]:level:->effort'
         {-n,--name}'[Name for the conversation]:name:'
         {-v,--version}'[Output the version number]'
@@ -97,6 +98,7 @@ _claude() {
                 agents)
                     _arguments \
                         '--add-dir[Additional directory to allow tool access in dispatched sessions]:directory:_files -/' \
+                        '--agent[Default agent for sessions dispatched from agent view]:agent:' \
                         '--allow-dangerously-skip-permissions[Make bypass-permissions mode available to dispatched sessions]' \
                         '--cwd[Show only background sessions started under path]:path:_files -/' \
                         '--dangerously-skip-permissions[Alias for --permission-mode bypassPermissions]' \
@@ -227,6 +229,8 @@ _claude() {
                         'details:Show a plugin'\''s component inventory and projected token cost'
                         'disable:Disable an enabled plugin'
                         'enable:Enable a disabled plugin'
+                        'init:Scaffold a new plugin'
+                        'new:Scaffold a new plugin (alias for init)'
                         'install:Install a plugin from available marketplaces'
                         'i:Install a plugin (alias for install)'
                         'list:List installed plugins'
@@ -317,6 +321,16 @@ _claude() {
                                         '--config[Set a userConfig option from the plugin manifest (repeatable)]:key=value:' \
                                         {-s,--scope}'[Configuration scope]:scope:(user project local)' \
                                         {-h,--help}'[Display help for command]'
+                                    ;;
+                                init|new)
+                                    _arguments \
+                                        '--author[Author name (default: git config user.name)]:name:' \
+                                        '--author-email[Author email (default: git config user.email)]:email:' \
+                                        '--description[Manifest description]:text:' \
+                                        {-f,--force}'[Overwrite an existing .claude-plugin/ at the target]' \
+                                        '*--with[Also scaffold components]:component:(skills agents hooks mcp lsp output-style channel)' \
+                                        {-h,--help}'[Display help for command]' \
+                                        '1:name:'
                                     ;;
                                 list)
                                     _arguments \

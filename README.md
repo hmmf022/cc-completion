@@ -216,7 +216,7 @@ claude mcp add --transport <TAB>
 
 # Complete plugin subcommands
 claude plugin <TAB>
-# Shows: details disable enable install list marketplace prune autoremove tag uninstall update validate
+# Shows: details disable enable init new install list marketplace prune autoremove tag uninstall update validate
 
 # File path completion
 claude --settings <TAB>
@@ -225,7 +225,7 @@ claude --settings <TAB>
 
 ## Supported Commands
 
-- `agents` - Manage background agents (with `--add-dir`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--json`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` options)
+- `agents` - Manage background agents (with `--add-dir`, `--agent`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--json`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` options)
 - `auto-mode` - Inspect auto mode classifier configuration
   - `config` - Show auto mode classifier configuration
   - `critique` - Run auto mode critique on a conversation (with `--model` option)
@@ -247,6 +247,7 @@ claude --settings <TAB>
   - `details` - Show a plugin's component inventory and projected token cost
   - `disable` - Disable an enabled plugin
   - `enable` - Enable a disabled plugin
+  - `init` (`new`) - Scaffold a new plugin (with `--author`, `--author-email`, `--description`, `--force`, `--with` options)
   - `install` (`i`) - Install a plugin from available marketplaces (with `--config`, `--scope` options)
   - `list` - List installed plugins
   - `marketplace` - Manage Claude Code marketplaces (`add`, `list`, `remove` (`rm`), `update`); `remove`/`rm` support `--scope` option
