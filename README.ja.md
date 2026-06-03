@@ -216,7 +216,7 @@ claude mcp add --transport <TAB>
 
 # plugin サブコマンドの補完
 claude plugin <TAB>
-# 表示: details disable enable install list marketplace prune autoremove tag uninstall update validate
+# 表示: details disable enable init new install list marketplace prune autoremove tag uninstall update validate
 
 # ファイルパスの補完
 claude --settings <TAB>
@@ -225,7 +225,7 @@ claude --settings <TAB>
 
 ## 対応コマンド
 
-- `agents` - バックグラウンドエージェントを管理 (`--add-dir`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--json`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` オプション付き)
+- `agents` - バックグラウンドエージェントを管理 (`--add-dir`, `--agent`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--json`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` オプション付き)
 - `auto-mode` - 自動モード分類器の設定を確認
   - `config` - 自動モード分類器の設定を表示
   - `critique` - 会話に対して自動モードの批評を実行 (`--model` オプション付き)
@@ -247,9 +247,10 @@ claude --settings <TAB>
   - `details` - プラグインのコンポーネント一覧と推定トークンコストを表示
   - `disable` - 有効なプラグインを無効化
   - `enable` - 無効なプラグインを有効化
+  - `init` (`new`) - 新しいプラグインの雛形を作成 (`--author`, `--author-email`, `--description`, `--force`, `--with` オプション付き)
   - `install` (`i`) - 利用可能なマーケットプレイスからプラグインをインストール (`--config`, `--scope` オプション付き)
   - `list` - インストール済みのプラグインを一覧表示
-  - `marketplace` - Claude Code マーケットプレイスの管理 (`add`, `list`, `remove` (`rm`), `update`)
+  - `marketplace` - Claude Code マーケットプレイスの管理 (`add`, `list`, `remove` (`rm`), `update`); `remove`/`rm` は `--scope` オプションをサポート
   - `prune` (`autoremove`) - 不要になった自動インストール依存を削除 (`--dry-run`, `--scope`, `--yes` オプション付き)
   - `tag` - プラグインリリース用に `{name}--v{version}` の git タグを作成 (`--dry-run`, `--force`, `--message`, `--push`, `--remote` オプション付き)
   - `uninstall` (`remove`) - インストール済みのプラグインをアンインストール (`--keep-data`, `--prune`, `--scope`, `--yes` オプション付き)

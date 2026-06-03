@@ -23,7 +23,7 @@ _claude_completion() {
         --ide --strict-mcp-config --session-id --agents --setting-sources
         --plugin-dir --plugin-url --disable-slash-commands --chrome --no-chrome
         --from-pr --file --worktree --tmux --remote-control --remote-control-session-name-prefix
-        --bare --brief
+        --bare --brief --prompt-suggestions
         --effort --version --help
         --name
         -d -p -c -r -v -w -n -h
@@ -64,6 +64,10 @@ _claude_completion() {
         --effort)
             COMPREPLY=($(compgen -W "low medium high xhigh max" -- "$cur"))
             compopt -o nosort 2>/dev/null
+            return 0
+            ;;
+        --prompt-suggestions)
+            COMPREPLY=($(compgen -W "true false" -- "$cur"))
             return 0
             ;;
         --mcp-config|--settings|--plugin-dir|--add-dir|--file|--debug-file)
@@ -226,7 +230,7 @@ _claude_completion() {
             esac
             ;;
         plugin|plugins)
-            local plugin_cmds="details disable enable install i list marketplace prune autoremove tag uninstall remove update validate"
+            local plugin_cmds="details disable enable init new install i list marketplace prune autoremove tag uninstall remove update validate"
             local plugin_subcmd
             for ((i=2; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
@@ -263,6 +267,16 @@ _claude_completion() {
                         list)
                             COMPREPLY=($(compgen -W "--json --help -h" -- "$cur"))
                             ;;
+                        remove|rm)
+                            case "$prev" in
+                                --scope)
+                                    COMPREPLY=($(compgen -W "user project local" -- "$cur"))
+                                    ;;
+                                *)
+                                    COMPREPLY=($(compgen -W "--scope --help -h" -- "$cur"))
+                                    ;;
+                            esac
+                            ;;
                         *)
                             COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
                             ;;
@@ -278,6 +292,19 @@ _claude_completion() {
                             ;;
                         *)
                             COMPREPLY=($(compgen -W "--config --scope --help -s -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                init|new)
+                    case "$prev" in
+                        --with)
+                            COMPREPLY=($(compgen -W "skills agents hooks mcp lsp output-style channel" -- "$cur"))
+                            ;;
+                        --author|--author-email|--description)
+                            COMPREPLY=()
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--author --author-email --description --force --with --help -f -h" -- "$cur"))
                             ;;
                     esac
                     ;;
@@ -409,7 +436,7 @@ _claude_completion() {
                     _filedir -d
                     ;;
                 *)
-                    COMPREPLY=($(compgen -W "--add-dir --allow-dangerously-skip-permissions --cwd --dangerously-skip-permissions --effort --json --mcp-config --model --permission-mode --plugin-dir --setting-sources --settings --strict-mcp-config --help -h" -- "$cur"))
+                    COMPREPLY=($(compgen -W "--add-dir --agent --allow-dangerously-skip-permissions --cwd --dangerously-skip-permissions --effort --json --mcp-config --model --permission-mode --plugin-dir --setting-sources --settings --strict-mcp-config --help -h" -- "$cur"))
                     ;;
             esac
             ;;

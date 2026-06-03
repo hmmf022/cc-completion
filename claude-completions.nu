@@ -41,6 +41,14 @@ def "nu-complete claude install-channel" [] {
     [stable latest]
 }
 
+def "nu-complete claude bool" [] {
+    [true false]
+}
+
+def "nu-complete claude plugin-component" [] {
+    [skills agents hooks mcp lsp output-style channel]
+}
+
 # Claude Code - starts an interactive session by default, use -p/--print for non-interactive output
 export extern claude [
     --debug(-d)                                             # Enable debug mode
@@ -93,6 +101,7 @@ export extern claude [
     --tmux                                                  # Tmux mode
     --bare                                                  # Minimal mode: skip hooks, LSP, and auto-discovery
     --brief                                                 # Enable SendUserMessage tool for agent-to-user communication
+    --prompt-suggestions: string@"nu-complete claude bool"  # Enable prompt suggestions
     --remote-control: string                                # Start an interactive session with Remote Control enabled (optionally named)
     --remote-control-session-name-prefix: string            # Remote Control session name prefix
     --effort: string@"nu-complete claude effort"            # Effort level
@@ -230,6 +239,28 @@ export extern "claude plugin enable" [
     ...args: string
 ]
 
+# Scaffold a new plugin
+export extern "claude plugin init" [
+    --author: string                                        # Author name (default: git config user.name)
+    --author-email: string                                  # Author email (default: git config user.email)
+    --description: string                                   # Manifest description
+    --force(-f)                                             # Overwrite an existing .claude-plugin/ at the target
+    --with: string@"nu-complete claude plugin-component"    # Also scaffold components (repeatable)
+    --help(-h)
+    name?: string                                           # Plugin name
+]
+
+# Scaffold a new plugin (alias for init)
+export extern "claude plugin new" [
+    --author: string                                        # Author name (default: git config user.name)
+    --author-email: string                                  # Author email (default: git config user.email)
+    --description: string                                   # Manifest description
+    --force(-f)                                             # Overwrite an existing .claude-plugin/ at the target
+    --with: string@"nu-complete claude plugin-component"    # Also scaffold components (repeatable)
+    --help(-h)
+    name?: string                                           # Plugin name
+]
+
 # Install a plugin from available marketplaces
 export extern "claude plugin install" [
     --config: string                                        # Set a userConfig option from the plugin manifest (repeatable)
@@ -267,6 +298,7 @@ export extern "claude plugin marketplace list" [
 
 # Remove a marketplace
 export extern "claude plugin marketplace remove" [
+    --scope: string@"nu-complete claude scope"               # Remove from specific settings scope
     --help(-h)
     ...args: string
 ]
@@ -348,6 +380,7 @@ export extern "claude plugin remove" [
 
 # Remove a marketplace (alias for remove)
 export extern "claude plugin marketplace rm" [
+    --scope: string@"nu-complete claude scope"               # Remove from specific settings scope
     --help(-h)
     ...args: string
 ]
@@ -379,6 +412,28 @@ export extern "claude plugins enable" [
     --scope(-s): string@"nu-complete claude scope"
     --help(-h)
     ...args: string
+]
+
+# Scaffold a new plugin
+export extern "claude plugins init" [
+    --author: string                                        # Author name (default: git config user.name)
+    --author-email: string                                  # Author email (default: git config user.email)
+    --description: string                                   # Manifest description
+    --force(-f)                                             # Overwrite an existing .claude-plugin/ at the target
+    --with: string@"nu-complete claude plugin-component"    # Also scaffold components (repeatable)
+    --help(-h)
+    name?: string                                           # Plugin name
+]
+
+# Scaffold a new plugin (alias for init)
+export extern "claude plugins new" [
+    --author: string                                        # Author name (default: git config user.name)
+    --author-email: string                                  # Author email (default: git config user.email)
+    --description: string                                   # Manifest description
+    --force(-f)                                             # Overwrite an existing .claude-plugin/ at the target
+    --with: string@"nu-complete claude plugin-component"    # Also scaffold components (repeatable)
+    --help(-h)
+    name?: string                                           # Plugin name
 ]
 
 # Install a plugin from available marketplaces
@@ -418,6 +473,7 @@ export extern "claude plugins marketplace list" [
 
 # Remove a marketplace
 export extern "claude plugins marketplace remove" [
+    --scope: string@"nu-complete claude scope"               # Remove from specific settings scope
     --help(-h)
     ...args: string
 ]
@@ -499,6 +555,7 @@ export extern "claude plugins remove" [
 
 # Remove a marketplace (alias for remove)
 export extern "claude plugins marketplace rm" [
+    --scope: string@"nu-complete claude scope"               # Remove from specific settings scope
     --help(-h)
     ...args: string
 ]
@@ -526,6 +583,7 @@ export extern "claude project purge" [
 # Manage background agents
 export extern "claude agents" [
     --add-dir: path                                         # Additional directory to allow tool access (repeatable)
+    --agent: string                                         # Default agent for dispatched sessions
     --allow-dangerously-skip-permissions                    # Make bypass-permissions mode available to dispatched sessions
     --cwd: path                                             # Show only background sessions started under path
     --dangerously-skip-permissions                          # Alias for --permission-mode bypassPermissions
