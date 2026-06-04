@@ -18,7 +18,7 @@ def "nu-complete claude permission-mode" [] {
 }
 
 def "nu-complete claude models" [] {
-    [sonnet opus haiku best sonnet1m opus1m opusplan]
+    [sonnet opus haiku best "sonnet[1m]" "opus[1m]" opusplan]
 }
 
 def "nu-complete claude effort" [] {
@@ -42,7 +42,7 @@ def "nu-complete claude install-channel" [] {
 }
 
 def "nu-complete claude bool" [] {
-    [true false]
+    [true false 1 0 yes no on off]
 }
 
 def "nu-complete claude plugin-component" [] {

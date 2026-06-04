@@ -185,7 +185,7 @@ claude --permission-mode <TAB>
 # 表示: acceptEdits bypassPermissions default dontAsk plan auto
 
 claude --model <TAB>
-# 表示: sonnet opus haiku best sonnet1m
+# 表示: sonnet opus haiku best sonnet[1m] opus[1m] opusplan
 
 claude --effort <TAB>
 # 表示: low medium high xhigh max

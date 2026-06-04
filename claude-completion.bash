@@ -54,7 +54,7 @@ _claude_completion() {
             return 0
             ;;
         --model|--fallback-model)
-            COMPREPLY=($(compgen -W "sonnet opus haiku best sonnet1m opus1m opusplan" -- "$cur"))
+            COMPREPLY=($(compgen -W "sonnet opus haiku best sonnet[1m] opus[1m] opusplan" -- "$cur"))
             return 0
             ;;
         --setting-sources)
@@ -67,7 +67,7 @@ _claude_completion() {
             return 0
             ;;
         --prompt-suggestions)
-            COMPREPLY=($(compgen -W "true false" -- "$cur"))
+            COMPREPLY=($(compgen -W "true false 1 0 yes no on off" -- "$cur"))
             return 0
             ;;
         --mcp-config|--settings|--plugin-dir|--add-dir|--file|--debug-file)

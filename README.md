@@ -185,7 +185,7 @@ claude --permission-mode <TAB>
 # Shows: acceptEdits bypassPermissions default dontAsk plan auto
 
 claude --model <TAB>
-# Shows: sonnet opus haiku best sonnet1m
+# Shows: sonnet opus haiku best sonnet[1m] opus[1m] opusplan
 
 claude --effort <TAB>
 # Shows: low medium high xhigh max
