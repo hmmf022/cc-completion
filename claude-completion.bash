@@ -86,6 +86,29 @@ _claude_completion() {
             ;;
     esac
 
+    # Variadic continuation: if the most recent option was a variadic file/tool
+    # flag and the current word doesn't start with "-", keep completing values.
+    # Handles both `--add-dir /a /b` and `--add-dir /a --add-dir /b`.
+    if [[ "$cur" != -* ]]; then
+        local j recent_flag=""
+        for ((j=cword-1; j>=1; j--)); do
+            if [[ ${words[j]} == -* ]]; then
+                recent_flag=${words[j]}
+                break
+            fi
+        done
+        case "$recent_flag" in
+            --add-dir|--mcp-config|--plugin-dir|--file)
+                _filedir
+                return 0
+                ;;
+            --tools|--allowedTools|--allowed-tools|--disallowedTools|--disallowed-tools)
+                COMPREPLY=($(compgen -W "Bash Edit Read Write Glob Grep LS MultiEdit NotebookEdit NotebookRead WebFetch WebSearch Task TodoRead TodoWrite" -- "$cur"))
+                return 0
+                ;;
+        esac
+    fi
+
     # If we're completing the first argument (command or option)
     if [[ $cword -eq 1 ]] || [[ -z $cmd ]]; then
         case "$cur" in
