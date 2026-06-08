@@ -29,13 +29,37 @@ _claude_completion() {
         -d -p -c -r -v -w -n -h
     "
 
-    # Handle subcommands
-    local i cmd
+    # Global options that consume the NEXT token as a value. Keep in sync with
+    # the `case "$prev"` block below. Used to skip an option's value when
+    # detecting the subcommand, so e.g. `claude --model opus mcp` finds `mcp`
+    # rather than mistaking the value `opus` for the subcommand.
+    local value_flags="
+        --output-format --input-format --permission-mode --model --fallback-model
+        --setting-sources --effort --mcp-config --settings --plugin-dir --add-dir
+        --file --debug-file --tools --allowedTools --allowed-tools
+        --disallowedTools --disallowed-tools --json-schema --system-prompt
+        --append-system-prompt --agents --max-budget-usd --session-id
+        --agent --betas --name -n --plugin-url --remote-control-session-name-prefix
+        -d --debug --from-pr -r --resume -w --worktree --remote-control
+        --prompt-suggestions
+    "
+
+    # Handle subcommands. Skip the value of value-taking options so it is not
+    # mistaken for the subcommand, and record where the subcommand was found
+    # (cmd_idx) so the per-subcommand loops below start scanning after it.
+    # Normalize newlines/tabs to spaces so end-of-line flags match the test.
+    local _vf=" ${value_flags//[$'\n\t']/ } "
+    local i cmd w cmd_idx=0
     for ((i=1; i < cword; i++)); do
-        if [[ ${words[i]} != -* ]]; then
-            cmd=${words[i]}
-            break
+        w=${words[i]}
+        if [[ $w == -* ]]; then
+            if [[ $_vf == *" $w "* ]] && [[ ${words[i+1]:-} != -* ]]; then
+                ((++i))
+            fi
+            continue
         fi
+        cmd=$w; cmd_idx=$i
+        break
     done
 
     # Option-specific value completion (must run before subcommand/global dispatch
@@ -128,7 +152,7 @@ _claude_completion() {
         auth)
             local auth_cmds="login logout status"
             local auth_subcmd
-            for ((i=2; i < cword; i++)); do
+            for ((i=cmd_idx+1; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
                     auth_subcmd=${words[i]}
                     break
@@ -159,7 +183,7 @@ _claude_completion() {
         mcp)
             local mcp_cmds="add add-from-claude-desktop add-json get list remove reset-project-choices serve"
             local mcp_subcmd
-            for ((i=2; i < cword; i++)); do
+            for ((i=cmd_idx+1; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
                     mcp_subcmd=${words[i]}
                     break
@@ -231,17 +255,18 @@ _claude_completion() {
             ;;
         plugin|plugins)
             local plugin_cmds="details disable enable init new install i list marketplace prune autoremove tag uninstall remove update validate"
-            local plugin_subcmd
-            for ((i=2; i < cword; i++)); do
+            local plugin_subcmd psub_idx=0
+            for ((i=cmd_idx+1; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
                     plugin_subcmd=${words[i]}
+                    psub_idx=$i
                     break
                 fi
             done
             case "$plugin_subcmd" in
                 marketplace)
                     local mp_subcmd
-                    for ((i=3; i < cword; i++)); do
+                    for ((i=psub_idx+1; i < cword; i++)); do
                         if [[ ${words[i]} != -* ]]; then
                             mp_subcmd=${words[i]}
                             break
@@ -389,7 +414,7 @@ _claude_completion() {
         project)
             local project_cmds="purge"
             local project_subcmd
-            for ((i=2; i < cword; i++)); do
+            for ((i=cmd_idx+1; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
                     project_subcmd=${words[i]}
                     break
@@ -443,7 +468,7 @@ _claude_completion() {
         auto-mode)
             local automode_cmds="config critique defaults"
             local automode_subcmd
-            for ((i=2; i < cword; i++)); do
+            for ((i=cmd_idx+1; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
                     automode_subcmd=${words[i]}
                     break
