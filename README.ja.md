@@ -185,7 +185,7 @@ claude --permission-mode <TAB>
 # 表示: acceptEdits bypassPermissions default dontAsk plan auto
 
 claude --model <TAB>
-# 表示: sonnet opus haiku best sonnet[1m] opus[1m] opusplan
+# 表示: sonnet opus haiku fable best sonnet[1m] opus[1m] fable[1m] opusplan
 
 claude --effort <TAB>
 # 表示: low medium high xhigh max
@@ -225,7 +225,7 @@ claude --settings <TAB>
 
 ## 対応コマンド
 
-- `agents` - バックグラウンドエージェントを管理 (`--add-dir`, `--agent`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--json`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` オプション付き)
+- `agents` - バックグラウンドエージェントを管理 (`--add-dir`, `--agent`, `--all`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--json`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` オプション付き)
 - `auto-mode` - 自動モード分類器の設定を確認
   - `config` - 自動モード分類器の設定を表示
   - `critique` - 会話に対して自動モードの批評を実行 (`--model` オプション付き)

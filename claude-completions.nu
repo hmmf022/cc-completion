@@ -18,7 +18,7 @@ def "nu-complete claude permission-mode" [] {
 }
 
 def "nu-complete claude models" [] {
-    [sonnet opus haiku best "sonnet[1m]" "opus[1m]" opusplan]
+    [sonnet opus haiku fable best "sonnet[1m]" "opus[1m]" "fable[1m]" opusplan]
 }
 
 def "nu-complete claude effort" [] {
@@ -100,6 +100,7 @@ export extern claude [
     --worktree(-w): string                                  # Git worktree
     --tmux                                                  # Tmux mode
     --bare                                                  # Minimal mode: skip hooks, LSP, and auto-discovery
+    --safe-mode                                             # Start with all customizations disabled (troubleshooting)
     --brief                                                 # Enable SendUserMessage tool for agent-to-user communication
     --prompt-suggestions: string@"nu-complete claude bool"  # Enable prompt suggestions
     --remote-control: string                                # Start an interactive session with Remote Control enabled (optionally named)
@@ -584,6 +585,7 @@ export extern "claude project purge" [
 export extern "claude agents" [
     --add-dir: path                                         # Additional directory to allow tool access (repeatable)
     --agent: string                                         # Default agent for dispatched sessions
+    --all                                                   # With --json: include completed sessions (the full agent view list)
     --allow-dangerously-skip-permissions                    # Make bypass-permissions mode available to dispatched sessions
     --cwd: path                                             # Show only background sessions started under path
     --dangerously-skip-permissions                          # Alias for --permission-mode bypassPermissions

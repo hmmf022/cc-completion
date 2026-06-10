@@ -185,7 +185,7 @@ claude --permission-mode <TAB>
 # Shows: acceptEdits bypassPermissions default dontAsk plan auto
 
 claude --model <TAB>
-# Shows: sonnet opus haiku best sonnet[1m] opus[1m] opusplan
+# Shows: sonnet opus haiku fable best sonnet[1m] opus[1m] fable[1m] opusplan
 
 claude --effort <TAB>
 # Shows: low medium high xhigh max
@@ -225,7 +225,7 @@ claude --settings <TAB>
 
 ## Supported Commands
 
-- `agents` - Manage background agents (with `--add-dir`, `--agent`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--json`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` options)
+- `agents` - Manage background agents (with `--add-dir`, `--agent`, `--all`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--json`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` options)
 - `auto-mode` - Inspect auto mode classifier configuration
   - `config` - Show auto mode classifier configuration
   - `critique` - Run auto mode critique on a conversation (with `--model` option)

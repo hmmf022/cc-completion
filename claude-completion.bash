@@ -23,7 +23,7 @@ _claude_completion() {
         --ide --strict-mcp-config --session-id --agents --setting-sources
         --plugin-dir --plugin-url --disable-slash-commands --chrome --no-chrome
         --from-pr --file --worktree --tmux --remote-control --remote-control-session-name-prefix
-        --bare --brief --prompt-suggestions
+        --bare --brief --prompt-suggestions --safe-mode
         --effort --version --help
         --name
         -d -p -c -r -v -w -n -h
@@ -78,7 +78,7 @@ _claude_completion() {
             return 0
             ;;
         --model|--fallback-model)
-            COMPREPLY=($(compgen -W "sonnet opus haiku best sonnet[1m] opus[1m] opusplan" -- "$cur"))
+            COMPREPLY=($(compgen -W "sonnet opus haiku fable best sonnet[1m] opus[1m] fable[1m] opusplan" -- "$cur"))
             return 0
             ;;
         --setting-sources)
@@ -461,7 +461,7 @@ _claude_completion() {
                     _filedir -d
                     ;;
                 *)
-                    COMPREPLY=($(compgen -W "--add-dir --agent --allow-dangerously-skip-permissions --cwd --dangerously-skip-permissions --effort --json --mcp-config --model --permission-mode --plugin-dir --setting-sources --settings --strict-mcp-config --help -h" -- "$cur"))
+                    COMPREPLY=($(compgen -W "--add-dir --agent --all --allow-dangerously-skip-permissions --cwd --dangerously-skip-permissions --effort --json --mcp-config --model --permission-mode --plugin-dir --setting-sources --settings --strict-mcp-config --help -h" -- "$cur"))
                     ;;
             esac
             ;;

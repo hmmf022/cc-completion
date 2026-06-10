@@ -50,10 +50,10 @@ _claude() {
         {-r,--resume}'[Resume a conversation by session ID]:session:'
         '--fork-session[Create a new session ID when resuming]'
         '--no-session-persistence[Disable session persistence]'
-        '--model[Model for the current session]:model:(sonnet opus haiku best sonnet\[1m\] opus\[1m\] opusplan)'
+        '--model[Model for the current session]:model:(sonnet opus haiku fable best sonnet\[1m\] opus\[1m\] fable\[1m\] opusplan)'
         '--agent[Agent for the current session]:agent:'
         '*--betas[Beta headers to include in API requests]:betas:'
-        '--fallback-model[Enable automatic fallback to specified model]:model:(sonnet opus haiku best sonnet\[1m\] opus\[1m\] opusplan)'
+        '--fallback-model[Enable automatic fallback to specified model]:model:(sonnet opus haiku fable best sonnet\[1m\] opus\[1m\] fable\[1m\] opusplan)'
         '--settings[Path to a settings JSON file or JSON string]:file:_files'
         '*--add-dir[Additional directories to allow tool access]:directories:_files -/'
         '*--file[File resources to download at startup]:specs:'
@@ -73,6 +73,7 @@ _claude() {
         {-w,--worktree}'[Create a git worktree and start session]::name:'
         '--tmux[Create a tmux session for worktree]'
         '--bare[Minimal mode: skip hooks, LSP, and auto-discovery]'
+        '--safe-mode[Start with all customizations disabled — useful for troubleshooting]'
         '--brief[Enable SendUserMessage tool for agent-to-user communication]'
         '--prompt-suggestions[Enable prompt suggestions]::enabled:(true false 1 0 yes no on off)'
         '--effort[Effort level for the current session]:level:->effort'
@@ -99,13 +100,14 @@ _claude() {
                     _arguments \
                         '*--add-dir[Additional directory to allow tool access in dispatched sessions]:directory:_files -/' \
                         '--agent[Default agent for sessions dispatched from agent view]:agent:' \
+                        '--all[With --json: include completed sessions (the full agent view list)]' \
                         '--allow-dangerously-skip-permissions[Make bypass-permissions mode available to dispatched sessions]' \
                         '--cwd[Show only background sessions started under path]:path:_files -/' \
                         '--dangerously-skip-permissions[Alias for --permission-mode bypassPermissions]' \
                         '--effort[Default effort level for dispatched sessions]:level:(low medium high xhigh max)' \
                         '--json[Print live sessions as a JSON array and exit (for scripting; does not require a TTY)]' \
                         '*--mcp-config[MCP server configuration to apply to dispatched sessions]:config:_files' \
-                        '--model[Default model for dispatched sessions]:model:(sonnet opus haiku best sonnet\[1m\] opus\[1m\] opusplan)' \
+                        '--model[Default model for dispatched sessions]:model:(sonnet opus haiku fable best sonnet\[1m\] opus\[1m\] fable\[1m\] opusplan)' \
                         '--permission-mode[Default permission mode for dispatched sessions]:mode:(acceptEdits bypassPermissions default dontAsk plan auto)' \
                         '*--plugin-dir[Load plugins from specified directory for dispatched sessions]:path:_files -/' \
                         '--setting-sources[Comma-separated list of setting sources]:sources:(user project local)' \
@@ -428,7 +430,7 @@ _claude() {
                             case $words[1] in
                                 critique)
                                     _arguments \
-                                        '--model[Model for the critique]:model:(sonnet opus haiku best sonnet\[1m\] opus\[1m\] opusplan)' \
+                                        '--model[Model for the critique]:model:(sonnet opus haiku fable best sonnet\[1m\] opus\[1m\] fable\[1m\] opusplan)' \
                                         {-h,--help}'[Display help for command]'
                                     ;;
                                 config|defaults)
