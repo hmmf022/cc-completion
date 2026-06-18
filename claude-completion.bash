@@ -23,7 +23,7 @@ _claude_completion() {
         --ide --strict-mcp-config --session-id --agents --setting-sources
         --plugin-dir --plugin-url --disable-slash-commands --chrome --no-chrome
         --from-pr --file --worktree --tmux --remote-control --remote-control-session-name-prefix
-        --bare --brief --prompt-suggestions --safe-mode
+        --ax-screen-reader --bare --brief --prompt-suggestions --safe-mode
         --effort --version --help
         --name
         -d -p -c -r -v -w -n -h

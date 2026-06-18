@@ -99,6 +99,7 @@ export extern claude [
     --file: string                                          # File resources (file_id:relative_path)
     --worktree(-w): string                                  # Git worktree
     --tmux                                                  # Tmux mode
+    --ax-screen-reader                                      # Render screen-reader friendly output (flat text, no decorative borders or animations)
     --bare                                                  # Minimal mode: skip hooks, LSP, and auto-discovery
     --safe-mode                                             # Start with all customizations disabled (troubleshooting)
     --brief                                                 # Enable SendUserMessage tool for agent-to-user communication

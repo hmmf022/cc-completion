@@ -72,6 +72,7 @@ _claude() {
         '--from-pr[Resume session associated with a PR]:pr:'
         {-w,--worktree}'[Create a git worktree and start session]::name:'
         '--tmux[Create a tmux session for worktree]'
+        '--ax-screen-reader[Render screen-reader friendly output (flat text, no decorative borders or animations)]'
         '--bare[Minimal mode: skip hooks, LSP, and auto-discovery]'
         '--safe-mode[Start with all customizations disabled — useful for troubleshooting]'
         '--brief[Enable SendUserMessage tool for agent-to-user communication]'
