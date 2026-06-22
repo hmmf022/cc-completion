@@ -171,7 +171,7 @@ use /path/to/cc-completion/claude-completions.nu *
 ```bash
 # サブコマンドの補完
 claude <TAB>
-# 表示: agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install ultrareview
+# 表示: agents auto-mode auth mcp plugin plugins project setup-token doctor update upgrade install ultrareview
 
 # オプションの補完
 claude --<TAB>

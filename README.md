@@ -171,7 +171,7 @@ After installation, you can use tab completion with the `claude` command:
 ```bash
 # Complete subcommands
 claude <TAB>
-# Shows: agents auto-mode auth mcp plugin plugins setup-token doctor update upgrade install ultrareview
+# Shows: agents auto-mode auth mcp plugin plugins project setup-token doctor update upgrade install ultrareview
 
 # Complete options
 claude --<TAB>
