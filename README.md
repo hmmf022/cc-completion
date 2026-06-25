@@ -208,7 +208,7 @@ claude auth status --<TAB>
 
 # Complete mcp subcommands
 claude mcp <TAB>
-# Shows: add add-from-claude-desktop add-json get list remove reset-project-choices serve
+# Shows: add add-from-claude-desktop add-json get list remove reset-project-choices serve login logout
 
 # Complete mcp add options
 claude mcp add --transport <TAB>
@@ -243,6 +243,8 @@ claude --settings <TAB>
   - `remove` - Remove an MCP server (with `--scope` option)
   - `reset-project-choices` - Reset all approved and rejected project-scoped servers
   - `serve` - Start the Claude Code MCP server
+  - `login` - Authenticate with an MCP server (with `--no-browser` option)
+  - `logout` - Clear stored OAuth credentials for an MCP server
 - `plugin` - Manage Claude Code plugins
   - `details` - Show a plugin's component inventory and projected token cost
   - `disable` - Disable an enabled plugin
@@ -278,6 +280,7 @@ All Claude Code CLI options are supported, including:
 - MCP: `--mcp-config`, `--strict-mcp-config`
 - File resources: `--file`
 - Worktree: `--worktree`, `--tmux`
+- Background agent: `--bg`, `--background`
 - Debugging: `--debug`, `--debug-file`
 - And many more...
 

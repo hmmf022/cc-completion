@@ -95,6 +95,8 @@ export extern claude [
     --disable-slash-commands                                 # Disable slash commands
     --chrome                                                # Enable Chrome
     --no-chrome                                             # Disable Chrome
+    --background                                            # Start the session as a background agent
+    --bg                                                    # Start the session as a background agent (alias)
     --from-pr: string                                       # From PR
     --file: string                                          # File resources (file_id:relative_path)
     --worktree(-w): string                                  # Git worktree
@@ -210,6 +212,19 @@ export extern "claude mcp serve" [
     --debug(-d)
     --verbose
     --help(-h)
+]
+
+# Authenticate with an MCP server (HTTP, SSE, or claude.ai connector)
+export extern "claude mcp login" [
+    --no-browser                                            # Print the authorization URL instead of opening a browser
+    --help(-h)
+    ...args: string
+]
+
+# Clear stored OAuth credentials for an MCP server
+export extern "claude mcp logout" [
+    --help(-h)
+    ...args: string
 ]
 
 # --- plugin ---

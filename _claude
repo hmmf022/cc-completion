@@ -79,6 +79,7 @@ _claude() {
         '--prompt-suggestions[Enable prompt suggestions]::enabled:(true false 1 0 yes no on off)'
         '--effort[Effort level for the current session]:level:->effort'
         {-n,--name}'[Name for the conversation]:name:'
+        {--bg,--background}'[Start the session as a background agent]'
         {-v,--version}'[Output the version number]'
         {-h,--help}'[Display help for command]'
     )
@@ -166,6 +167,8 @@ _claude() {
                         'remove:Remove an MCP server'
                         'reset-project-choices:Reset all approved and rejected project-scoped servers'
                         'serve:Start the Claude Code MCP server'
+                        'login:Authenticate with an MCP server'
+                        'logout:Clear stored OAuth credentials for an MCP server'
                     )
                     _arguments -C \
                         {-h,--help}'[Display help for command]' \
@@ -220,6 +223,15 @@ _claude() {
                                     _arguments \
                                         {-d,--debug}'[Enable debug mode]' \
                                         '--verbose[Override verbose mode setting from config]' \
+                                        {-h,--help}'[Display help for command]'
+                                    ;;
+                                login)
+                                    _arguments \
+                                        '--no-browser[Print the authorization URL instead of opening a browser]' \
+                                        {-h,--help}'[Display help for command]'
+                                    ;;
+                                logout)
+                                    _arguments \
                                         {-h,--help}'[Display help for command]'
                                     ;;
                             esac

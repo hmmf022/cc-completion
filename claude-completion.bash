@@ -25,6 +25,7 @@ _claude_completion() {
         --from-pr --file --worktree --tmux --remote-control --remote-control-session-name-prefix
         --ax-screen-reader --bare --brief --prompt-suggestions --safe-mode
         --effort --version --help
+        --bg --background
         --name
         -d -p -c -r -v -w -n -h
     "
@@ -181,7 +182,7 @@ _claude_completion() {
             esac
             ;;
         mcp)
-            local mcp_cmds="add add-from-claude-desktop add-json get list remove reset-project-choices serve"
+            local mcp_cmds="add add-from-claude-desktop add-json get list remove reset-project-choices serve login logout"
             local mcp_subcmd
             for ((i=cmd_idx+1; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
@@ -247,6 +248,12 @@ _claude_completion() {
                     ;;
                 serve)
                     COMPREPLY=($(compgen -W "--debug --verbose --help -d -h" -- "$cur"))
+                    ;;
+                login)
+                    COMPREPLY=($(compgen -W "--no-browser --help -h" -- "$cur"))
+                    ;;
+                logout)
+                    COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
                     ;;
                 *)
                     COMPREPLY=($(compgen -W "$mcp_cmds --help -h" -- "$cur"))

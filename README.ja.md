@@ -208,7 +208,7 @@ claude auth status --<TAB>
 
 # mcp サブコマンドの補完
 claude mcp <TAB>
-# 表示: add add-from-claude-desktop add-json get list remove reset-project-choices serve
+# 表示: add add-from-claude-desktop add-json get list remove reset-project-choices serve login logout
 
 # mcp add オプションの補完
 claude mcp add --transport <TAB>
@@ -243,6 +243,8 @@ claude --settings <TAB>
   - `remove` - MCP サーバーを削除 (`--scope` オプション付き)
   - `reset-project-choices` - プロジェクトスコープのサーバーの承認・拒否をすべてリセット
   - `serve` - Claude Code MCP サーバーを起動
+  - `login` - MCP サーバーで認証 (`--no-browser` オプション付き)
+  - `logout` - MCP サーバーの保存済み OAuth 認証情報をクリア
 - `plugin` - Claude Code プラグインの管理
   - `details` - プラグインのコンポーネント一覧と推定トークンコストを表示
   - `disable` - 有効なプラグインを無効化
@@ -278,6 +280,7 @@ claude --settings <TAB>
 - MCP: `--mcp-config`, `--strict-mcp-config`
 - ファイルリソース: `--file`
 - ワークツリー: `--worktree`, `--tmux`
+- バックグラウンドエージェント: `--bg`, `--background`
 - デバッグ: `--debug`, `--debug-file`
 - その他多数...
 
