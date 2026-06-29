@@ -7,7 +7,7 @@ _claude_completion() {
     _init_completion || return
 
     # Commands
-    local commands="agents auto-mode auth mcp plugin plugins project setup-token doctor update upgrade install ultrareview"
+    local commands="agents auto-mode auth mcp plugin plugins project setup-token doctor gateway update upgrade install ultrareview"
 
     # Global options
     local global_opts="
@@ -445,6 +445,16 @@ _claude_completion() {
             ;;
         doctor)
             COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+            ;;
+        gateway)
+            case "$prev" in
+                --config)
+                    _filedir
+                    ;;
+                *)
+                    COMPREPLY=($(compgen -W "--config --help -h" -- "$cur"))
+                    ;;
+            esac
             ;;
         ultrareview)
             case "$prev" in

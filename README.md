@@ -6,7 +6,7 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 
 ## Features
 
-- **Command completion**: Tab complete `claude` subcommands (`agents`, `auto-mode`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `update`, `upgrade`, `install`, `ultrareview`)
+- **Command completion**: Tab complete `claude` subcommands (`agents`, `auto-mode`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `gateway`, `update`, `upgrade`, `install`, `ultrareview`)
 - **Option completion**: All CLI options and flags are completable
 - **Contextual suggestions**: Option values are suggested where applicable
   - Output formats: `text`, `json`, `stream-json`
@@ -171,7 +171,7 @@ After installation, you can use tab completion with the `claude` command:
 ```bash
 # Complete subcommands
 claude <TAB>
-# Shows: agents auto-mode auth mcp plugin plugins project setup-token doctor update upgrade install ultrareview
+# Shows: agents auto-mode auth mcp plugin plugins project setup-token doctor gateway update upgrade install ultrareview
 
 # Complete options
 claude --<TAB>
@@ -262,6 +262,7 @@ claude --settings <TAB>
   - `purge` - Delete all Claude Code state for a project (transcripts, tasks, file history, config entry) (with `--all`, `--dry-run`, `--interactive`, `--yes` options)
 - `setup-token` - Set up a long-lived authentication token
 - `doctor` - Check the health of your Claude Code auto-updater
+- `gateway` - Run the enterprise auth/telemetry gateway (with `--config` option)
 - `update` - Check for updates and install if available
 - `plugins` - Alias for `plugin`
 - `upgrade` - Alias for `update`

@@ -14,6 +14,7 @@ _claude() {
         'project:Manage Claude Code project state'
         'setup-token:Set up a long-lived authentication token'
         'doctor:Check the health of your Claude Code auto-updater'
+        'gateway:Run the enterprise auth/telemetry gateway'
         'update:Check for updates and install if available'
         'upgrade:Check for updates and install if available'
         'auto-mode:Inspect auto mode classifier configuration'
@@ -456,6 +457,11 @@ _claude() {
                     ;;
                 doctor)
                     _arguments \
+                        {-h,--help}'[Display help for command]'
+                    ;;
+                gateway)
+                    _arguments \
+                        '--config[Path to gateway YAML config]:config:_files' \
                         {-h,--help}'[Display help for command]'
                     ;;
                 update|upgrade)

@@ -2,7 +2,7 @@
 # Translated from bash completion script
 
 def "nu-complete claude commands" [] {
-    [agents auto-mode auth mcp plugin plugins project setup-token doctor update upgrade install ultrareview]
+    [agents auto-mode auth mcp plugin plugins project setup-token doctor gateway update upgrade install ultrareview]
 }
 
 def "nu-complete claude output-format" [] {
@@ -628,6 +628,14 @@ export extern "claude setup-token" [
 
 # Check the health of your Claude Code auto-updater
 export extern "claude doctor" [
+    --help(-h)
+]
+
+# --- gateway ---
+
+# Run the enterprise auth/telemetry gateway
+export extern "claude gateway" [
+    --config: string                                        # Path to gateway YAML config
     --help(-h)
 ]
 
