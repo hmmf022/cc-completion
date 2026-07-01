@@ -32,7 +32,6 @@ _claude() {
         '--include-hook-events[Include all hook lifecycle events in the output stream]'
         '--include-partial-messages[Include partial message chunks]'
         '--input-format[Input format]:format:(text stream-json)'
-        '--mcp-debug[Enable MCP debug mode (deprecated)]'
         '--dangerously-skip-permissions[Bypass all permission checks]'
         '--allow-dangerously-skip-permissions[Enable bypassing permission checks as an option]'
         '--max-budget-usd[Maximum dollar amount to spend]:amount:'

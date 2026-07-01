@@ -60,7 +60,6 @@ export extern claude [
     --include-hook-events                                    # Include hook lifecycle events
     --include-partial-messages                               # Include partial messages
     --input-format: string@"nu-complete claude input-format"    # Input format
-    --mcp-debug                                             # MCP debug mode
     --dangerously-skip-permissions                          # Skip permissions (dangerous)
     --allow-dangerously-skip-permissions                    # Allow skip permissions
     --max-budget-usd: number                                # Max budget in USD
