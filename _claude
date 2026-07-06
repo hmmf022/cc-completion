@@ -45,7 +45,7 @@ _claude() {
         '--system-prompt[System prompt to use for the session]:prompt:'
         '--append-system-prompt[Append a system prompt]:prompt:'
         '--exclude-dynamic-system-prompt-sections[Move per-machine sections to first user message for prompt-cache reuse (default system prompt only)]'
-        '--permission-mode[Permission mode to use]:mode:(acceptEdits bypassPermissions default dontAsk plan auto)'
+        '--permission-mode[Permission mode to use]:mode:(acceptEdits bypassPermissions manual dontAsk plan auto)'
         {-c,--continue}'[Continue the most recent conversation]'
         {-r,--resume}'[Resume a conversation by session ID]:session:'
         '--fork-session[Create a new session ID when resuming]'
@@ -110,7 +110,7 @@ _claude() {
                         '--json[Print live sessions as a JSON array and exit (for scripting; does not require a TTY)]' \
                         '*--mcp-config[MCP server configuration to apply to dispatched sessions]:config:_files' \
                         '--model[Default model for dispatched sessions]:model:(sonnet opus haiku fable best sonnet\[1m\] opus\[1m\] fable\[1m\] opusplan)' \
-                        '--permission-mode[Default permission mode for dispatched sessions]:mode:(acceptEdits bypassPermissions default dontAsk plan auto)' \
+                        '--permission-mode[Default permission mode for dispatched sessions]:mode:(acceptEdits bypassPermissions manual dontAsk plan auto)' \
                         '*--plugin-dir[Load plugins from specified directory for dispatched sessions]:path:_files -/' \
                         '--setting-sources[Comma-separated list of setting sources]:sources:(user project local)' \
                         '--settings[Settings file or JSON string to apply]:file:_files' \
@@ -244,6 +244,7 @@ _claude() {
                         'details:Show a plugin'\''s component inventory and projected token cost'
                         'disable:Disable an enabled plugin'
                         'enable:Enable a disabled plugin'
+                        'eval:Run eval cases against a plugin and report scored results'
                         'init:Scaffold a new plugin'
                         'new:Scaffold a new plugin (alias for init)'
                         'install:Install a plugin from available marketplaces'
@@ -306,6 +307,46 @@ _claude() {
                                                 *)
                                                     _arguments \
                                                         {-h,--help}'[Display help for command]'
+                                                    ;;
+                                            esac
+                                            ;;
+                                    esac
+                                    ;;
+                                eval)
+                                    local -a eval_commands
+                                    eval_commands=(
+                                        'init:Author an eval suite under evals/ via an interview'
+                                    )
+                                    _arguments -C \
+                                        '--ablation[Run a no-plugin baseline arm and report the score delta]:mode:(none with-without)' \
+                                        '*--allow-tools[Operator grant for gated tools]:tools:' \
+                                        '--case[Filter cases by name glob]:glob:' \
+                                        '--json[Emit aggregate-result.json to stdout (for CI)]' \
+                                        '--judge-model[Override LLM-grader model]:model:(sonnet opus haiku fable best sonnet\[1m\] opus\[1m\] fable\[1m\] opusplan)' \
+                                        '--keep-temp[Preserve scaffold dirs for debugging]' \
+                                        '--max-cost-usd[Optional hard cost ceiling]:usd:' \
+                                        '--model[Override model for all cases]:model:(sonnet opus haiku fable best sonnet\[1m\] opus\[1m\] fable\[1m\] opusplan)' \
+                                        '--no-scaffold[Explicitly skip scaffold_script]' \
+                                        '--output-dir[Directory for aggregate-result.json]:dir:_files -/' \
+                                        '--runs[Override per-case runs]:n:' \
+                                        '--scaffold[Run each case'\''s scaffold_script]' \
+                                        '*--tag[Filter cases by tag (repeatable)]:tag:' \
+                                        '--threshold[Exit 1 if any case score is below this threshold]:threshold:' \
+                                        '--verbose[Stream the trace as it runs]' \
+                                        {-h,--help}'[Display help for command]' \
+                                        '1: :->eval_cmd' \
+                                        '*:: :->eval_args'
+                                    case $state in
+                                        eval_cmd)
+                                            _describe -t commands 'eval command' eval_commands
+                                            ;;
+                                        eval_args)
+                                            case $words[1] in
+                                                init)
+                                                    _arguments \
+                                                        '--bare[Write a blank template instead of running the interview]' \
+                                                        {-h,--help}'[Display help for command]' \
+                                                        '1:name:'
                                                     ;;
                                             esac
                                             ;;

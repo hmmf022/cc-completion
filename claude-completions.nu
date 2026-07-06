@@ -14,7 +14,11 @@ def "nu-complete claude input-format" [] {
 }
 
 def "nu-complete claude permission-mode" [] {
-    [acceptEdits bypassPermissions default dontAsk plan auto]
+    [acceptEdits bypassPermissions manual dontAsk plan auto]
+}
+
+def "nu-complete claude eval-ablation" [] {
+    [none with-without]
 }
 
 def "nu-complete claude models" [] {
@@ -255,6 +259,34 @@ export extern "claude plugin enable" [
     ...args: string
 ]
 
+# Run eval cases against a plugin and report scored results
+export extern "claude plugin eval" [
+    --ablation: string@"nu-complete claude eval-ablation"   # Run a no-plugin baseline arm and report the score delta
+    --allow-tools: string                                   # Operator grant for gated tools (repeatable)
+    --case: string                                          # Filter cases by name glob
+    --json                                                  # Emit aggregate-result.json to stdout (for CI)
+    --judge-model: string@"nu-complete claude models"       # Override LLM-grader model (default: haiku)
+    --keep-temp                                             # Preserve scaffold dirs for debugging
+    --max-cost-usd: string                                  # Optional hard cost ceiling
+    --model: string@"nu-complete claude models"             # Override model for all cases
+    --no-scaffold                                          # Explicitly skip scaffold_script
+    --output-dir: path                                      # Directory for aggregate-result.json
+    --runs: int                                             # Override per-case runs (default: case.runs ?? 3)
+    --scaffold                                             # Run each case's scaffold_script
+    --tag: string                                          # Filter cases by tag (repeatable)
+    --threshold: string                                     # Exit 1 if any case score is below this threshold
+    --verbose                                              # Stream the trace as it runs
+    --help(-h)
+    target?: string                                         # Path, plugin name, or plugin@marketplace id
+]
+
+# Author an eval suite under evals/ via an interview
+export extern "claude plugin eval init" [
+    --bare                                                 # Write a blank template instead of running the interview
+    --help(-h)
+    name?: string                                           # Eval suite name
+]
+
 # Scaffold a new plugin
 export extern "claude plugin init" [
     --author: string                                        # Author name (default: git config user.name)
@@ -428,6 +460,34 @@ export extern "claude plugins enable" [
     --scope(-s): string@"nu-complete claude scope"
     --help(-h)
     ...args: string
+]
+
+# Run eval cases against a plugin and report scored results
+export extern "claude plugins eval" [
+    --ablation: string@"nu-complete claude eval-ablation"   # Run a no-plugin baseline arm and report the score delta
+    --allow-tools: string                                   # Operator grant for gated tools (repeatable)
+    --case: string                                          # Filter cases by name glob
+    --json                                                  # Emit aggregate-result.json to stdout (for CI)
+    --judge-model: string@"nu-complete claude models"       # Override LLM-grader model (default: haiku)
+    --keep-temp                                             # Preserve scaffold dirs for debugging
+    --max-cost-usd: string                                  # Optional hard cost ceiling
+    --model: string@"nu-complete claude models"             # Override model for all cases
+    --no-scaffold                                          # Explicitly skip scaffold_script
+    --output-dir: path                                      # Directory for aggregate-result.json
+    --runs: int                                             # Override per-case runs (default: case.runs ?? 3)
+    --scaffold                                             # Run each case's scaffold_script
+    --tag: string                                          # Filter cases by tag (repeatable)
+    --threshold: string                                     # Exit 1 if any case score is below this threshold
+    --verbose                                              # Stream the trace as it runs
+    --help(-h)
+    target?: string                                         # Path, plugin name, or plugin@marketplace id
+]
+
+# Author an eval suite under evals/ via an interview
+export extern "claude plugins eval init" [
+    --bare                                                 # Write a blank template instead of running the interview
+    --help(-h)
+    name?: string                                           # Eval suite name
 ]
 
 # Scaffold a new plugin

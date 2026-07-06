@@ -75,7 +75,7 @@ _claude_completion() {
             return 0
             ;;
         --permission-mode)
-            COMPREPLY=($(compgen -W "acceptEdits bypassPermissions default dontAsk plan auto" -- "$cur"))
+            COMPREPLY=($(compgen -W "acceptEdits bypassPermissions manual dontAsk plan auto" -- "$cur"))
             return 0
             ;;
         --model|--fallback-model)
@@ -261,7 +261,7 @@ _claude_completion() {
             esac
             ;;
         plugin|plugins)
-            local plugin_cmds="details disable enable init new install i list marketplace prune autoremove tag uninstall remove update validate"
+            local plugin_cmds="details disable enable eval init new install i list marketplace prune autoremove tag uninstall remove update validate"
             local plugin_subcmd psub_idx=0
             for ((i=cmd_idx+1; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
@@ -311,6 +311,39 @@ _claude_completion() {
                             ;;
                         *)
                             COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                eval)
+                    local eval_subcmd
+                    for ((i=psub_idx+1; i < cword; i++)); do
+                        if [[ ${words[i]} != -* ]]; then
+                            eval_subcmd=${words[i]}
+                            break
+                        fi
+                    done
+                    case "$eval_subcmd" in
+                        init)
+                            COMPREPLY=($(compgen -W "--bare --help -h" -- "$cur"))
+                            ;;
+                        *)
+                            case "$prev" in
+                                --ablation)
+                                    COMPREPLY=($(compgen -W "none with-without" -- "$cur"))
+                                    ;;
+                                --model|--judge-model)
+                                    COMPREPLY=($(compgen -W "sonnet opus haiku fable best sonnet[1m] opus[1m] fable[1m] opusplan" -- "$cur"))
+                                    ;;
+                                --output-dir)
+                                    _filedir -d
+                                    ;;
+                                --case|--tag|--allow-tools|--runs|--threshold|--max-cost-usd)
+                                    COMPREPLY=()
+                                    ;;
+                                *)
+                                    COMPREPLY=($(compgen -W "init --ablation --allow-tools --case --json --judge-model --keep-temp --max-cost-usd --model --no-scaffold --output-dir --runs --scaffold --tag --threshold --verbose --help -h" -- "$cur"))
+                                    ;;
+                            esac
                             ;;
                     esac
                     ;;

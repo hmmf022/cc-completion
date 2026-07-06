@@ -10,7 +10,7 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 - **Option completion**: All CLI options and flags are completable
 - **Contextual suggestions**: Option values are suggested where applicable
   - Output formats: `text`, `json`, `stream-json`
-  - Permission modes: `acceptEdits`, `bypassPermissions`, `default`, `dontAsk`, `plan`, `auto`
+  - Permission modes: `acceptEdits`, `bypassPermissions`, `manual`, `dontAsk`, `plan`, `auto`
   - Models: `sonnet`, `opus`, `haiku`, etc.
   - Setting sources: `user`, `project`, `local`
   - Effort levels: `low`, `medium`, `high`, `xhigh`, `max`
@@ -182,7 +182,7 @@ claude --output-format <TAB>
 # Shows: text json stream-json
 
 claude --permission-mode <TAB>
-# Shows: acceptEdits bypassPermissions default dontAsk plan auto
+# Shows: acceptEdits bypassPermissions manual dontAsk plan auto
 
 claude --model <TAB>
 # Shows: sonnet opus haiku fable best sonnet[1m] opus[1m] fable[1m] opusplan
@@ -216,7 +216,7 @@ claude mcp add --transport <TAB>
 
 # Complete plugin subcommands
 claude plugin <TAB>
-# Shows: details disable enable init new install list marketplace prune autoremove tag uninstall update validate
+# Shows: details disable enable eval init new install list marketplace prune autoremove tag uninstall update validate
 
 # File path completion
 claude --settings <TAB>
@@ -249,6 +249,8 @@ claude --settings <TAB>
   - `details` - Show a plugin's component inventory and projected token cost
   - `disable` - Disable an enabled plugin
   - `enable` - Enable a disabled plugin
+  - `eval` - Run eval cases against a plugin and report scored results (with `--ablation`, `--allow-tools`, `--case`, `--json`, `--judge-model`, `--keep-temp`, `--max-cost-usd`, `--model`, `--no-scaffold`, `--output-dir`, `--runs`, `--scaffold`, `--tag`, `--threshold`, `--verbose` options)
+    - `init` - Author an eval suite under `evals/` via an interview (with `--bare` option)
   - `init` (`new`) - Scaffold a new plugin (with `--author`, `--author-email`, `--description`, `--force`, `--with` options)
   - `install` (`i`) - Install a plugin from available marketplaces (with `--config`, `--scope` options)
   - `list` - List installed plugins

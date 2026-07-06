@@ -10,7 +10,7 @@
 - **オプション補完**: すべての CLI オプションとフラグを補完可能
 - **コンテキストに応じた候補表示**: 該当する場合、オプションの値を候補として表示
   - 出力フォーマット: `text`, `json`, `stream-json`
-  - パーミッションモード: `acceptEdits`, `bypassPermissions`, `default`, `dontAsk`, `plan`, `auto`
+  - パーミッションモード: `acceptEdits`, `bypassPermissions`, `manual`, `dontAsk`, `plan`, `auto`
   - モデル: `sonnet`, `opus`, `haiku` など
   - 設定ソース: `user`, `project`, `local`
   - エフォートレベル: `low`, `medium`, `high`, `xhigh`, `max`
@@ -182,7 +182,7 @@ claude --output-format <TAB>
 # 表示: text json stream-json
 
 claude --permission-mode <TAB>
-# 表示: acceptEdits bypassPermissions default dontAsk plan auto
+# 表示: acceptEdits bypassPermissions manual dontAsk plan auto
 
 claude --model <TAB>
 # 表示: sonnet opus haiku fable best sonnet[1m] opus[1m] fable[1m] opusplan
@@ -216,7 +216,7 @@ claude mcp add --transport <TAB>
 
 # plugin サブコマンドの補完
 claude plugin <TAB>
-# 表示: details disable enable init new install list marketplace prune autoremove tag uninstall update validate
+# 表示: details disable enable eval init new install list marketplace prune autoremove tag uninstall update validate
 
 # ファイルパスの補完
 claude --settings <TAB>
@@ -249,6 +249,8 @@ claude --settings <TAB>
   - `details` - プラグインのコンポーネント一覧と推定トークンコストを表示
   - `disable` - 有効なプラグインを無効化
   - `enable` - 無効なプラグインを有効化
+  - `eval` - プラグインに対して eval ケースを実行しスコア結果を報告 (`--ablation`, `--allow-tools`, `--case`, `--json`, `--judge-model`, `--keep-temp`, `--max-cost-usd`, `--model`, `--no-scaffold`, `--output-dir`, `--runs`, `--scaffold`, `--tag`, `--threshold`, `--verbose` オプション付き)
+    - `init` - インタビュー形式で `evals/` 配下に eval スイートを作成 (`--bare` オプション付き)
   - `init` (`new`) - 新しいプラグインの雛形を作成 (`--author`, `--author-email`, `--description`, `--force`, `--with` オプション付き)
   - `install` (`i`) - 利用可能なマーケットプレイスからプラグインをインストール (`--config`, `--scope` オプション付き)
   - `list` - インストール済みのプラグインを一覧表示
