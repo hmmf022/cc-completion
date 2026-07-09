@@ -14,6 +14,7 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
   - Models: `sonnet`, `opus`, `haiku`, etc.
   - Setting sources: `user`, `project`, `local`
   - Effort levels: `low`, `medium`, `high`, `xhigh`, `max`
+  - Tool names: `Bash`, `Read`, `Edit`, `Agent`, `Skill`, etc. plus `default` (for `--tools`, `--allowedTools`, `--disallowedTools`)
 - **File path completion**: For options that expect file paths (e.g., `--settings`, `--mcp-config`, `--add-dir`, `--file`, `--debug-file`)
 - **Subcommand completion**: Full subcommand trees for `mcp` and `plugin` commands
 

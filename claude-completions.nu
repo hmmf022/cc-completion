@@ -53,6 +53,22 @@ def "nu-complete claude plugin-component" [] {
     [skills agents hooks mcp lsp output-style channel]
 }
 
+# Built-in tool names accepted by --tools / --allowedTools / --disallowedTools.
+# `--help` carries no full listing, so these are cross-checked against the
+# claude binary. "default" comes from the --tools help
+# text ('Use "" to disable all tools, "default" to use all tools').
+def "nu-complete claude tools" [] {
+    [
+        Bash BashOutput KillShell
+        Read Write Edit NotebookEdit NotebookRead
+        Glob Grep
+        WebFetch WebSearch
+        Task Agent Skill
+        TodoWrite AskUserQuestion ExitPlanMode
+        default
+    ]
+}
+
 # Claude Code - starts an interactive session by default, use -p/--print for non-interactive output
 export extern claude [
     --debug(-d)                                             # Enable debug mode
@@ -68,11 +84,11 @@ export extern claude [
     --allow-dangerously-skip-permissions                    # Allow skip permissions
     --max-budget-usd: number                                # Max budget in USD
     --replay-user-messages                                  # Replay user messages
-    --allowedTools: string                                  # Allowed tools (deprecated)
-    --allowed-tools: string                                 # Allowed tools
-    --tools: string                                         # Tools
-    --disallowedTools: string                               # Disallowed tools (deprecated)
-    --disallowed-tools: string                              # Disallowed tools
+    --allowedTools: string@"nu-complete claude tools"       # Allowed tools (deprecated)
+    --allowed-tools: string@"nu-complete claude tools"      # Allowed tools
+    --tools: string@"nu-complete claude tools"              # Tools
+    --disallowedTools: string@"nu-complete claude tools"    # Disallowed tools (deprecated)
+    --disallowed-tools: string@"nu-complete claude tools"   # Disallowed tools
     --mcp-config: path                                      # MCP config file
     --system-prompt: string                                 # System prompt
     --append-system-prompt: string                          # Append system prompt
@@ -262,7 +278,7 @@ export extern "claude plugin enable" [
 # Run eval cases against a plugin and report scored results
 export extern "claude plugin eval" [
     --ablation: string@"nu-complete claude eval-ablation"   # Run a no-plugin baseline arm and report the score delta
-    --allow-tools: string                                   # Operator grant for gated tools (repeatable)
+    --allow-tools: string@"nu-complete claude tools"        # Operator grant for gated tools (repeatable)
     --case: string                                          # Filter cases by name glob
     --json                                                  # Emit aggregate-result.json to stdout (for CI)
     --judge-model: string@"nu-complete claude models"       # Override LLM-grader model (default: haiku)
@@ -465,7 +481,7 @@ export extern "claude plugins enable" [
 # Run eval cases against a plugin and report scored results
 export extern "claude plugins eval" [
     --ablation: string@"nu-complete claude eval-ablation"   # Run a no-plugin baseline arm and report the score delta
-    --allow-tools: string                                   # Operator grant for gated tools (repeatable)
+    --allow-tools: string@"nu-complete claude tools"        # Operator grant for gated tools (repeatable)
     --case: string                                          # Filter cases by name glob
     --json                                                  # Emit aggregate-result.json to stdout (for CI)
     --judge-model: string@"nu-complete claude models"       # Override LLM-grader model (default: haiku)

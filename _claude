@@ -2,6 +2,20 @@
 # Zsh completion script for Claude Code
 # Install: place this file in a directory in your $fpath (e.g., /usr/local/share/zsh/site-functions/)
 
+# Built-in tool names accepted by --tools / --allowedTools / --disallowedTools.
+# `--help` carries no full listing, so these are cross-checked against the
+# claude binary. "default" comes from the --tools help
+# text ('Use "" to disable all tools, "default" to use all tools').
+_claude_tools() {
+    compadd -- Bash BashOutput KillShell \
+        Read Write Edit NotebookEdit NotebookRead \
+        Glob Grep \
+        WebFetch WebSearch \
+        Task Agent Skill \
+        TodoWrite AskUserQuestion ExitPlanMode \
+        default
+}
+
 _claude() {
     local -a commands global_opts output_formats input_formats permission_modes models setting_sources
 
@@ -36,11 +50,11 @@ _claude() {
         '--allow-dangerously-skip-permissions[Enable bypassing permission checks as an option]'
         '--max-budget-usd[Maximum dollar amount to spend]:amount:'
         '--replay-user-messages[Re-emit user messages from stdin]'
-        '*--allowedTools[Comma or space-separated list of tool names to allow]:tools:'
-        '*--allowed-tools[Comma or space-separated list of tool names to allow]:tools:'
-        '*--tools[Specify the list of available tools]:tools:'
-        '*--disallowedTools[Comma or space-separated list of tool names to deny]:tools:'
-        '*--disallowed-tools[Comma or space-separated list of tool names to deny]:tools:'
+        '*--allowedTools[Comma or space-separated list of tool names to allow]:tools:_claude_tools'
+        '*--allowed-tools[Comma or space-separated list of tool names to allow]:tools:_claude_tools'
+        '*--tools[Specify the list of available tools]:tools:_claude_tools'
+        '*--disallowedTools[Comma or space-separated list of tool names to deny]:tools:_claude_tools'
+        '*--disallowed-tools[Comma or space-separated list of tool names to deny]:tools:_claude_tools'
         '*--mcp-config[Load MCP servers from JSON files or strings]:configs:_files'
         '--system-prompt[System prompt to use for the session]:prompt:'
         '--append-system-prompt[Append a system prompt]:prompt:'
@@ -319,7 +333,7 @@ _claude() {
                                     )
                                     _arguments -C \
                                         '--ablation[Run a no-plugin baseline arm and report the score delta]:mode:(none with-without)' \
-                                        '*--allow-tools[Operator grant for gated tools]:tools:' \
+                                        '*--allow-tools[Operator grant for gated tools]:tools:_claude_tools' \
                                         '--case[Filter cases by name glob]:glob:' \
                                         '--json[Emit aggregate-result.json to stdout (for CI)]' \
                                         '--judge-model[Override LLM-grader model]:model:(sonnet opus haiku fable best sonnet\[1m\] opus\[1m\] fable\[1m\] opusplan)' \

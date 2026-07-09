@@ -45,6 +45,20 @@ _claude_completion() {
         --prompt-suggestions
     "
 
+    # Built-in tool names accepted by --tools / --allowedTools / --disallowedTools.
+    # `--help` carries no full listing, so these are cross-checked against the
+    # claude binary. "default" comes from the --tools
+    # help text ('Use "" to disable all tools, "default" to use all tools').
+    local tool_names="
+        Bash BashOutput KillShell
+        Read Write Edit NotebookEdit NotebookRead
+        Glob Grep
+        WebFetch WebSearch
+        Task Agent Skill
+        TodoWrite AskUserQuestion ExitPlanMode
+        default
+    "
+
     # Handle subcommands. Skip the value of value-taking options so it is not
     # mistaken for the subcommand, and record where the subcommand was found
     # (cmd_idx) so the per-subcommand loops below start scanning after it.
@@ -100,7 +114,7 @@ _claude_completion() {
             return 0
             ;;
         --tools|--allowedTools|--allowed-tools|--disallowedTools|--disallowed-tools)
-            COMPREPLY=($(compgen -W "Bash Edit Read Write Glob Grep LS MultiEdit NotebookEdit NotebookRead WebFetch WebSearch Task TodoRead TodoWrite" -- "$cur"))
+            COMPREPLY=($(compgen -W "$tool_names" -- "$cur"))
             return 0
             ;;
         --json-schema|--system-prompt|--append-system-prompt|--agents|\
@@ -128,7 +142,7 @@ _claude_completion() {
                 return 0
                 ;;
             --tools|--allowedTools|--allowed-tools|--disallowedTools|--disallowed-tools)
-                COMPREPLY=($(compgen -W "Bash Edit Read Write Glob Grep LS MultiEdit NotebookEdit NotebookRead WebFetch WebSearch Task TodoRead TodoWrite" -- "$cur"))
+                COMPREPLY=($(compgen -W "$tool_names" -- "$cur"))
                 return 0
                 ;;
         esac

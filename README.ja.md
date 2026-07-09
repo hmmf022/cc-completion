@@ -14,6 +14,7 @@
   - モデル: `sonnet`, `opus`, `haiku` など
   - 設定ソース: `user`, `project`, `local`
   - エフォートレベル: `low`, `medium`, `high`, `xhigh`, `max`
+  - ツール名: `Bash`, `Read`, `Edit`, `Agent`, `Skill` など + `default` (`--tools`, `--allowedTools`, `--disallowedTools` 用)
 - **ファイルパス補完**: ファイルパスを受け取るオプション (`--settings`, `--mcp-config`, `--add-dir`, `--file`, `--debug-file` など)
 - **サブコマンド補完**: `mcp` と `plugin` コマンドの完全なサブコマンドツリー
 
