@@ -54,17 +54,27 @@ def "nu-complete claude plugin-component" [] {
 }
 
 # Built-in tool names accepted by --tools / --allowedTools / --disallowedTools.
-# `--help` carries no full listing, so these are cross-checked against the
-# claude binary. "default" comes from the --tools help
-# text ('Use "" to disable all tools, "default" to use all tools').
+# `--help` carries no full listing, so this mirrors the built-in tool set of the
+# claude release named in the commit message. Canonical names only -- the older
+# aliases (Task, BashOutput, KillShell, ...) still resolve at runtime but are not
+# offered here. "default" comes from the --tools help text ('Use "" to disable
+# all tools, "default" to use all tools').
 def "nu-complete claude tools" [] {
     [
-        Bash BashOutput KillShell
-        Read Write Edit NotebookEdit NotebookRead
-        Glob Grep
+        Bash PowerShell REPL
+        Read Write Edit NotebookEdit Glob Grep LSP
         WebFetch WebSearch
-        Task Agent Skill
-        TodoWrite AskUserQuestion ExitPlanMode
+        Agent Skill SendMessage Workflow ToolSearch
+        TaskCreate TaskGet TaskList TaskOutput TaskStop TaskUpdate
+        Monitor CronCreate CronDelete CronList ScheduleWakeup RemoteTrigger PushNotification
+        EnterWorktree ExitWorktree
+        TodoWrite AskUserQuestion EnterPlanMode ExitPlanMode ReportFindings
+        ListMcpResourcesTool ReadMcpResourceTool ReadMcpResourceDirTool
+        SearchMcpRegistry WaitForMcpServers ListConnectors
+        Artifact ClaudeDesign DesignSync Projects
+        SendUserFile SendUserMessage EndConversation
+        ObserverReport StructuredOutput TestingPermission
+        ShareOnboardingGuide ShowOnboardingRolePicker SuggestPluginInstall SuggestSkills
         default
     ]
 }
