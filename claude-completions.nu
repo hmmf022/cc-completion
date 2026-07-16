@@ -69,10 +69,10 @@ def "nu-complete claude tools" [] {
         Monitor CronCreate CronDelete CronList ScheduleWakeup RemoteTrigger PushNotification
         EnterWorktree ExitWorktree
         TodoWrite AskUserQuestion EnterPlanMode ExitPlanMode ReportFindings
-        ListMcpResourcesTool ReadMcpResourceTool ReadMcpResourceDirTool
-        SearchMcpRegistry WaitForMcpServers ListConnectors
+        ListMcpResourcesTool ReadMcpResourceTool ReadMcpResourceDirTool RefreshMcpTools
+        SearchMcpRegistry WaitForMcpServers ListConnectors SuggestConnectors
         Artifact ClaudeDesign DesignSync Projects
-        SendUserFile SendUserMessage EndConversation
+        SendUserFile SendFile SendUserMessage EndConversation
         ObserverReport StructuredOutput TestingPermission
         ShareOnboardingGuide ShowOnboardingRolePicker SuggestPluginInstall SuggestSkills
         default
@@ -89,6 +89,7 @@ export extern claude [
     --json-schema: string                                   # JSON schema
     --include-hook-events                                    # Include hook lifecycle events
     --include-partial-messages                               # Include partial messages
+    --forward-subagent-text                                  # Forward subagent text and thinking blocks as assistant/user messages
     --input-format: string@"nu-complete claude input-format"    # Input format
     --dangerously-skip-permissions                          # Skip permissions (dangerous)
     --allow-dangerously-skip-permissions                    # Allow skip permissions
@@ -297,6 +298,8 @@ export extern "claude plugin eval" [
     --model: string@"nu-complete claude models"             # Override model for all cases
     --no-scaffold                                          # Explicitly skip scaffold_script
     --output-dir: path                                      # Directory for aggregate-result.json
+    --publish-report                                        # Publish the HTML report privately to claude.ai
+    --report: path                                          # Write a self-contained HTML report
     --runs: int                                             # Override per-case runs (default: case.runs ?? 3)
     --scaffold                                             # Run each case's scaffold_script
     --tag: string                                          # Filter cases by tag (repeatable)
@@ -500,6 +503,8 @@ export extern "claude plugins eval" [
     --model: string@"nu-complete claude models"             # Override model for all cases
     --no-scaffold                                          # Explicitly skip scaffold_script
     --output-dir: path                                      # Directory for aggregate-result.json
+    --publish-report                                        # Publish the HTML report privately to claude.ai
+    --report: path                                          # Write a self-contained HTML report
     --runs: int                                             # Override per-case runs (default: case.runs ?? 3)
     --scaffold                                             # Run each case's scaffold_script
     --tag: string                                          # Filter cases by tag (repeatable)
@@ -766,6 +771,7 @@ export extern "claude auto-mode critique" [
 
 # Show default auto mode classifier configuration
 export extern "claude auto-mode defaults" [
+    --label: string                                         # Show only rules whose label starts with this prefix
     --help(-h)
 ]
 

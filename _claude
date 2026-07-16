@@ -17,10 +17,10 @@ _claude_tools() {
         Monitor CronCreate CronDelete CronList ScheduleWakeup RemoteTrigger PushNotification \
         EnterWorktree ExitWorktree \
         TodoWrite AskUserQuestion EnterPlanMode ExitPlanMode ReportFindings \
-        ListMcpResourcesTool ReadMcpResourceTool ReadMcpResourceDirTool \
-        SearchMcpRegistry WaitForMcpServers ListConnectors \
+        ListMcpResourcesTool ReadMcpResourceTool ReadMcpResourceDirTool RefreshMcpTools \
+        SearchMcpRegistry WaitForMcpServers ListConnectors SuggestConnectors \
         Artifact ClaudeDesign DesignSync Projects \
-        SendUserFile SendUserMessage EndConversation \
+        SendUserFile SendFile SendUserMessage EndConversation \
         ObserverReport StructuredOutput TestingPermission \
         ShareOnboardingGuide ShowOnboardingRolePicker SuggestPluginInstall SuggestSkills \
         default
@@ -55,6 +55,7 @@ _claude() {
         '--json-schema[JSON Schema for structured output validation]:schema:'
         '--include-hook-events[Include all hook lifecycle events in the output stream]'
         '--include-partial-messages[Include partial message chunks]'
+        '--forward-subagent-text[Forward subagent text and thinking blocks as assistant/user messages]'
         '--input-format[Input format]:format:(text stream-json)'
         '--dangerously-skip-permissions[Bypass all permission checks]'
         '--allow-dangerously-skip-permissions[Enable bypassing permission checks as an option]'
@@ -352,6 +353,8 @@ _claude() {
                                         '--model[Override model for all cases]:model:(sonnet opus haiku fable best sonnet\[1m\] opus\[1m\] fable\[1m\] opusplan)' \
                                         '--no-scaffold[Explicitly skip scaffold_script]' \
                                         '--output-dir[Directory for aggregate-result.json]:dir:_files -/' \
+                                        '--publish-report[Publish the HTML report privately to claude.ai]' \
+                                        '--report[Write a self-contained HTML report]:path:_files' \
                                         '--runs[Override per-case runs]:n:' \
                                         '--scaffold[Run each case'\''s scaffold_script]' \
                                         '*--tag[Filter cases by tag (repeatable)]:tag:' \
@@ -511,7 +514,12 @@ _claude() {
                                         '--model[Model for the critique]:model:(sonnet opus haiku fable best sonnet\[1m\] opus\[1m\] fable\[1m\] opusplan)' \
                                         {-h,--help}'[Display help for command]'
                                     ;;
-                                config|defaults)
+                                defaults)
+                                    _arguments \
+                                        '--label[Show only rules whose label starts with this prefix]:prefix:' \
+                                        {-h,--help}'[Display help for command]'
+                                    ;;
+                                config)
                                     _arguments \
                                         {-h,--help}'[Display help for command]'
                                     ;;

@@ -12,7 +12,7 @@ _claude_completion() {
     # Global options
     local global_opts="
         --debug --debug-file --verbose --print --output-format --json-schema
-        --include-hook-events --include-partial-messages --input-format
+        --include-hook-events --include-partial-messages --input-format --forward-subagent-text
         --dangerously-skip-permissions --allow-dangerously-skip-permissions
         --max-budget-usd --replay-user-messages --allowedTools --allowed-tools
         --tools --disallowedTools --disallowed-tools --mcp-config
@@ -60,10 +60,10 @@ _claude_completion() {
         Monitor CronCreate CronDelete CronList ScheduleWakeup RemoteTrigger PushNotification
         EnterWorktree ExitWorktree
         TodoWrite AskUserQuestion EnterPlanMode ExitPlanMode ReportFindings
-        ListMcpResourcesTool ReadMcpResourceTool ReadMcpResourceDirTool
-        SearchMcpRegistry WaitForMcpServers ListConnectors
+        ListMcpResourcesTool ReadMcpResourceTool ReadMcpResourceDirTool RefreshMcpTools
+        SearchMcpRegistry WaitForMcpServers ListConnectors SuggestConnectors
         Artifact ClaudeDesign DesignSync Projects
-        SendUserFile SendUserMessage EndConversation
+        SendUserFile SendFile SendUserMessage EndConversation
         ObserverReport StructuredOutput TestingPermission
         ShareOnboardingGuide ShowOnboardingRolePicker SuggestPluginInstall SuggestSkills
         default
@@ -361,11 +361,14 @@ _claude_completion() {
                                 --output-dir)
                                     _filedir -d
                                     ;;
+                                --report)
+                                    _filedir
+                                    ;;
                                 --case|--tag|--allow-tools|--runs|--threshold|--max-cost-usd)
                                     COMPREPLY=()
                                     ;;
                                 *)
-                                    COMPREPLY=($(compgen -W "init --ablation --allow-tools --case --json --judge-model --keep-temp --max-cost-usd --model --no-scaffold --output-dir --runs --scaffold --tag --threshold --verbose --help -h" -- "$cur"))
+                                    COMPREPLY=($(compgen -W "init --ablation --allow-tools --case --json --judge-model --keep-temp --max-cost-usd --model --no-scaffold --output-dir --publish-report --report --runs --scaffold --tag --threshold --verbose --help -h" -- "$cur"))
                                     ;;
                             esac
                             ;;
@@ -552,7 +555,17 @@ _claude_completion() {
                 critique)
                     COMPREPLY=($(compgen -W "--model --help -h" -- "$cur"))
                     ;;
-                config|defaults)
+                defaults)
+                    case "$prev" in
+                        --label)
+                            COMPREPLY=()
+                            ;;
+                        *)
+                            COMPREPLY=($(compgen -W "--label --help -h" -- "$cur"))
+                            ;;
+                    esac
+                    ;;
+                config)
                     COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
                     ;;
                 *)

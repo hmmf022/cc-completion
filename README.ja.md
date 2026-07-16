@@ -230,7 +230,7 @@ claude --settings <TAB>
 - `auto-mode` - 自動モード分類器の設定を確認
   - `config` - 自動モード分類器の設定を表示
   - `critique` - 会話に対して自動モードの批評を実行 (`--model` オプション付き)
-  - `defaults` - 自動モード分類器のデフォルト設定を表示
+  - `defaults` - 自動モード分類器のデフォルト設定を表示 (`--label` オプション付き)
 - `auth` - 認証の管理
   - `login` - Anthropic アカウントにサインイン (`--claudeai`, `--console`, `--email`, `--sso` オプション付き)
   - `logout` - Anthropic アカウントからログアウト
@@ -250,7 +250,7 @@ claude --settings <TAB>
   - `details` - プラグインのコンポーネント一覧と推定トークンコストを表示
   - `disable` - 有効なプラグインを無効化
   - `enable` - 無効なプラグインを有効化
-  - `eval` - プラグインに対して eval ケースを実行しスコア結果を報告 (`--ablation`, `--allow-tools`, `--case`, `--json`, `--judge-model`, `--keep-temp`, `--max-cost-usd`, `--model`, `--no-scaffold`, `--output-dir`, `--runs`, `--scaffold`, `--tag`, `--threshold`, `--verbose` オプション付き)
+  - `eval` - プラグインに対して eval ケースを実行しスコア結果を報告 (`--ablation`, `--allow-tools`, `--case`, `--json`, `--judge-model`, `--keep-temp`, `--max-cost-usd`, `--model`, `--no-scaffold`, `--output-dir`, `--publish-report`, `--report`, `--runs`, `--scaffold`, `--tag`, `--threshold`, `--verbose` オプション付き)
     - `init` - インタビュー形式で `evals/` 配下に eval スイートを作成 (`--bare` オプション付き)
   - `init` (`new`) - 新しいプラグインの雛形を作成 (`--author`, `--author-email`, `--description`, `--force`, `--with` オプション付き)
   - `install` (`i`) - 利用可能なマーケットプレイスからプラグインをインストール (`--config`, `--scope` オプション付き)

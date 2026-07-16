@@ -230,7 +230,7 @@ claude --settings <TAB>
 - `auto-mode` - Inspect auto mode classifier configuration
   - `config` - Show auto mode classifier configuration
   - `critique` - Run auto mode critique on a conversation (with `--model` option)
-  - `defaults` - Show default auto mode classifier configuration
+  - `defaults` - Show default auto mode classifier configuration (with `--label` option)
 - `auth` - Manage authentication
   - `login` - Sign in to your Anthropic account (with `--claudeai`, `--console`, `--email`, `--sso` options)
   - `logout` - Log out of your Anthropic account
@@ -250,7 +250,7 @@ claude --settings <TAB>
   - `details` - Show a plugin's component inventory and projected token cost
   - `disable` - Disable an enabled plugin
   - `enable` - Enable a disabled plugin
-  - `eval` - Run eval cases against a plugin and report scored results (with `--ablation`, `--allow-tools`, `--case`, `--json`, `--judge-model`, `--keep-temp`, `--max-cost-usd`, `--model`, `--no-scaffold`, `--output-dir`, `--runs`, `--scaffold`, `--tag`, `--threshold`, `--verbose` options)
+  - `eval` - Run eval cases against a plugin and report scored results (with `--ablation`, `--allow-tools`, `--case`, `--json`, `--judge-model`, `--keep-temp`, `--max-cost-usd`, `--model`, `--no-scaffold`, `--output-dir`, `--publish-report`, `--report`, `--runs`, `--scaffold`, `--tag`, `--threshold`, `--verbose` options)
     - `init` - Author an eval suite under `evals/` via an interview (with `--bare` option)
   - `init` (`new`) - Scaffold a new plugin (with `--author`, `--author-email`, `--description`, `--force`, `--with` options)
   - `install` (`i`) - Install a plugin from available marketplaces (with `--config`, `--scope` options)
