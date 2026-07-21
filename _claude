@@ -20,7 +20,7 @@ _claude_tools() {
         ListMcpResourcesTool ReadMcpResourceTool ReadMcpResourceDirTool RefreshMcpTools \
         SearchMcpRegistry WaitForMcpServers ListConnectors SuggestConnectors \
         Artifact ClaudeDesign DesignSync Projects \
-        SendUserFile SendFile SendUserMessage EndConversation \
+        SendUserFile SendFile SendFeedback SendUserMessage EndConversation \
         ObserverReport StructuredOutput TestingPermission \
         ShareOnboardingGuide ShowOnboardingRolePicker SuggestPluginInstall SuggestSkills \
         default
@@ -498,6 +498,7 @@ _claude() {
                         'config:Show auto mode classifier configuration'
                         'critique:Run auto mode critique on a conversation'
                         'defaults:Show default auto mode classifier configuration'
+                        'reset:Reset auto mode configuration to the shipped defaults'
                     )
                     _arguments -C \
                         {-h,--help}'[Display help for command]' \
@@ -521,6 +522,11 @@ _claude() {
                                     ;;
                                 config)
                                     _arguments \
+                                        {-h,--help}'[Display help for command]'
+                                    ;;
+                                reset)
+                                    _arguments \
+                                        {-y,--yes}'[Skip the confirmation prompt]' \
                                         {-h,--help}'[Display help for command]'
                                     ;;
                             esac

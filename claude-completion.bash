@@ -63,7 +63,7 @@ _claude_completion() {
         ListMcpResourcesTool ReadMcpResourceTool ReadMcpResourceDirTool RefreshMcpTools
         SearchMcpRegistry WaitForMcpServers ListConnectors SuggestConnectors
         Artifact ClaudeDesign DesignSync Projects
-        SendUserFile SendFile SendUserMessage EndConversation
+        SendUserFile SendFile SendFeedback SendUserMessage EndConversation
         ObserverReport StructuredOutput TestingPermission
         ShareOnboardingGuide ShowOnboardingRolePicker SuggestPluginInstall SuggestSkills
         default
@@ -543,7 +543,7 @@ _claude_completion() {
             esac
             ;;
         auto-mode)
-            local automode_cmds="config critique defaults"
+            local automode_cmds="config critique defaults reset"
             local automode_subcmd
             for ((i=cmd_idx+1; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
@@ -567,6 +567,9 @@ _claude_completion() {
                     ;;
                 config)
                     COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+                    ;;
+                reset)
+                    COMPREPLY=($(compgen -W "--yes --help -y -h" -- "$cur"))
                     ;;
                 *)
                     COMPREPLY=($(compgen -W "$automode_cmds --help -h" -- "$cur"))

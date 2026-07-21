@@ -72,7 +72,7 @@ def "nu-complete claude tools" [] {
         ListMcpResourcesTool ReadMcpResourceTool ReadMcpResourceDirTool RefreshMcpTools
         SearchMcpRegistry WaitForMcpServers ListConnectors SuggestConnectors
         Artifact ClaudeDesign DesignSync Projects
-        SendUserFile SendFile SendUserMessage EndConversation
+        SendUserFile SendFile SendFeedback SendUserMessage EndConversation
         ObserverReport StructuredOutput TestingPermission
         ShareOnboardingGuide ShowOnboardingRolePicker SuggestPluginInstall SuggestSkills
         default
@@ -772,6 +772,12 @@ export extern "claude auto-mode critique" [
 # Show default auto mode classifier configuration
 export extern "claude auto-mode defaults" [
     --label: string                                         # Show only rules whose label starts with this prefix
+    --help(-h)
+]
+
+# Reset auto mode configuration to the shipped defaults
+export extern "claude auto-mode reset" [
+    --yes(-y)                                               # Skip the confirmation prompt
     --help(-h)
 ]
 

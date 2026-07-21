@@ -231,6 +231,7 @@ claude --settings <TAB>
   - `config` - 自動モード分類器の設定を表示
   - `critique` - 会話に対して自動モードの批評を実行 (`--model` オプション付き)
   - `defaults` - 自動モード分類器のデフォルト設定を表示 (`--label` オプション付き)
+  - `reset` - 自動モードの設定を出荷時のデフォルトにリセット (`--yes` オプション付き)
 - `auth` - 認証の管理
   - `login` - Anthropic アカウントにサインイン (`--claudeai`, `--console`, `--email`, `--sso` オプション付き)
   - `logout` - Anthropic アカウントからログアウト

@@ -231,6 +231,7 @@ claude --settings <TAB>
   - `config` - Show auto mode classifier configuration
   - `critique` - Run auto mode critique on a conversation (with `--model` option)
   - `defaults` - Show default auto mode classifier configuration (with `--label` option)
+  - `reset` - Reset auto mode configuration to the shipped defaults (with `--yes` option)
 - `auth` - Manage authentication
   - `login` - Sign in to your Anthropic account (with `--claudeai`, `--console`, `--email`, `--sso` options)
   - `logout` - Log out of your Anthropic account
