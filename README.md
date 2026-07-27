@@ -227,10 +227,10 @@ claude --settings <TAB>
 ## Supported Commands
 
 - `agents` - Manage background agents (with `--add-dir`, `--agent`, `--all`, `--allow-dangerously-skip-permissions`, `--cwd`, `--dangerously-skip-permissions`, `--effort`, `--json`, `--mcp-config`, `--model`, `--permission-mode`, `--plugin-dir`, `--setting-sources`, `--settings`, `--strict-mcp-config` options)
-- `auto-mode` - Inspect auto mode classifier configuration
-  - `config` - Show auto mode classifier configuration
-  - `critique` - Run auto mode critique on a conversation (with `--model` option)
-  - `defaults` - Show default auto mode classifier configuration (with `--label` option)
+- `auto-mode` - Inspect or reset auto mode classifier configuration
+  - `config` - Print the effective auto mode config as JSON
+  - `critique` - Get AI feedback on your custom auto mode rules (with `--model` option)
+  - `defaults` - Print the default auto mode environment, allow, soft_deny, and hard_deny rules as JSON (with `--label` option)
   - `reset` - Reset auto mode configuration to the shipped defaults (with `--yes` option)
 - `auth` - Manage authentication
   - `login` - Sign in to your Anthropic account (with `--claudeai`, `--console`, `--email`, `--sso` options)
@@ -249,23 +249,23 @@ claude --settings <TAB>
   - `logout` - Clear stored OAuth credentials for an MCP server
 - `plugin` - Manage Claude Code plugins
   - `details` - Show a plugin's component inventory and projected token cost
-  - `disable` - Disable an enabled plugin
-  - `enable` - Enable a disabled plugin
-  - `eval` - Run eval cases against a plugin and report scored results (with `--ablation`, `--allow-tools`, `--case`, `--json`, `--judge-model`, `--keep-temp`, `--max-cost-usd`, `--model`, `--no-scaffold`, `--output-dir`, `--publish-report`, `--report`, `--runs`, `--scaffold`, `--tag`, `--threshold`, `--verbose` options)
+  - `disable` - Disable an enabled plugin (with `--all`, `--scope` options)
+  - `enable` - Enable a disabled plugin (with `--scope` option)
+  - `eval` - Run eval cases against a plugin and report scored results (with `--ablation`, `--allow-tools`, `--case`, `--json`, `--judge-model`, `--keep-temp`, `--max-cost-usd`, `--model`, `--no-scaffold`, `--output-dir`, `--publish-report`, `--report`, `--runs`, `--scaffold`, `--tag`, `--threshold`, `--verbose` options; `--json` optionally takes a `.json` output path)
     - `init` - Author an eval suite under `evals/` via an interview (with `--bare` option)
   - `init` (`new`) - Scaffold a new plugin (with `--author`, `--author-email`, `--description`, `--force`, `--with` options)
   - `install` (`i`) - Install a plugin from available marketplaces (with `--config`, `--scope` options)
-  - `list` - List installed plugins
+  - `list` - List installed plugins (with `--available`, `--json` options)
   - `marketplace` - Manage Claude Code marketplaces (`add`, `list`, `remove` (`rm`), `update`); `remove`/`rm` support `--scope` option
   - `prune` (`autoremove`) - Remove auto-installed dependencies that are no longer needed (with `--dry-run`, `--scope`, `--yes` options)
   - `tag` - Create a `{name}--v{version}` git tag for a plugin release (with `--dry-run`, `--force`, `--message`, `--push`, `--remote` options)
   - `uninstall` (`remove`) - Uninstall an installed plugin (with `--keep-data`, `--prune`, `--scope`, `--yes` options)
-  - `update` - Update a plugin to the latest version
+  - `update` - Update a plugin to the latest version (with `--scope` option)
   - `validate` - Validate a plugin or marketplace manifest (with `--strict` option)
 - `project` - Manage Claude Code project state
   - `purge` - Delete all Claude Code state for a project (transcripts, tasks, file history, config entry) (with `--all`, `--dry-run`, `--interactive`, `--yes` options)
 - `setup-token` - Set up a long-lived authentication token
-- `doctor` - Check the health of your Claude Code auto-updater
+- `doctor` - Check the health of your Claude Code installation
 - `gateway` - Run the enterprise auth/telemetry gateway (with `--config` option)
 - `update` - Check for updates and install if available
 - `plugins` - Alias for `plugin`

@@ -87,6 +87,19 @@ _claude_completion() {
         break
     done
 
+    # Options whose value `--help` marks optional ("[value]" rather than
+    # "<value>"). When the word at the cursor already starts with "-" the user is
+    # typing the next option, not the value, so blank out prev: no case arm below
+    # matches "", and completion falls through to the normal option dispatch.
+    local optional_value_flags="
+        -d --debug --from-pr -r --resume -w --worktree
+        --remote-control --prompt-suggestions --json
+    "
+    local _ovf=" ${optional_value_flags//[$'\n\t']/ } "
+    if [[ "$cur" == -* ]] && [[ $_ovf == *" $prev "* ]]; then
+        prev=""
+    fi
+
     # Option-specific value completion (must run before subcommand/global dispatch
     # to avoid the [[ -z $cmd ]] early-return short-circuiting these cases)
     case "$prev" in
@@ -361,7 +374,7 @@ _claude_completion() {
                                 --output-dir)
                                     _filedir -d
                                     ;;
-                                --report)
+                                --json|--report)
                                     _filedir
                                     ;;
                                 --case|--tag|--allow-tools|--runs|--threshold|--max-cost-usd)

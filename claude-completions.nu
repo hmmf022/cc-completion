@@ -79,6 +79,13 @@ def "nu-complete claude tools" [] {
     ]
 }
 
+# Nushell externs cannot express a named flag whose value is optional: giving a
+# flag a type makes the value mandatory, omitting it makes the flag a switch. So
+# the options `--help` writes as "[value]" (-d/--debug, -r/--resume, --from-pr,
+# -w/--worktree, --remote-control, --prompt-suggestions, plugin eval --json) are
+# declared here in whichever of the two forms matches their common usage. The
+# bash and zsh scripts do model the optional value.
+
 # Claude Code - starts an interactive session by default, use -p/--print for non-interactive output
 export extern claude [
     --debug(-d)                                             # Enable debug mode
@@ -273,7 +280,7 @@ export extern "claude plugin details" [
 
 # Disable an enabled plugin
 export extern "claude plugin disable" [
-    --all(-a)                                               # Disable all
+    --all(-a)                                               # Disable all enabled plugins
     --scope(-s): string@"nu-complete claude scope"
     --help(-h)
     ...args: string
@@ -291,7 +298,7 @@ export extern "claude plugin eval" [
     --ablation: string@"nu-complete claude eval-ablation"   # Run a no-plugin baseline arm and report the score delta
     --allow-tools: string@"nu-complete claude tools"        # Operator grant for gated tools (repeatable)
     --case: string                                          # Filter cases by name glob
-    --json                                                  # Emit aggregate-result.json to stdout (for CI)
+    --json                                                  # Print the full run result as JSON to stdout
     --judge-model: string@"nu-complete claude models"       # Override LLM-grader model (default: haiku)
     --keep-temp                                             # Preserve scaffold dirs for debugging
     --max-cost-usd: string                                  # Optional hard cost ceiling
@@ -348,8 +355,8 @@ export extern "claude plugin install" [
 
 # List installed plugins
 export extern "claude plugin list" [
-    --available
-    --json
+    --available                                             # Include available plugins from marketplaces (requires --json)
+    --json                                                  # Output as JSON
     --help(-h)
 ]
 
@@ -478,7 +485,7 @@ export extern "claude plugins details" [
 
 # Disable an enabled plugin
 export extern "claude plugins disable" [
-    --all(-a)                                               # Disable all
+    --all(-a)                                               # Disable all enabled plugins
     --scope(-s): string@"nu-complete claude scope"
     --help(-h)
     ...args: string
@@ -496,7 +503,7 @@ export extern "claude plugins eval" [
     --ablation: string@"nu-complete claude eval-ablation"   # Run a no-plugin baseline arm and report the score delta
     --allow-tools: string@"nu-complete claude tools"        # Operator grant for gated tools (repeatable)
     --case: string                                          # Filter cases by name glob
-    --json                                                  # Emit aggregate-result.json to stdout (for CI)
+    --json                                                  # Print the full run result as JSON to stdout
     --judge-model: string@"nu-complete claude models"       # Override LLM-grader model (default: haiku)
     --keep-temp                                             # Preserve scaffold dirs for debugging
     --max-cost-usd: string                                  # Optional hard cost ceiling
@@ -553,8 +560,8 @@ export extern "claude plugins install" [
 
 # List installed plugins
 export extern "claude plugins list" [
-    --available
-    --json
+    --available                                             # Include available plugins from marketplaces (requires --json)
+    --json                                                  # Output as JSON
     --help(-h)
 ]
 
@@ -691,12 +698,12 @@ export extern "claude project purge" [
 export extern "claude agents" [
     --add-dir: path                                         # Additional directory to allow tool access (repeatable)
     --agent: string                                         # Default agent for dispatched sessions
-    --all                                                   # With --json: include completed sessions (the full agent view list)
+    --all                                                   # With --json: also include completed background sessions
     --allow-dangerously-skip-permissions                    # Make bypass-permissions mode available to dispatched sessions
     --cwd: path                                             # Show only background sessions started under path
     --dangerously-skip-permissions                          # Alias for --permission-mode bypassPermissions
     --effort: string@"nu-complete claude effort"            # Default effort level for dispatched sessions
-    --json                                                  # Print live sessions as a JSON array and exit (for scripting)
+    --json                                                  # Print active sessions (interactive and background) as a JSON array and exit
     --mcp-config: path                                      # MCP server configuration (repeatable)
     --model: string@"nu-complete claude models"             # Default model for dispatched sessions
     --permission-mode: string@"nu-complete claude permission-mode"  # Default permission mode for dispatched sessions
@@ -716,7 +723,7 @@ export extern "claude setup-token" [
 
 # --- doctor ---
 
-# Check the health of your Claude Code auto-updater
+# Check the health of your Claude Code installation
 export extern "claude doctor" [
     --help(-h)
 ]
@@ -752,24 +759,24 @@ export extern "claude install" [
 
 # --- auto-mode ---
 
-# Inspect auto mode classifier configuration
+# Inspect or reset auto mode classifier configuration
 export extern "claude auto-mode" [
     --help(-h)
     ...args: string
 ]
 
-# Show auto mode classifier configuration
+# Print the effective auto mode config as JSON
 export extern "claude auto-mode config" [
     --help(-h)
 ]
 
-# Run auto mode critique on a conversation
+# Get AI feedback on your custom auto mode rules
 export extern "claude auto-mode critique" [
     --model: string@"nu-complete claude models"             # Model for the critique
     --help(-h)
 ]
 
-# Show default auto mode classifier configuration
+# Print the default auto mode environment, allow, soft_deny, and hard_deny rules as JSON
 export extern "claude auto-mode defaults" [
     --label: string                                         # Show only rules whose label starts with this prefix
     --help(-h)
