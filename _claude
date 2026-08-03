@@ -87,7 +87,7 @@ _claude() {
         '--session-id[Use a specific session ID]:uuid:'
         '--agents[JSON object defining custom agents]:json:'
         '--setting-sources[Comma-separated list of setting sources]:sources:(user project local)'
-        '*--plugin-dir[Load plugins from directories]:paths:_files -/'
+        '*--plugin-dir[Load a plugin from a directory or .zip]:paths:_files'
         '*--plugin-url[Fetch a plugin .zip from a URL for this session only]:url:'
         '--disable-slash-commands[Disable all skills]'
         '--chrome[Enable Claude in Chrome integration]'
@@ -124,6 +124,12 @@ _claude() {
         args)
             case $words[1] in
                 agents)
+                    # Note: for an option that also exists in $global_opts, the
+                    # outer `_arguments -C ... $global_opts` above drives value
+                    # completion -- the action written here never runs (only the
+                    # description, which is what `claude agents -` lists). Keep
+                    # the two in sync so this spec does not claim a shape the
+                    # user will not actually get.
                     _arguments \
                         '*--add-dir[Additional directory to allow tool access in dispatched sessions]:directory:_files -/' \
                         '--agent[Default agent for sessions dispatched from agent view]:agent:' \
@@ -136,7 +142,7 @@ _claude() {
                         '*--mcp-config[MCP server configuration to apply to dispatched sessions]:config:_files' \
                         '--model[Default model for dispatched sessions]:model:(sonnet opus haiku fable best sonnet\[1m\] opus\[1m\] fable\[1m\] opusplan)' \
                         '--permission-mode[Default permission mode for dispatched sessions]:mode:(acceptEdits bypassPermissions manual dontAsk plan auto)' \
-                        '*--plugin-dir[Load plugins from specified directory for dispatched sessions]:path:_files -/' \
+                        '*--plugin-dir[Load plugins from specified directory for dispatched sessions]:path:_files' \
                         '--setting-sources[Comma-separated list of setting sources]:sources:(user project local)' \
                         '--settings[Settings file or JSON string to apply]:file:_files' \
                         '--strict-mcp-config[Only use MCP servers from --mcp-config in dispatched sessions]' \

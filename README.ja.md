@@ -217,7 +217,7 @@ claude mcp add --transport <TAB>
 
 # plugin サブコマンドの補完
 claude plugin <TAB>
-# 表示: details disable enable eval init new install list marketplace prune autoremove tag uninstall update validate
+# 表示: details disable enable eval init new install i list marketplace prune autoremove tag uninstall remove update validate
 
 # ファイルパスの補完
 claude --settings <TAB>
@@ -239,7 +239,7 @@ claude --settings <TAB>
 - `mcp` - MCP サーバーの設定・管理
   - `add` - MCP サーバーを追加 (`--scope`, `--transport`, `--env`, `--header`, `--callback-port`, `--client-id`, `--client-secret` オプション付き)
   - `add-from-claude-desktop` - Claude Desktop から MCP サーバーをインポート (`--scope` オプション付き)
-  - `add-json` - JSON 文字列で MCP サーバーを追加
+  - `add-json` - JSON 文字列で MCP サーバーを追加 (`--scope`, `--client-secret` オプション付き)
   - `get` - MCP サーバーの詳細を取得
   - `list` - 設定済みの MCP サーバーを一覧表示
   - `remove` - MCP サーバーを削除 (`--scope` オプション付き)
@@ -256,7 +256,7 @@ claude --settings <TAB>
   - `init` (`new`) - 新しいプラグインの雛形を作成 (`--author`, `--author-email`, `--description`, `--force`, `--with` オプション付き)
   - `install` (`i`) - 利用可能なマーケットプレイスからプラグインをインストール (`--config`, `--scope` オプション付き)
   - `list` - インストール済みのプラグインを一覧表示 (`--available`, `--json` オプション付き)
-  - `marketplace` - Claude Code マーケットプレイスの管理 (`add`, `list`, `remove` (`rm`), `update`); `remove`/`rm` は `--scope` オプションをサポート
+  - `marketplace` - Claude Code マーケットプレイスの管理 (`add`, `list`, `remove` (`rm`), `update`); `add` は `--scope`, `--sparse`、`list` は `--json`、`remove`/`rm` は `--scope` をサポート
   - `prune` (`autoremove`) - 不要になった自動インストール依存を削除 (`--dry-run`, `--scope`, `--yes` オプション付き)
   - `tag` - プラグインリリース用に `{name}--v{version}` の git タグを作成 (`--dry-run`, `--force`, `--message`, `--push`, `--remote` オプション付き)
   - `uninstall` (`remove`) - インストール済みのプラグインをアンインストール (`--keep-data`, `--prune`, `--scope`, `--yes` オプション付き)

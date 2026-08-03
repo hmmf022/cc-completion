@@ -430,7 +430,7 @@ export extern "claude plugin update" [
 export extern "claude plugin validate" [
     --strict                                                # Treat warnings as errors (exit 1)
     --help(-h)
-    ...args: string
+    path: path                                              # Plugin or marketplace manifest path
 ]
 
 # Create a {name}--v{version} git tag for a plugin release
@@ -635,7 +635,7 @@ export extern "claude plugins update" [
 export extern "claude plugins validate" [
     --strict                                                # Treat warnings as errors (exit 1)
     --help(-h)
-    ...args: string
+    path: path                                              # Plugin or marketplace manifest path
 ]
 
 # Create a {name}--v{version} git tag for a plugin release
@@ -732,7 +732,7 @@ export extern "claude doctor" [
 
 # Run the enterprise auth/telemetry gateway
 export extern "claude gateway" [
-    --config: string                                        # Path to gateway YAML config
+    --config: path                                          # Path to gateway YAML config
     --help(-h)
 ]
 

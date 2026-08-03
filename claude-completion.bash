@@ -132,17 +132,26 @@ _claude_completion() {
             COMPREPLY=($(compgen -W "true false 1 0 yes no on off" -- "$cur"))
             return 0
             ;;
-        --mcp-config|--settings|--plugin-dir|--add-dir|--file|--debug-file)
+        --mcp-config|--settings|--plugin-dir|--debug-file)
             _filedir
+            return 0
+            ;;
+        --add-dir)
+            # `--add-dir <directories...>` -- directories only.
+            _filedir -d
             return 0
             ;;
         --tools|--allowedTools|--allowed-tools|--disallowedTools|--disallowed-tools)
             COMPREPLY=($(compgen -W "$tool_names" -- "$cur"))
             return 0
             ;;
+        # --file takes "file_id:relative_path" specs, where file_id is a remote
+        # resource id and relative_path is a download destination that does not
+        # exist yet. Local path completion would be misleading, so offer none.
         --json-schema|--system-prompt|--append-system-prompt|--agents|\
         --worktree|--max-budget-usd|--session-id|--debug|-d|--from-pr|\
-        -r|--resume|--agent|--betas|--name|-n|--plugin-url|--remote-control)
+        -r|--resume|--agent|--betas|--name|-n|--plugin-url|--remote-control|\
+        --file)
             COMPREPLY=()
             return 0
             ;;
@@ -160,8 +169,16 @@ _claude_completion() {
             fi
         done
         case "$recent_flag" in
-            --add-dir|--mcp-config|--plugin-dir|--file)
+            --mcp-config|--plugin-dir)
                 _filedir
+                return 0
+                ;;
+            --add-dir)
+                _filedir -d
+                return 0
+                ;;
+            --file)
+                COMPREPLY=()
                 return 0
                 ;;
             --tools|--allowedTools|--allowed-tools|--disallowedTools|--disallowed-tools)
@@ -470,7 +487,12 @@ _claude_completion() {
                     COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
                     ;;
                 validate)
-                    COMPREPLY=($(compgen -W "--strict --help -h" -- "$cur"))
+                    if [[ "$cur" == -* ]]; then
+                        COMPREPLY=($(compgen -W "--strict --help -h" -- "$cur"))
+                    else
+                        # <path> is a plugin/marketplace manifest or its directory.
+                        _filedir
+                    fi
                     ;;
                 tag)
                     case "$prev" in

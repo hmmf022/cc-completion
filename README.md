@@ -217,7 +217,7 @@ claude mcp add --transport <TAB>
 
 # Complete plugin subcommands
 claude plugin <TAB>
-# Shows: details disable enable eval init new install list marketplace prune autoremove tag uninstall update validate
+# Shows: details disable enable eval init new install i list marketplace prune autoremove tag uninstall remove update validate
 
 # File path completion
 claude --settings <TAB>
@@ -239,7 +239,7 @@ claude --settings <TAB>
 - `mcp` - Configure and manage MCP servers
   - `add` - Add an MCP server (with `--scope`, `--transport`, `--env`, `--header`, `--callback-port`, `--client-id`, `--client-secret` options)
   - `add-from-claude-desktop` - Import MCP servers from Claude Desktop (with `--scope` option)
-  - `add-json` - Add an MCP server with a JSON string
+  - `add-json` - Add an MCP server with a JSON string (with `--scope`, `--client-secret` options)
   - `get` - Get details about an MCP server
   - `list` - List configured MCP servers
   - `remove` - Remove an MCP server (with `--scope` option)
@@ -256,7 +256,7 @@ claude --settings <TAB>
   - `init` (`new`) - Scaffold a new plugin (with `--author`, `--author-email`, `--description`, `--force`, `--with` options)
   - `install` (`i`) - Install a plugin from available marketplaces (with `--config`, `--scope` options)
   - `list` - List installed plugins (with `--available`, `--json` options)
-  - `marketplace` - Manage Claude Code marketplaces (`add`, `list`, `remove` (`rm`), `update`); `remove`/`rm` support `--scope` option
+  - `marketplace` - Manage Claude Code marketplaces (`add`, `list`, `remove` (`rm`), `update`); `add` supports `--scope`, `--sparse`; `list` supports `--json`; `remove`/`rm` support `--scope`
   - `prune` (`autoremove`) - Remove auto-installed dependencies that are no longer needed (with `--dry-run`, `--scope`, `--yes` options)
   - `tag` - Create a `{name}--v{version}` git tag for a plugin release (with `--dry-run`, `--force`, `--message`, `--push`, `--remote` options)
   - `uninstall` (`remove`) - Uninstall an installed plugin (with `--keep-data`, `--prune`, `--scope`, `--yes` options)
