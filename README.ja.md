@@ -6,7 +6,7 @@
 
 ## 機能
 
-- **コマンド補完**: `claude` のサブコマンドをタブ補完 (`agents`, `auto-mode`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `gateway`, `update`, `upgrade`, `install`, `ultrareview`)
+- **コマンド補完**: `claude` のサブコマンドをタブ補完 (`agents`, `auto-mode`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `gateway`, `import`, `update`, `upgrade`, `install`, `ultrareview`)
 - **オプション補完**: すべての CLI オプションとフラグを補完可能
 - **コンテキストに応じた候補表示**: 該当する場合、オプションの値を候補として表示
   - 出力フォーマット: `text`, `json`, `stream-json`
@@ -172,7 +172,7 @@ use /path/to/cc-completion/claude-completions.nu *
 ```bash
 # サブコマンドの補完
 claude <TAB>
-# 表示: agents auto-mode auth mcp plugin plugins project setup-token doctor gateway update upgrade install ultrareview
+# 表示: agents auto-mode auth mcp plugin plugins project setup-token doctor gateway import update upgrade install ultrareview
 
 # オプションの補完
 claude --<TAB>
@@ -191,9 +191,16 @@ claude --model <TAB>
 claude --effort <TAB>
 # 表示: low medium high xhigh max
 
+claude --autocompact <TAB>
+# 表示: auto 100k 200k 500k 1m
+
 # install のターゲット補完
 claude install <TAB>
 # 表示: stable latest --force --help
+
+# import のソース補完
+claude import <TAB>
+# 表示: codex gemini --dry-run --yes --help
 
 # auth サブコマンドの補完
 claude auth <TAB>
@@ -267,6 +274,7 @@ claude --settings <TAB>
 - `setup-token` - 長期認証トークンを設定
 - `doctor` - Claude Code インストールの健全性をチェック
 - `gateway` - エンタープライズ認証/テレメトリゲートウェイを実行 (`--config` オプション付き)
+- `import` - 他の AI コーディングエージェント (`codex`, `gemini`) の設定を Claude Code にインポート (`--dry-run`, `--yes` オプション付き)
 - `update` - アップデートを確認し、利用可能な場合はインストール
 - `plugins` - `plugin` のエイリアス
 - `upgrade` - `update` のエイリアス
@@ -286,6 +294,7 @@ claude --settings <TAB>
 - ファイルリソース: `--file`
 - ワークツリー: `--worktree`, `--tmux`
 - バックグラウンドエージェント: `--bg`, `--background`
+- コンテキスト管理: `--autocompact`
 - デバッグ: `--debug`, `--debug-file`
 - その他多数...
 

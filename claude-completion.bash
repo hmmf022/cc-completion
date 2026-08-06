@@ -7,7 +7,7 @@ _claude_completion() {
     _init_completion || return
 
     # Commands
-    local commands="agents auto-mode auth mcp plugin plugins project setup-token doctor gateway update upgrade install ultrareview"
+    local commands="agents auto-mode auth mcp plugin plugins project setup-token doctor gateway import update upgrade install ultrareview"
 
     # Global options
     local global_opts="
@@ -24,7 +24,7 @@ _claude_completion() {
         --plugin-dir --plugin-url --disable-slash-commands --chrome --no-chrome
         --from-pr --file --worktree --tmux --remote-control --remote-control-session-name-prefix
         --ax-screen-reader --bare --brief --prompt-suggestions --safe-mode
-        --effort --version --help
+        --autocompact --effort --version --help
         --bg --background
         --name
         -d -p -c -r -v -w -n -h
@@ -42,7 +42,7 @@ _claude_completion() {
         --append-system-prompt --agents --max-budget-usd --session-id
         --agent --betas --name -n --plugin-url --remote-control-session-name-prefix
         -d --debug --from-pr -r --resume -w --worktree --remote-control
-        --prompt-suggestions
+        --prompt-suggestions --autocompact
     "
 
     # Built-in tool names accepted by --tools / --allowedTools / --disallowedTools.
@@ -125,6 +125,14 @@ _claude_completion() {
             ;;
         --effort)
             COMPREPLY=($(compgen -W "low medium high xhigh max" -- "$cur"))
+            compopt -o nosort 2>/dev/null
+            return 0
+            ;;
+        # `--autocompact <auto|tokens>` -- "auto, or 100k-1M tokens". Any value in
+        # that range is accepted (500k / 200000 / 200 shorthand all parse), so
+        # these are round-number hints, not an exhaustive choice list.
+        --autocompact)
+            COMPREPLY=($(compgen -W "auto 100k 200k 500k 1m" -- "$cur"))
             compopt -o nosort 2>/dev/null
             return 0
             ;;
@@ -563,6 +571,9 @@ _claude_completion() {
             ;;
         update|upgrade)
             COMPREPLY=($(compgen -W "--help -h" -- "$cur"))
+            ;;
+        import)
+            COMPREPLY=($(compgen -W "codex gemini --dry-run --yes --help -h" -- "$cur"))
             ;;
         install)
             COMPREPLY=($(compgen -W "stable latest --force --help -h" -- "$cur"))

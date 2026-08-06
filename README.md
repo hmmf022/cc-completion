@@ -6,7 +6,7 @@ Shell completion scripts for [Claude Code](https://claude.com/claude-code), prov
 
 ## Features
 
-- **Command completion**: Tab complete `claude` subcommands (`agents`, `auto-mode`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `gateway`, `update`, `upgrade`, `install`, `ultrareview`)
+- **Command completion**: Tab complete `claude` subcommands (`agents`, `auto-mode`, `auth`, `mcp`, `plugin`, `plugins`, `setup-token`, `doctor`, `gateway`, `import`, `update`, `upgrade`, `install`, `ultrareview`)
 - **Option completion**: All CLI options and flags are completable
 - **Contextual suggestions**: Option values are suggested where applicable
   - Output formats: `text`, `json`, `stream-json`
@@ -172,7 +172,7 @@ After installation, you can use tab completion with the `claude` command:
 ```bash
 # Complete subcommands
 claude <TAB>
-# Shows: agents auto-mode auth mcp plugin plugins project setup-token doctor gateway update upgrade install ultrareview
+# Shows: agents auto-mode auth mcp plugin plugins project setup-token doctor gateway import update upgrade install ultrareview
 
 # Complete options
 claude --<TAB>
@@ -191,9 +191,16 @@ claude --model <TAB>
 claude --effort <TAB>
 # Shows: low medium high xhigh max
 
+claude --autocompact <TAB>
+# Shows: auto 100k 200k 500k 1m
+
 # Complete install targets
 claude install <TAB>
 # Shows: stable latest --force --help
+
+# Complete import sources
+claude import <TAB>
+# Shows: codex gemini --dry-run --yes --help
 
 # Complete auth subcommands
 claude auth <TAB>
@@ -267,6 +274,7 @@ claude --settings <TAB>
 - `setup-token` - Set up a long-lived authentication token
 - `doctor` - Check the health of your Claude Code installation
 - `gateway` - Run the enterprise auth/telemetry gateway (with `--config` option)
+- `import` - Import config from another AI coding agent (`codex`, `gemini`) into Claude Code (with `--dry-run`, `--yes` options)
 - `update` - Check for updates and install if available
 - `plugins` - Alias for `plugin`
 - `upgrade` - Alias for `update`
@@ -286,6 +294,7 @@ All Claude Code CLI options are supported, including:
 - File resources: `--file`
 - Worktree: `--worktree`, `--tmux`
 - Background agent: `--bg`, `--background`
+- Context management: `--autocompact`
 - Debugging: `--debug`, `--debug-file`
 - And many more...
 

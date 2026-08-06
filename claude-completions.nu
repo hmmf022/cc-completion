@@ -2,7 +2,7 @@
 # Translated from bash completion script
 
 def "nu-complete claude commands" [] {
-    [agents auto-mode auth mcp plugin plugins project setup-token doctor gateway update upgrade install ultrareview]
+    [agents auto-mode auth mcp plugin plugins project setup-token doctor gateway import update upgrade install ultrareview]
 }
 
 def "nu-complete claude output-format" [] {
@@ -43,6 +43,17 @@ def "nu-complete claude transport" [] {
 
 def "nu-complete claude install-channel" [] {
     [stable latest]
+}
+
+def "nu-complete claude import-source" [] {
+    [codex gemini]
+}
+
+# `--autocompact <auto|tokens>` accepts "auto" or any window in the documented
+# 100k-1M range (500k / 200000 / 200 shorthand all parse), so these are
+# round-number hints rather than a closed choice list.
+def "nu-complete claude autocompact" [] {
+    [auto 100k 200k 500k 1m]
 }
 
 def "nu-complete claude bool" [] {
@@ -145,6 +156,7 @@ export extern claude [
     --prompt-suggestions: string@"nu-complete claude bool"  # Enable prompt suggestions
     --remote-control: string                                # Start an interactive session with Remote Control enabled (optionally named)
     --remote-control-session-name-prefix: string            # Remote Control session name prefix
+    --autocompact: string@"nu-complete claude autocompact"  # Auto-compact window size (auto, or 100k-1M tokens)
     --effort: string@"nu-complete claude effort"            # Effort level
     --name(-n): string                                      # Name for the conversation
     --version(-v)                                           # Show version
@@ -734,6 +746,16 @@ export extern "claude doctor" [
 export extern "claude gateway" [
     --config: path                                          # Path to gateway YAML config
     --help(-h)
+]
+
+# --- import ---
+
+# Import config from another AI coding agent into Claude Code
+export extern "claude import" [
+    --dry-run                                               # Show what would be imported without writing anything
+    --yes                                                   # Skip the interactive picker
+    --help(-h)
+    source?: string@"nu-complete claude import-source"      # Which agent to import from
 ]
 
 # --- update / upgrade ---

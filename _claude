@@ -39,6 +39,7 @@ _claude() {
         'setup-token:Set up a long-lived authentication token'
         'doctor:Check the health of your Claude Code installation'
         'gateway:Run the enterprise auth/telemetry gateway'
+        'import:Import config from another AI coding agent into Claude Code'
         'update:Check for updates and install if available'
         'upgrade:Check for updates and install if available'
         'auto-mode:Inspect or reset auto mode classifier configuration'
@@ -102,6 +103,7 @@ _claude() {
         '--safe-mode[Start with all customizations disabled — useful for troubleshooting]'
         '--brief[Enable SendUserMessage tool for agent-to-user communication]'
         '--prompt-suggestions[Enable prompt suggestions]::enabled:(true false 1 0 yes no on off)'
+        '--autocompact[Auto-compact window size (auto, or 100k-1M tokens)]:window:->autocompact'
         '--effort[Effort level for the current session]:level:->effort'
         {-n,--name}'[Name for the conversation]:name:'
         {--bg,--background}'[Start the session as a background agent]'
@@ -120,6 +122,11 @@ _claude() {
             ;;
         effort)
             compadd -V effort -- low medium high xhigh max
+            ;;
+        # Any value in the documented 100k-1M range parses (500k / 200000 / 200
+        # shorthand), so these are round-number hints, not a closed choice list.
+        autocompact)
+            compadd -V autocompact -- auto 100k 200k 500k 1m
             ;;
         args)
             case $words[1] in
@@ -551,6 +558,13 @@ _claude() {
                 update|upgrade)
                     _arguments \
                         {-h,--help}'[Display help for command]'
+                    ;;
+                import)
+                    _arguments \
+                        '--dry-run[Show what would be imported without writing anything]' \
+                        '--yes[Skip the interactive picker]' \
+                        {-h,--help}'[Display help for command]' \
+                        '1: :(codex gemini)'
                     ;;
                 install)
                     _arguments \
