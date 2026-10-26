@@ -629,7 +629,7 @@ _claude_completion() {
                     COMPREPLY=()
                     ;;
                 *)
-                    COMPREPLY=($(compgen -W "--json --no-post --post --timeout --help -h" -- "$cur"))
+                    COMPREPLY=($(compgen -W "--json --no-post --post --timeout --trust-workspace --help -h" -- "$cur"))
                     ;;
             esac
             ;;

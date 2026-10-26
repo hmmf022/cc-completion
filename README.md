@@ -291,7 +291,7 @@ claude --settings <TAB>
 - `plugins` - Alias for `plugin`
 - `upgrade` - Alias for `update`
 - `install` - Install Claude Code native build (with `--force` option)
-- `ultrareview` - Run a cloud-hosted multi-agent code review of the current branch (or a PR number / base branch) (with `--json`, `--post`, `--no-post`, `--timeout` options)
+- `ultrareview` - Run a cloud-hosted multi-agent code review of the current branch (or a PR number / base branch) (with `--json`, `--post`, `--no-post`, `--timeout`, `--trust-workspace` options)
 
 ## Supported Options
 

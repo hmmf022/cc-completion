@@ -291,7 +291,7 @@ claude --settings <TAB>
 - `plugins` - `plugin` のエイリアス
 - `upgrade` - `update` のエイリアス
 - `install` - Claude Code ネイティブビルドをインストール (`--force` オプション付き)
-- `ultrareview` - 現在のブランチ (または PR 番号 / ベースブランチ) に対するクラウドホスト型のマルチエージェントコードレビューを実行 (`--json`, `--post`, `--no-post`, `--timeout` オプション付き)
+- `ultrareview` - 現在のブランチ (または PR 番号 / ベースブランチ) に対するクラウドホスト型のマルチエージェントコードレビューを実行 (`--json`, `--post`, `--no-post`, `--timeout`, `--trust-workspace` オプション付き)
 
 ## 対応オプション
 

@@ -976,6 +976,7 @@ export extern "claude ultrareview" [
     --no-post                                               # Do not post the findings to the PR (the default)
     --post                                                  # Post the finished review's findings to the PR as you (PR targets only)
     --timeout: int                                          # Maximum minutes to wait for the review to finish (default: 45)
+    --trust-workspace                                       # Trust the current folder for this run only, without asking (for scripts and CI)
     --help(-h)
     target?: string                                         # PR number, branch, or other target
 ]

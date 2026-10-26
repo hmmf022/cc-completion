@@ -650,6 +650,7 @@ _claude() {
                         '--no-post[Do not post the findings to the PR (the default)]' \
                         '--post[Post the finished review'\''s findings to the PR as you (PR targets only)]' \
                         '--timeout[Maximum minutes to wait for the review to finish]:minutes:' \
+                        '--trust-workspace[Trust the current folder for this run only, without asking (for scripts and CI)]' \
                         {-h,--help}'[Display help for command]'
                     ;;
             esac
