@@ -807,7 +807,7 @@ export extern "claude plugins marketplace rm" [
 
 # --- purge ---
 
-# Delete all Claude Code state for a project (transcripts, tasks, file history, config entry)
+# Delete a project's Claude Code data (transcripts, tasks, file history, and its entry in ~/.claude.json) from this computer only
 export extern "claude purge" [
     --all                  # Purge state for every project (mutually exclusive with [path])
     --dry-run              # List what would be deleted without deleting anything

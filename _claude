@@ -41,7 +41,7 @@ _claude() {
         'mcp:Configure and manage MCP servers'
         'plugin:Manage Claude Code plugins'
         'plugins:Manage Claude Code plugins'
-        'purge:Delete all Claude Code state for a project'
+        'purge:Delete a project'\''s Claude Code data from this computer only'
         'setup-token:Set up a long-lived authentication token'
         'doctor:Check the health of your Claude Code installation'
         'gateway:Run the enterprise auth/telemetry gateway'

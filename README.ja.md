@@ -282,7 +282,7 @@ claude --settings <TAB>
   - `uninstall` (`remove`) - インストール済みのプラグインをアンインストール (`--json`, `--keep-data`, `--prune`, `--scope`, `--yes` オプション付き)
   - `update` - プラグインを最新バージョンに更新 (`--accept-command`, `--json`, `--scope`, `--yes` オプション付き)
   - `validate` - プラグインまたはマーケットプレイスのマニフェスト、またはディレクトリ内のスキル・エージェント・コマンドを検証 (`--json`, `--profile`, `--strict` オプション付き)
-- `purge` - プロジェクトの Claude Code 状態 (トランスクリプト、タスク、ファイル履歴、設定エントリ) をすべて削除 (`--all`, `--dry-run`, `--interactive`, `--yes` オプション付き)
+- `purge` - プロジェクトの Claude Code データ (トランスクリプト、タスク、ファイル履歴、~/.claude.json 内のエントリ) をこのコンピューターからのみ削除 (`--all`, `--dry-run`, `--interactive`, `--yes` オプション付き)
 - `setup-token` - 長期認証トークンを設定
 - `doctor` - Claude Code インストールの健全性をチェック
 - `gateway` - エンタープライズ認証/テレメトリゲートウェイを実行 (`--config` オプション付き)

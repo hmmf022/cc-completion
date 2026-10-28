@@ -282,7 +282,7 @@ claude --settings <TAB>
   - `uninstall` (`remove`) - Uninstall an installed plugin (with `--json`, `--keep-data`, `--prune`, `--scope`, `--yes` options)
   - `update` - Update a plugin to the latest version (with `--accept-command`, `--json`, `--scope`, `--yes` options)
   - `validate` - Validate a plugin or marketplace manifest, or the skills, agents, and commands in a directory (with `--json`, `--profile`, `--strict` options)
-- `purge` - Delete all Claude Code state for a project (transcripts, tasks, file history, config entry) (with `--all`, `--dry-run`, `--interactive`, `--yes` options)
+- `purge` - Delete a project's Claude Code data (transcripts, tasks, file history, and its entry in ~/.claude.json) from this computer only (with `--all`, `--dry-run`, `--interactive`, `--yes` options)
 - `setup-token` - Set up a long-lived authentication token
 - `doctor` - Check the health of your Claude Code installation
 - `gateway` - Run the enterprise auth/telemetry gateway (with `--config` option)
