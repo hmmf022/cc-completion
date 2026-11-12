@@ -340,7 +340,7 @@ _claude_completion() {
             esac
             ;;
         plugin|plugins)
-            local plugin_cmds="configure details disable enable eval init new install i list marketplace prune autoremove tag test uninstall remove update validate"
+            local plugin_cmds="configure details disable enable eval init new install i list marketplace prune autoremove restore-set-aside tag test uninstall remove update validate"
             local plugin_subcmd psub_idx=0
             for ((i=cmd_idx+1; i < cword; i++)); do
                 if [[ ${words[i]} != -* ]]; then
@@ -538,6 +538,9 @@ _claude_completion() {
                             COMPREPLY=($(compgen -W "--dry-run --scope --yes --help -s -y -h" -- "$cur"))
                             ;;
                     esac
+                    ;;
+                restore-set-aside)
+                    COMPREPLY=($(compgen -W "--discard --help -h" -- "$cur"))
                     ;;
                 update)
                     case "$prev" in

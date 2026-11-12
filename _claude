@@ -328,6 +328,7 @@ _claude() {
                         'marketplace:Manage Claude Code marketplaces'
                         'prune:Remove auto-installed dependencies that are no longer needed'
                         'autoremove:Remove auto-installed dependencies (alias for prune)'
+                        'restore-set-aside:Give a plugin id back the options and secrets set aside when a marketplace your organization declares replaced another source'
                         'tag:Create a {name}--v{version} git tag for a plugin release'
                         'test:Run a mod'\''s tests'
                         'uninstall:Uninstall an installed plugin'
@@ -546,6 +547,11 @@ _claude() {
                                         '--dry-run[List what would be removed without removing]' \
                                         {-s,--scope}'[Prune at scope]:scope:(user project local)' \
                                         {-y,--yes}'[Skip the confirmation prompt]' \
+                                        {-h,--help}'[Display help for command]'
+                                    ;;
+                                restore-set-aside)
+                                    _arguments \
+                                        '--discard[Delete what is set aside instead of restoring it]' \
                                         {-h,--help}'[Display help for command]'
                                     ;;
                                 update)

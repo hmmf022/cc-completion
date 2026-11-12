@@ -230,7 +230,7 @@ claude mcp add --transport <TAB>
 
 # plugin サブコマンドの補完
 claude plugin <TAB>
-# 表示: configure details disable enable eval init new install i list marketplace prune autoremove tag test uninstall remove update validate
+# 表示: configure details disable enable eval init new install i list marketplace prune autoremove restore-set-aside tag test uninstall remove update validate
 
 # ファイルパスの補完
 claude --settings <TAB>
@@ -277,6 +277,7 @@ claude --settings <TAB>
   - `list` - インストール済みのプラグインを一覧表示 (`--available`, `--data-size`, `--json` オプション付き。`--data-size` はプラグイン名を任意で取る)
   - `marketplace` - Claude Code マーケットプレイスの管理 (`add`, `list`, `remove` (`rm`), `update`); `add` は `--claudeai`, `--json`, `--scope`, `--sparse`、`list` と `update` は `--json`、`remove`/`rm` は `--json`, `--scope` をサポート
   - `prune` (`autoremove`) - 不要になった自動インストール依存を削除 (`--dry-run`, `--scope`, `--yes` オプション付き)
+  - `restore-set-aside` - 組織が宣言したマーケットプレイスが別のソースを置き換えた際に退避されたオプションとシークレットをプラグイン ID に戻す (`--discard` オプション付き)
   - `tag` - プラグインリリース用に `{name}--v{version}` の git タグを作成 (`--dry-run`, `--force`, `--message`, `--push`, `--remote` オプション付き)
   - `test` - mod のテストを実行
   - `uninstall` (`remove`) - インストール済みのプラグインをアンインストール (`--json`, `--keep-data`, `--prune`, `--scope`, `--yes` オプション付き)

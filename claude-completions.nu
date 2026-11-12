@@ -484,6 +484,13 @@ export extern "claude plugin autoremove" [
     --help(-h)
 ]
 
+# Give a plugin id back the options and secrets set aside when a marketplace your organization declares replaced another source
+export extern "claude plugin restore-set-aside" [
+    --discard                                               # Delete what is set aside instead of restoring it
+    --help(-h)
+    ...args: string
+]
+
 # Update a plugin to the latest version
 export extern "claude plugin update" [
     --accept-command: string                                # Accept the marketplace-declared command whose sha256 a previous --json run reported (that plugin and marketplace catalog only)
@@ -735,6 +742,13 @@ export extern "claude plugins autoremove" [
     --scope(-s): string@"nu-complete claude scope"
     --yes(-y)                                               # Skip the confirmation prompt
     --help(-h)
+]
+
+# Give a plugin id back the options and secrets set aside when a marketplace your organization declares replaced another source
+export extern "claude plugins restore-set-aside" [
+    --discard                                               # Delete what is set aside instead of restoring it
+    --help(-h)
+    ...args: string
 ]
 
 # Update a plugin to the latest version
